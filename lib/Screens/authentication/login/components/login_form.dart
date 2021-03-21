@@ -66,21 +66,25 @@ class PasswordInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: true,
-      decoration: InputDecoration(
-        labelText: "Password",
-        hintText: "Enter your Password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: TextFormField(
+        obscureText: true,
+        decoration: InputDecoration(
+          labelText: "Password",
+          hintText: "Enter your Password",
+          // If  you are using latest version of flutter then lable text and hint text shown like this
+          // if you r using flutter less then 1.20.* then maybe this is not working properly
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+        ),
+        validator: (value) {
+          if (value.isEmpty)
+            return "Password Emptey";
+          else if (value.length < 5)
+            return "Password can't be less than 5 letters";
+          return null;
+        },
       ),
-      validator: (value) {
-        if (value.isEmpty)
-          return "Password Emptey";
-        else if (value.length < 5)
-          return "Password can't be less than 5 letters";
-      },
     );
   }
 }
@@ -92,22 +96,25 @@ class EmailInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        labelText: "Email",
-        hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: TextFormField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          labelText: "Email",
+          hintText: "Enter your email",
+          // If  you are using latest version of flutter then lable text and hint text shown like this
+          // if you r using flutter less then 1.20.* then maybe this is not working properly
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+        ),
+        validator: (value) {
+          if (value.isEmpty)
+            return "Email is Empety";
+          else if (!emailValidatorRegExp.hasMatch(value))
+            return "Email is not true";
+          return null;
+        },
       ),
-      validator: (value) {
-        if (value.isEmpty)
-          return "Email is Empety";
-        else if (!emailValidatorRegExp.hasMatch(value))
-          return "Email is not true";
-        return null;
-      },
     );
   }
 }

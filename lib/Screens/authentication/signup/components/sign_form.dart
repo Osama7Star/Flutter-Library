@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/Screens/authentication/login/components/login_form.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -18,11 +19,34 @@ class _SignUpFormState extends State<SignUpForm> {
           key: _formKey,
           child: Column(
             children: [
-              NameInputField(),
+              NameInputField(
+                hint: "محمد علي",
+                label: "الإسم ",
+                minChar: 5,
+                emptyErroMessage: "الإسم فارغ",
+                lengehtErroMessage: "الإسم يجب أن يكون أكثر من 3  أحرف",
+              ),
               SizedBox(height: 15),
               EmailInputField(),
               SizedBox(height: 10),
               PasswordInputField(),
+              SizedBox(height: 10),
+              NameInputField(
+                hint: "إسطنبول | جراح باشا",
+                label: " الجامعة",
+                minChar: 5,
+                 emptyErroMessage: "إسم الجامعة لا يمكن أن يكون فارغا",
+                lengehtErroMessage: "إسم الجامعة يجب أن يكون أكثر من 4 أحرف",
+              ),
+              SizedBox(height: 10),
+              NameInputField(
+                hint: "كلية هندسة الحاسوب",
+                label: "الكلية ",
+                minChar: 5,
+                
+                 emptyErroMessage: "إسم الكلية لا يمكن أن يكون فارغا",
+                lengehtErroMessage: "إسم الكلية يجب أن يكون أكثر من 4 أحرف",
+              ),
               SizedBox(height: 15),
               Button(
                   text: "Sign Up ",
@@ -42,25 +66,46 @@ class _SignUpFormState extends State<SignUpForm> {
 
 class NameInputField extends StatelessWidget {
   const NameInputField({
+    @required this.hint,
+    @required this.label,
+    @required this.minChar,
+    @required this.emptyErroMessage,
+    @required this.lengehtErroMessage,
     Key key,
   }) : super(key: key);
 
+  final String hint;
+  final String label;
+  final int minChar;
+  final String emptyErroMessage; 
+  final String lengehtErroMessage;
+
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        labelText: "Name",
-        hintText: "Enter your Name",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: TextFormField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.greenAccent, width: 5.0),
+          ),
+          labelText: label,
+          hintText: hint,
+          suffixIcon: SvgPicture.asset(
+            "assets/icons/Mail.svg",
+          ),
+          // If  you are using latest version of flutter then lable text and hint text shown like this
+          // if you r using flutter less then 1.20.* then maybe this is not working properly
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+        ),
+        validator: (value) {
+          if (value.isEmpty) return "Name is Empety";
+          if (value.length < minChar)
+            return "Charachter can't be less than $minChar";
+          return null;
+        },
       ),
-      validator: (value) {
-        if (value.isEmpty) return "Name is Empety";
-
-        return null;
-      },
     );
   }
 }

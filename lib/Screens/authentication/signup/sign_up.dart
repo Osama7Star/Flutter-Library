@@ -9,21 +9,30 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            HeaderText(text: "Welcome To Sign Up page1"),
-            SignUpForm(),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LogIn()),
-                );
-              },
-              child: SubText(text: 'Already have account ? Login'),
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              Image.asset(
+                "assets/images/logo.png",
+                width: 120,
+                height: 120,
+              ),
+              SubText(
+                text: "إنشاء حساب",
+              ),
+              SignUpForm(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LogIn()),
+                  );
+                },
+                child: SubText(text: 'Already have account ? Login'),
+              )
+            ],
+          ),
         ),
       ),
     );

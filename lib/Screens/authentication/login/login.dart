@@ -12,7 +12,14 @@ class LogIn extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 10),
-            Image.asset("assets/images/logo.png"),
+            Image.asset(
+              "assets/images/logo.png",
+              width: 120,
+              height: 120,
+            ),
+            SubText(
+              text: "تسجيل دخول",
+            ),
             LoginForm(),
             GestureDetector(
               onTap: () {
