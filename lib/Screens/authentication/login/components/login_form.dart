@@ -71,17 +71,28 @@ class PasswordInputField extends StatelessWidget {
       child: TextFormField(
         obscureText: true,
         decoration: InputDecoration(
-          labelText: "Password",
-          hintText: "Enter your Password",
+          suffixIcon: Icon(Icons.lock, color: kPrimaryColor),
+
+          labelText: "كلمة السر",
+          hintText: "كلمة السر",
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
+          ),
           // If  you are using latest version of flutter then lable text and hint text shown like this
           // if you r using flutter less then 1.20.* then maybe this is not working properly
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),
         validator: (value) {
           if (value.isEmpty)
-            return "Password Emptey";
+            return "كلمة السر لا يمكن أن تكون فارغة";
           else if (value.length < 5)
-            return "Password can't be less than 5 letters";
+            return "كلمة السر لا يجب أن تكون أصغر من 5 أحرف ";
           return null;
         },
       ),
@@ -96,25 +107,38 @@ class EmailInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var inputDecoration = InputDecoration(
+      suffixIcon: Icon(Icons.mail, color: kPrimaryColor),
+
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red, width: 1.0),
+      ),
+      labelText: "إيميل",
+      hintText: "ali@mail.com",
+      // If  you are using latest version of flutter then lable text and hint text shown like this
+      // if you r using flutter less then 1.20.* then maybe this is not working properly
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+    );
+    var textFormField = TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      decoration: inputDecoration,
+      validator: (value) {
+        if (value.isEmpty)
+          return "لا يمكن أن يكون الإيميل فارغ";
+        else if (!emailValidatorRegExp.hasMatch(value))
+          return "الإيميل غير صحيح ";
+        return null;
+      },
+    );
     return Directionality(
       textDirection: TextDirection.rtl,
-      child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-          labelText: "Email",
-          hintText: "Enter your email",
-          // If  you are using latest version of flutter then lable text and hint text shown like this
-          // if you r using flutter less then 1.20.* then maybe this is not working properly
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-        ),
-        validator: (value) {
-          if (value.isEmpty)
-            return "Email is Empety";
-          else if (!emailValidatorRegExp.hasMatch(value))
-            return "Email is not true";
-          return null;
-        },
-      ),
+      child: textFormField,
     );
   }
 }

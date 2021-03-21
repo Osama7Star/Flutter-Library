@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/Screens/authentication/login/components/login_form.dart';
+import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -20,32 +21,32 @@ class _SignUpFormState extends State<SignUpForm> {
           child: Column(
             children: [
               NameInputField(
-                hint: "محمد علي",
-                label: "الإسم ",
-                minChar: 5,
-                emptyErroMessage: "الإسم فارغ",
-                lengehtErroMessage: "الإسم يجب أن يكون أكثر من 3  أحرف",
-              ),
+                  hint: "محمد علي",
+                  label: "الإسم ",
+                  minChar: 5,
+                  emptyErroMessage: "الإسم فارغ",
+                  lengehtErroMessage: "الإسم يجب أن يكون أكثر من 3  أحرف",
+                  icon: Icons.person),
               SizedBox(height: 15),
               EmailInputField(),
               SizedBox(height: 10),
               PasswordInputField(),
               SizedBox(height: 10),
               NameInputField(
-                hint: "إسطنبول | جراح باشا",
-                label: " الجامعة",
-                minChar: 5,
-                 emptyErroMessage: "إسم الجامعة لا يمكن أن يكون فارغا",
-                lengehtErroMessage: "إسم الجامعة يجب أن يكون أكثر من 4 أحرف",
-              ),
+                  hint: "إسطنبول | جراح باشا",
+                  label: " الجامعة",
+                  minChar: 5,
+                  emptyErroMessage: "إسم الجامعة لا يمكن أن يكون فارغا",
+                  lengehtErroMessage: "إسم الجامعة يجب أن يكون أكثر من 4 أحرف",
+                  icon: Icons.apartment),
               SizedBox(height: 10),
               NameInputField(
                 hint: "كلية هندسة الحاسوب",
                 label: "الكلية ",
                 minChar: 5,
-                
-                 emptyErroMessage: "إسم الكلية لا يمكن أن يكون فارغا",
+                emptyErroMessage: "إسم الكلية لا يمكن أن يكون فارغا",
                 lengehtErroMessage: "إسم الكلية يجب أن يكون أكثر من 4 أحرف",
+                icon: Icons.apartment,
               ),
               SizedBox(height: 15),
               Button(
@@ -71,14 +72,16 @@ class NameInputField extends StatelessWidget {
     @required this.minChar,
     @required this.emptyErroMessage,
     @required this.lengehtErroMessage,
+    @required this.icon,
     Key key,
   }) : super(key: key);
 
   final String hint;
   final String label;
   final int minChar;
-  final String emptyErroMessage; 
+  final String emptyErroMessage;
   final String lengehtErroMessage;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -87,22 +90,27 @@ class NameInputField extends StatelessWidget {
       child: TextFormField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
+          suffixIcon: Icon(icon, color: kPrimaryColor),
+
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.greenAccent, width: 5.0),
+            borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
           ),
           labelText: label,
           hintText: hint,
-          suffixIcon: SvgPicture.asset(
-            "assets/icons/Mail.svg",
-          ),
+
           // If  you are using latest version of flutter then lable text and hint text shown like this
           // if you r using flutter less then 1.20.* then maybe this is not working properly
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),
         validator: (value) {
-          if (value.isEmpty) return "Name is Empety";
-          if (value.length < minChar)
-            return "Charachter can't be less than $minChar";
+          if (value.isEmpty) return emptyErroMessage;
+          if (value.length < minChar) return '$lengehtErroMessage  $minChar';
           return null;
         },
       ),
