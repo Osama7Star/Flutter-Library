@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/Screens/authentication/Main/main_page.dart';
 import 'package:flutter_library_new/Screens/authentication/login/components/login_form.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,10 +53,16 @@ class _SignUpFormState extends State<SignUpForm> {
               Button(
                   text: "Sign Up ",
                   pressed: () {
-                    if (_formKey.currentState.validate())
-                      print("Working");
-                    else
-                      print("Not Working");
+                    if (_formKey.currentState.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainPage()),
+                      );
+                    } else
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainPage()),
+                      );
                   })
             ],
           ),
@@ -99,6 +106,9 @@ class NameInputField extends StatelessWidget {
             borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
           ),
           errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
           ),
           labelText: label,

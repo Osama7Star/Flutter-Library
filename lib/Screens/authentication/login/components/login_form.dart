@@ -84,6 +84,9 @@ class PasswordInputField extends StatelessWidget {
           errorBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.red, width: 1.0),
           ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
+          ),
           // If  you are using latest version of flutter then lable text and hint text shown like this
           // if you r using flutter less then 1.20.* then maybe this is not working properly
           floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -119,6 +122,9 @@ class EmailInputField extends StatelessWidget {
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.red, width: 1.0),
       ),
+      focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
+          ),
       labelText: "إيميل",
       hintText: "ali@mail.com",
       // If  you are using latest version of flutter then lable text and hint text shown like this

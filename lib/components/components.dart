@@ -29,7 +29,7 @@ class SubText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.bold),
+          color: kPrimaryColor, fontSize: 16, fontWeight: FontWeight.bold),
     );
   }
 }
