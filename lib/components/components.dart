@@ -19,20 +19,25 @@ class HeaderText extends StatelessWidget {
 }
 
 class SubText extends StatelessWidget {
-  const SubText({Key key, @required this.text, this.textSize = 16})
+  const SubText(
+      {Key key,
+      @required this.text,
+      this.textSize = 16,
+      this.color = kPrimaryColor,
+      this.isCenter = false})
       : super(key: key);
 
   final String text;
   final double textSize;
-
+  final Color color;
+  final bool isCenter;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: TextAlign.center,
       style: TextStyle(
-          color: kPrimaryColor,
-          fontSize: textSize,
-          fontWeight: FontWeight.bold),
+          color: color, fontSize: textSize, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -77,35 +82,34 @@ class Button extends StatelessWidget {
   }
 }
 
-
-  AppBar AppBar11(BuildContext context) {
-    return AppBar(
-        actions: [
-          GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SuggestBook()),
-                );
-              },
-              child: Icon(Icons.add)),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Search()),
-                  );
-                },
-                child: Icon(Icons.search)),
-          ),
-        ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text("Sample"),
-        centerTitle: true,
-      );
-  }
+AppBar AppBar11(BuildContext context) {
+  return AppBar(
+    actions: [
+      GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SuggestBook()),
+            );
+          },
+          child: Icon(Icons.add)),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Search()),
+              );
+            },
+            child: Icon(Icons.search)),
+      ),
+    ],
+    leading: IconButton(
+      icon: Icon(Icons.arrow_back, color: Colors.white),
+      onPressed: () => Navigator.of(context).pop(),
+    ),
+    title: Text("Sample"),
+    centerTitle: true,
+  );
+}

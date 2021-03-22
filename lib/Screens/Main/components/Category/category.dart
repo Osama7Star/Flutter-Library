@@ -10,7 +10,6 @@ class Category extends StatelessWidget {
       height: 100,
       width: double.infinity,
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         children: [
           Container(
               child: Container(

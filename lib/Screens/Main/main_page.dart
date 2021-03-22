@@ -3,6 +3,7 @@ import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 
 import 'components/BookPage.dart';
+import 'components/Category/category.dart';
 import 'components/CategoryNameLabel.dart';
 import 'components/slider.dart';
 
@@ -25,7 +26,7 @@ class _MainPageState extends State<MainPage> {
             // ignore: missing_required_param
             Slider222(),
             SizedBox(height: 10),
-            // Category(),
+            //   Category(),
             CategoryNameLabel(),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,

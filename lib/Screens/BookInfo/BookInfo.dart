@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/Screens/Authors/AuthorInformation.dart';
 import 'package:flutter_library_new/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -21,16 +22,29 @@ class BookInfo extends StatelessWidget {
                 child: Column(
                   children: [
                     bookDetails(label: "التصنيف ", info: " أدب"),
-                    bookDetails(label: "الكاتب ", info: " عبد الوهاب المسيرية"),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AuthorInformation()),
+                          );
+                        },
+                        child: bookDetails(
+                            label: "الكاتب ", info: " عبد الوهاب المسيرية")),
                     bookDetails(label: "  عدد الصفحات ", info: "200"),
                     BookInfoTag(),
                     SizedBox(height: 10),
                     BookInfoSummary(),
+                    LabelWidget(text: "تقييمات القراء"),
                     ...List.generate(
                         bookReviewsDemo.length,
                         (index) => BookReviews1(
                               bookReviews: bookReviewsDemo[index],
                             )),
+                    SizedBox(height: 20),
+                    LabelWidget(text: "كتب مشابهة"),
+                    SizedBox(height: 10),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -48,6 +62,25 @@ class BookInfo extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class LabelWidget extends StatelessWidget {
+  const LabelWidget({
+    Key key,
+    this.text,
+  }) : super(key: key);
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      
+        width: double.infinity,
+        child: Card(
+            child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SubText(text: text),
+        )));
   }
 }
 
@@ -179,7 +212,10 @@ class BookInfoTag extends StatelessWidget {
 class BookImage extends StatelessWidget {
   const BookImage({
     Key key,
+    @required this.imageUrl,
   }) : super(key: key);
+
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {

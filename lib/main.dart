@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Screens/Authors/Authors.dart';
+import 'Screens/Main/main_page.dart';
 import 'Screens/authentication/login/login.dart';
 import 'Screens/search/search.dart';
 
@@ -17,6 +19,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Search());
+        home: MainPage());
   }
 }

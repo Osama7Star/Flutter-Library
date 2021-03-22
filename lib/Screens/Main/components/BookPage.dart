@@ -5,11 +5,17 @@ import 'package:flutter_library_new/models/BookModel.dart';
 
 class OnebookWidget extends StatelessWidget {
   final BookModel bookModel;
+  final double numberOfbook;
 
-  const OnebookWidget({Key key, @required this.bookModel}) : super(key: key);
+  const OnebookWidget(
+      {Key key, @required this.bookModel, this.numberOfbook: 1.8})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData queryData;
+    queryData = MediaQuery.of(context);
+    double width11 = queryData.size.width;
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -27,20 +33,24 @@ class OnebookWidget extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => BookInfo()),
               );
             },
-            child: Card(
-                elevation: 20,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      height: 200,
-                      child: Image.network(
-                          "https://cdn02.plentymarkets.com/4n91gk7bomyj/item/images/124582293/full/--------------------------------------------------------------------------01.jpg"),
-                    ),
-                    SizedBox(height: 10),
-                    SubText(text: bookModel.bookName)
-                  ],
-                )),
+            child: SizedBox(
+              width: width11 / numberOfbook,
+              child: Card(
+                  elevation: 20,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: width11 / numberOfbook,
+                        height: 200,
+                        child: Image.network(
+                            "https://cdn02.plentymarkets.com/4n91gk7bomyj/item/images/124582293/full/--------------------------------------------------------------------------01.jpg"),
+                      ),
+                      SizedBox(height: 10),
+                      SubText(text: bookModel.bookName),
+                      SizedBox(height: 10),
+                    ],
+                  )),
+            ),
           ),
         ],
       ),
