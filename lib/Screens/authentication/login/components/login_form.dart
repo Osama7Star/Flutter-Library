@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
 class LoginForm extends StatefulWidget {
@@ -21,40 +22,19 @@ class _LoginFormState extends State<LoginForm> {
             PasswordInputField(),
             SizedBox(height: 15),
             Button(
-                text: "Log in ",
-                pressed: () {
-                  if (_formKey.currentState.validate())
-                    print("Working");
-                  else
-                    print("Not Working");
-                })
+              text: "Log in ",
+              pressed: () {
+                if (_formKey.currentState.validate())
+                  print("Working");
+                else
+                  print("Not Working");
+              },
+              peiece: 1,
+              height: 50,
+            ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class Button extends StatelessWidget {
-  const Button({Key key, @required this.text, @required this.pressed})
-      : super(key: key);
-
-  final String text;
-  final Function pressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 50,
-      child: FlatButton(
-          onPressed: pressed,
-          color: kPrimaryColor,
-          child: Text(
-            text,
-            style: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-          )),
     );
   }
 }
@@ -123,8 +103,8 @@ class EmailInputField extends StatelessWidget {
         borderSide: BorderSide(color: Colors.red, width: 1.0),
       ),
       focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 1.0),
-          ),
+        borderSide: BorderSide(color: Colors.red, width: 1.0),
+      ),
       labelText: "إيميل",
       hintText: "ali@mail.com",
       // If  you are using latest version of flutter then lable text and hint text shown like this

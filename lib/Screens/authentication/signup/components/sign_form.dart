@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/Screens/authentication/Main/main_page.dart';
+import 'package:flutter_library_new/Screens/Main/main_page.dart';
 import 'package:flutter_library_new/Screens/authentication/login/components/login_form.dart';
+import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -52,6 +52,8 @@ class _SignUpFormState extends State<SignUpForm> {
               SizedBox(height: 15),
               Button(
                   text: "Sign Up ",
+                  peiece: 1,
+                  height: 50,
                   pressed: () {
                     if (_formKey.currentState.validate()) {
                       Navigator.push(

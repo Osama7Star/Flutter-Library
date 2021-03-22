@@ -8,11 +8,11 @@ class category_list extends StatelessWidget {
   const category_list({Key key, this.categoryModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: double.infinity,
-        height: 45,
+    return SizedBox(
+      height: 100,
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Container(
           child: Center(
             child: Text(
