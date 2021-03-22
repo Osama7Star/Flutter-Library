@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/Screens/Category/category.dart';
+import 'package:flutter_library_new/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
+import 'package:flutter_library_new/models/CategoryModel.dart';
 
 import 'components/BookPage.dart';
-import 'components/Category/category.dart';
+
 import 'components/CategoryNameLabel.dart';
 import 'components/slider.dart';
 
@@ -27,6 +30,23 @@ class _MainPageState extends State<MainPage> {
             Slider222(),
             SizedBox(height: 10),
             //   Category(),
+            GestureDetector(child: SubText(text: "التصنيفات",),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Category()),
+              );
+            }),
+        SizedBox(
+          height: 150,
+          child: GridView.builder(itemCount:categoryDemo.length ,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 1,
+                childAspectRatio: 3
+
+          ), itemBuilder: (context,index)=>category_list(categoryModel: categoryDemo[index])),
+        ),
             CategoryNameLabel(),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,

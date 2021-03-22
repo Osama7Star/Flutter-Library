@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/Screens/Authors/AuthorInformation.dart';
 import 'package:flutter_library_new/Screens/Main/components/BookPage.dart';
+import 'package:flutter_library_new/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BookReview.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class BookInfo extends StatelessWidget {
+class BookInfo extends StatefulWidget {
+  @override
+  _BookInfoState createState() => _BookInfoState();
+}
+
+class _BookInfoState extends State<BookInfo> {
+  double _rating =0;
+
+  final _formKey = GlobalKey<FormState>();
+
+  double userAdedRate =  0;
+  String review ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +48,20 @@ class BookInfo extends StatelessWidget {
                             label: "الكاتب ", info: " عبد الوهاب المسيرية")),
                     bookDetails(label: "  عدد الصفحات ", info: "200"),
                     BookInfoTag(),
+
+
+
+                    RatingBarIndicator(
+                      rating: 4,
+                      itemBuilder: (context, index) => Icon(
+                         Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 50.0,
+                      unratedColor: Colors.amber.withAlpha(50),
+                      direction: true ? Axis.horizontal : Axis.horizontal,
+                    ),
                     SizedBox(height: 10),
                     BookInfoSummary(),
                     LabelWidget(text: "تقييمات القراء"),
@@ -42,6 +70,60 @@ class BookInfo extends StatelessWidget {
                         (index) => BookReviews1(
                               bookReviews: bookReviewsDemo[index],
                             )),
+
+                    Card(
+
+                      child:
+
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            Form(
+                              key:_formKey,
+                              child:
+                              Column(
+                                children: [
+
+                                  NameInputField(
+                                      hint: "أضف مراجعة",
+                                      minChar: 5,
+                                      emptyErroMessage: "الإسم فارغ",
+                                      lengehtErroMessage: "الإسم يجب أن يكون أكثر من 3  أحرف",
+                                      icon: Icons.add),
+                                  SizedBox(height: 10),
+
+                                  RatingBar.builder(
+                                    initialRating: 0,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                    itemBuilder: (context, _) => Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                    ),
+                                    onRatingUpdate: (rating) {
+                                      userAdedRate = rating;                              },
+                                  ),
+
+                                  Button(text:"أضف",pressed: (){
+                                    if (_formKey.currentState.validate()
+                                        && _rating!=0){
+                                      print('the rate is $userAdedRate');
+
+                                    }
+                                    else{
+                                      print("Error");
+                                    }
+                                  })
+                                ],
+                              )
+                            )
+                          ],
+                        ),
+                      ),),
                     SizedBox(height: 20),
                     LabelWidget(text: "كتب مشابهة"),
                     SizedBox(height: 10),
@@ -75,11 +157,16 @@ class LabelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       
-        width: double.infinity,
+        width: double.infinity/2,
         child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            color: kSecondPrimaryColor.withOpacity(.8),
+
             child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: SubText(text: text),
+          child: SubText(text: text,color: Colors.white,),
         )));
   }
 }

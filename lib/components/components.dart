@@ -48,7 +48,7 @@ class Button extends StatelessWidget {
       @required this.text,
       @required this.pressed,
       this.height: 50,
-      this.peiece})
+      this.peiece:1})
       : super(key: key);
 
   final String text;
