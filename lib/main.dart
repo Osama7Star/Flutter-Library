@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Screens/authentication/login/login.dart';
+import 'Screens/search/search.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LogIn());
+        home: Search());
   }
 }

@@ -9,42 +9,45 @@ class BookInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar11(context),
         body: SingleChildScrollView(
-      child: Column(
-        children: [
-          BookImage(),
-          SizedBox(height: 10),
-          SubText(text: "السيرة الذاتية للمسيري", textSize: 24),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                bookDetails(label: "التصنيف ", info: " أدب"),
-                bookDetails(label: "الكاتب ", info: " عبد الوهاب المسيرية"),
-                bookDetails(label: "  عدد الصفحات ", info: "200"),
-                BookInfoTag(),
-                SizedBox(height: 10),
-                BookInfoSummary(),
-                ...List.generate(
-                    bookReviewsDemo.length,
-                    (index) => BookReviews1(
-                          bookReviews: bookReviewsDemo[index],
-                        )),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ...List.generate(bookDemo.length,
-                          (index) => OnebookWidget(bookModel: bookDemo[index]))
-                    ],
-                  ),
+          child: Column(
+            children: [
+              BookImage(),
+              SizedBox(height: 10),
+              SubText(text: "السيرة الذاتية للمسيري", textSize: 24),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    bookDetails(label: "التصنيف ", info: " أدب"),
+                    bookDetails(label: "الكاتب ", info: " عبد الوهاب المسيرية"),
+                    bookDetails(label: "  عدد الصفحات ", info: "200"),
+                    BookInfoTag(),
+                    SizedBox(height: 10),
+                    BookInfoSummary(),
+                    ...List.generate(
+                        bookReviewsDemo.length,
+                        (index) => BookReviews1(
+                              bookReviews: bookReviewsDemo[index],
+                            )),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ...List.generate(
+                              bookDemo.length,
+                              (index) =>
+                                  OnebookWidget(bookModel: bookDemo[index]))
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }
 

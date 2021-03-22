@@ -82,6 +82,7 @@ class NameInputField extends StatelessWidget {
     @required this.emptyErroMessage,
     @required this.lengehtErroMessage,
     @required this.icon,
+    this.isSearch: false,
     Key key,
   }) : super(key: key);
 
@@ -91,13 +92,14 @@ class NameInputField extends StatelessWidget {
   final String emptyErroMessage;
   final String lengehtErroMessage;
   final IconData icon;
+  final bool isSearch;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
-        keyboardType: TextInputType.emailAddress,
+        textInputAction: isSearch ? TextInputAction.search : TextInputAction.go,
         decoration: InputDecoration(
           suffixIcon: Icon(icon, color: kPrimaryColor),
 
@@ -125,6 +127,53 @@ class NameInputField extends StatelessWidget {
           if (value.length < minChar) return '$lengehtErroMessage  $minChar';
           return null;
         },
+      ),
+    );
+  }
+}
+
+class NoteInputField extends StatelessWidget {
+  const NoteInputField({
+    @required this.hint,
+    @required this.icon,
+    Key key,
+  }) : super(key: key);
+
+  final String hint;
+
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: SizedBox(
+        child: Container(
+          height: 100,
+          child: TextFormField(
+            decoration: InputDecoration(
+              suffixIcon: Icon(icon, color: kPrimaryColor),
+
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 1.0),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 1.0),
+              ),
+              hintText: hint,
+
+              // If  you are using latest version of flutter then lable text and hint text shown like this
+              // if you r using flutter less then 1.20.* then maybe this is not working properly
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+            ),
+          ),
+        ),
       ),
     );
   }

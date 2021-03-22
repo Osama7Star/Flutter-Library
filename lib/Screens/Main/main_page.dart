@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 
 import 'components/BookPage.dart';
@@ -16,6 +17,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar11(context),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(

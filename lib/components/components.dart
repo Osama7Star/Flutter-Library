@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/Screens/SuggestBook/Suggestbook.dart';
+import 'package:flutter_library_new/Screens/search/search.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
 class HeaderText extends StatelessWidget {
@@ -74,3 +76,36 @@ class Button extends StatelessWidget {
     );
   }
 }
+
+
+  AppBar AppBar11(BuildContext context) {
+    return AppBar(
+        actions: [
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SuggestBook()),
+                );
+              },
+              child: Icon(Icons.add)),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Search()),
+                  );
+                },
+                child: Icon(Icons.search)),
+          ),
+        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text("Sample"),
+        centerTitle: true,
+      );
+  }
