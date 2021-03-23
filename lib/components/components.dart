@@ -96,7 +96,7 @@ AppBar AppBar11(BuildContext context) {
               MaterialPageRoute(builder: (context) => SuggestBook()),
             );
           },
-          child: Icon(Icons.add)),
+          child: Icon(Icons.add,color: kSecondPrimaryColor)),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
@@ -106,14 +106,14 @@ AppBar AppBar11(BuildContext context) {
                 MaterialPageRoute(builder: (context) => Search()),
               );
             },
-            child: Icon(Icons.search)),
+            child: Icon(Icons.search,color: kSecondPrimaryColor)),
       ),
     ],
     leading: IconButton(
-      icon: Icon(Icons.arrow_back, color: Colors.white),
+      icon: Icon(Icons.arrow_back, color: kSecondPrimaryColor),
       onPressed: () => Navigator.of(context).pop(),
     ),
-    title: Text("Sample"),
+    title: Image.asset("assets/images/logo.png",width: 50,height: 50,),
     centerTitle: true,
   );
 }

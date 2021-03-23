@@ -214,7 +214,7 @@ class BookInfoUserInfo extends StatelessWidget {
             CircleAvatar(
               radius: 20,
               backgroundImage: NetworkImage(
-                  'https://cdn02.plentymarkets.com/4n91gk7bomyj/item/images/124582293/full/--------------------------------------------------------------------------01.jpg'),
+                  'https://www.alaraby.co.uk/sites/default/files/media/images/46514FB2-7F41-4E37-BD61-46AB78E4AE2B.jpg'),
             ),
             SizedBox(width: 10),
             Column(
@@ -301,7 +301,7 @@ class BookImage extends StatelessWidget {
               children: [
                 Center(
                   child: Image.network(
-                      "https://cdn02.plentymarkets.com/4n91gk7bomyj/item/images/124582293/full/--------------------------------------------------------------------------01.jpg"),
+                      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1437734303l/25969404._SY475_.jpg"),
                 ),
                 LabelW(text:"P12")
               ],
