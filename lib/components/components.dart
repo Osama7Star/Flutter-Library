@@ -67,11 +67,14 @@ class Button extends StatelessWidget {
       child: SizedBox(
         width: width11,
         height: height,
-        child: FlatButton(
+        child: RaisedButton(
+            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
+
             onPressed: pressed,
             color: kPrimaryColor,
             child: Text(
               text,
+              textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,

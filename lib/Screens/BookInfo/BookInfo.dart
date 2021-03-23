@@ -21,8 +21,13 @@ class _BookInfoState extends State<BookInfo> {
   double userAdedRate = 0;
   String review;
 
+  double width123=200;
+
   @override
   Widget build(BuildContext context) {
+     MediaQueryData _mediaQueryData;
+    _mediaQueryData = MediaQuery.of(context);
+  double  screenWidth = _mediaQueryData.size.width;
     return Scaffold(
         appBar: AppBar11(context),
         body: SingleChildScrollView(
@@ -34,7 +39,7 @@ class _BookInfoState extends State<BookInfo> {
                   children: [
                     BookDetailsW(),
                     SizedBox(height: 20,),
-                    LabelW(text:'تقييمات القراء',width:double.infinity),
+                    LabelW(text:'تقييمات القراء',width: screenWidth/2),
                     SizedBox(height: 10,),
 
                     ...List.generate(
@@ -44,7 +49,8 @@ class _BookInfoState extends State<BookInfo> {
                             )),
                     AddReviewW(),
                     SizedBox(height: 20),
-                    LabelW(text:"كتب مشابهة",width: double.infinity,),
+
+                    LabelW(text:"كتب مشابهة",width: screenWidth/2),
                     SizedBox(height: 10),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -247,9 +253,9 @@ class BookInfoSummary extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Text(
-                "Now consider a second example, this time with an aspect ratio of 2.0 and layout constraints that require the width",
+                "حينما لاحت مشارف ما تصورت أنه اكتمال أهم أعمالي، وجدت أنه قد يكون من المفيد أن أضع بين أيدي القراء، وبخاصة الشباب، بعض خبراتي الفكرية والمنهجية. وبالفعل، كتبت بضع صفحات عن حياتي وأفكاري كنت أنوي ضمها إلى الموسوعة. ولكن اتسع نطاق التأمل وزاد حجم الصفحات وترابطت الأفكار (الثمر) بجذورها (حياتي الثقافية بأسرها) وببذورها (تكويني في دمنهور)، بحيث وجدت أنها تشمل كل حياتي الفكرية. وهذا ليس بغريب؛ لأن الموسوعة، بمعنى من المعاني، هي نتاج حياتي كلها. فانفصلت التأملات والكلمات عن الموسوعة حتى أصبحت عملاً مستقلّا يحمل ولا شك بصمات ماضيه، ولكنه مع هذا يتجاوزه في نفس الوقت. وكانت النتيجة هي هذه الصفحات: رحلتي الفكرية - في البذور والجذور والثمر: سيرة غير ذاتية، غير موضوعية",
                 textAlign: TextAlign.center,
-                style: textStyle.copyWith(  fontWeight: FontWeight.normal,
+                style: textStyle.copyWith(  fontWeight: FontWeight.normal,fontSize: 13
                 )),
           ),
         ],
