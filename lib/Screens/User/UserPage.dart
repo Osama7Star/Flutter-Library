@@ -24,7 +24,7 @@ class UserPage extends StatelessWidget {
             ),
             SizedBox(height: 10,),
 
-            SubText(text: "محمد علي", textSize: 24),
+            SubText(text: "   محمد علي", textSize: 24),
             SizedBox(height: 5,),
 
             SubText(text: "جامعة إسطنبول", textSize: 16,color: Colors.black,),
