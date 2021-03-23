@@ -54,7 +54,7 @@ class Button extends StatelessWidget {
   final String text;
   final Function pressed;
   final double height;
-  final int peiece;
+  final double peiece;
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +84,7 @@ class Button extends StatelessWidget {
 
 AppBar AppBar11(BuildContext context) {
   return AppBar(
+    backgroundColor: kPrimaryColor,
     actions: [
       GestureDetector(
           onTap: () {

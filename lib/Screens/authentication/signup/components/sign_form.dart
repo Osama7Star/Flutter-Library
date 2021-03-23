@@ -83,7 +83,7 @@ class NameInputField extends StatelessWidget {
     @required this.lengehtErroMessage,
     @required this.icon,
     this.isSearch: false,
-    Key key,
+    Key key, this.couldBeEmpty:false,
   }) : super(key: key);
 
   final String hint;
@@ -93,6 +93,7 @@ class NameInputField extends StatelessWidget {
   final String lengehtErroMessage;
   final IconData icon;
   final bool isSearch;
+  final bool couldBeEmpty ;
 
   @override
   Widget build(BuildContext context) {
@@ -123,8 +124,12 @@ class NameInputField extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),
         validator: (value) {
-          if (value.isEmpty) return emptyErroMessage;
-          if (value.length < minChar) return '$lengehtErroMessage  $minChar';
+          if (!couldBeEmpty)
+            {
+              if (value.isEmpty) return emptyErroMessage;
+              if (value.length < minChar) return '$lengehtErroMessage  $minChar';
+
+            }
           return null;
         },
       ),

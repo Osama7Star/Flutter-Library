@@ -38,14 +38,16 @@ class SuggestBook extends StatelessWidget {
                           minChar: 2,
                           emptyErroMessage: "الرجاء إدخال إسم الكاتب",
                           lengehtErroMessage:
-                              "إسم الكلية يجب أن يكون أكثر من 2 أحرف",
+                              "إسم الكاتب يجب أن يكون أكثر من 2 أحرف",
                           icon: Icons.person,
                           label: "",
                         ),
+
                         SizedBox(height: 10),
                         NoteInputField(
                           hint: "ملاحظة",
                           icon: Icons.note,
+
                         ),
                         SizedBox(height: 10),
                         Button(
