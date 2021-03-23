@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/Screens/Authors/AuthorInformation.dart';
 import 'package:flutter_library_new/Screens/Main/components/BookPage.dart';
+import 'package:flutter_library_new/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/components/components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -207,32 +208,42 @@ class BookInfoUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(
-                  'https://www.alaraby.co.uk/sites/default/files/media/images/46514FB2-7F41-4E37-BD61-46AB78E4AE2B.jpg'),
-            ),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(bookReviews.name, style: TextStyle(fontSize: 14)),
-                Text(
-                  bookReviews.userName,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.black.withOpacity(.5),
+    return GestureDetector(
+      onTap:()
+      {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => UserPage()),
+        );
+      },
+      child: Column(
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 20,
+                backgroundImage: NetworkImage(
+                    'https://www.alaraby.co.uk/sites/default/files/media/images/46514FB2-7F41-4E37-BD61-46AB78E4AE2B.jpg'),
+              ),
+              SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(bookReviews.name, style: TextStyle(fontSize: 14)),
+                  Text(
+                    bookReviews.userName,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black.withOpacity(.5),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        )
-      ],
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
