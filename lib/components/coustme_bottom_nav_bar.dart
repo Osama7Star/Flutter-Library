@@ -3,6 +3,7 @@ import 'package:flutter_library_new/Screens/Activity/Activity_screen.dart';
 import 'package:flutter_library_new/Screens/BookInfo/BookInfo.dart';
 import 'package:flutter_library_new/Screens/Category/category.dart';
 import 'package:flutter_library_new/Screens/Main/main_page.dart';
+import 'package:flutter_library_new/Screens/QrReader/QrReade_screen.dart';
 import 'package:flutter_library_new/Screens/User/UserProfile.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
@@ -41,65 +42,71 @@ class CustomBottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Shop Icon.svg",
-                  color: MenuState.home == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MainPage()),
-                    )         ),
-              IconButton(
-                icon: SvgPicture.asset("assets/icons/Settings.svg",
-                  color: MenuState.activity == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ActivityAcreen()),
-                  ) ;
-                },
-              ),
+
+
+
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/User Icon.svg",
+                  icon: new Icon(Icons.home),
+                  highlightColor: kPrimaryColor,
+                  color: MenuState.home == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,
+                  onPressed: (){ Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainPage()),
+                  ); },
+                ),
+
+                Text('الرئيسية',style: TextStyle( color: MenuState.home == selectedMenu
+                    ? kPrimaryColor
+                    : inActiveIconColor,fontSize: 14,fontWeight: FontWeight.bold),)
+              ],
+            ),
+
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: new Icon(Icons.volunteer_activism),
+                    highlightColor: kPrimaryColor,
                     color: MenuState.activity == selectedMenu
                         ? kPrimaryColor
                         : inActiveIconColor,
-                  ),
-                  onPressed: () =>
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BookInfo()),
-                      ) ,
-                ),
-                Text('test')
-              ],
-            ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/User Icon.svg",
-                  color: MenuState.book == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.push(
+                    onPressed: (){ Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => BookInfo()),
-                    ) ,
+                          builder: (context) => ActivityAcreen()),
+                    ); },
+                  ),
+
+                  Text('نشاطات',style: TextStyle( color: MenuState.activity == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,fontSize: 14,fontWeight: FontWeight.bold),)
+                ],
+              ), Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: new Icon(Icons.mobile_screen_share_outlined),
+                    highlightColor: kPrimaryColor,
+                    color: MenuState.scan == selectedMenu
+                        ? kPrimaryColor
+                        : inActiveIconColor,
+                    onPressed: (){ Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QRScanPage()),
+                    ); },
+                  ),
+
+                  Text('إستعارة',style: TextStyle( color: MenuState.scan == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,fontSize: 14,fontWeight: FontWeight.bold),)
+                ],
               ),
             ],
           )),

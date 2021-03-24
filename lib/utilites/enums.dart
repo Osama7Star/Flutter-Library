@@ -1,1 +1,1 @@
-enum MenuState { home, book, category, activity}
+enum MenuState { home, book, category, activity,scan}
