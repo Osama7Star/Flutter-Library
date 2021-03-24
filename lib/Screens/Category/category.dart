@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/components/components.dart';
+import 'package:flutter_library_new/components/coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/CategoryModel.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 
 import 'components/cateory_list.dart';
 
@@ -27,6 +29,8 @@ class Category extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.category),
+
     );
   }
 }

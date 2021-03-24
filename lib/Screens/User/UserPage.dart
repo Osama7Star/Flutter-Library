@@ -4,9 +4,7 @@ import 'package:flutter_library_new/components/components.dart';
 class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar:AppBar11(context),
-      body:Center(
+    return Center(
         child: Column(
           children: [
             SizedBox(height: 20,),
@@ -35,7 +33,7 @@ class UserPage extends StatelessWidget {
 
           ],
         ),
-      )
+
     );
   }
 }

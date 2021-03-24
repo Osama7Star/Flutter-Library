@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/Screens/Category/category.dart';
 import 'package:flutter_library_new/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/components/components.dart';
+import 'package:flutter_library_new/components/coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/CategoryModel.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 
 import 'components/BookPage.dart';
 
@@ -56,10 +58,17 @@ class _MainPageState extends State<MainPage> {
                       (index) => OnebookWidget(bookModel: bookDemo[index]))
                 ],
               ),
+
             ),
+
           ],
+
         ),
-      )),
+
+      )
+    ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+
     );
   }
 }

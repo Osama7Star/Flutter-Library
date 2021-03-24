@@ -4,9 +4,11 @@ import 'package:flutter_library_new/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/components/components.dart';
+import 'package:flutter_library_new/components/coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BookReview.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BookInfo extends StatefulWidget {
@@ -69,7 +71,10 @@ class _BookInfoState extends State<BookInfo> {
               ),
             ],
           ),
-        ));
+        ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.book),
+
+    );
   }
 
   Card AddReviewW() {
