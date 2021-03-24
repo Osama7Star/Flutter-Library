@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/components/components.dart';
+import 'package:flutter_library_new/components/coustme_bottom_nav_bar.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 
 class SuggestBook extends StatelessWidget {
   @override
@@ -68,6 +70,10 @@ class SuggestBook extends StatelessWidget {
               ],
             ),
           ),
-        )));
+        )),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+
+    )
+    ;
   }
 }

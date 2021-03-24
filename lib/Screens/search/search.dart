@@ -3,7 +3,9 @@ import 'package:flutter_library_new/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/Screens/SuggestBook/Suggestbook.dart';
 import 'package:flutter_library_new/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/components/components.dart';
+import 'package:flutter_library_new/components/coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -67,6 +69,8 @@ class _SearchState extends State<Search> {
                   ),
                 )),
           ),
-        ));
+        ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+    );
   }
 }
