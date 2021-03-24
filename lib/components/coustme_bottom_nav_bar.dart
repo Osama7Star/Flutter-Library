@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/Screens/Activity/Activity_screen.dart';
 import 'package:flutter_library_new/Screens/BookInfo/BookInfo.dart';
 import 'package:flutter_library_new/Screens/Category/category.dart';
 import 'package:flutter_library_new/Screens/Main/main_page.dart';
@@ -54,7 +55,7 @@ class CustomBottomNavBar extends StatelessWidget {
                           builder: (context) => MainPage()),
                     )         ),
               IconButton(
-                icon: SvgPicture.asset("assets/icons/Heart Icon.svg",
+                icon: SvgPicture.asset("assets/icons/Settings.svg",
                   color: MenuState.category == selectedMenu
                       ? kPrimaryColor
                       : inActiveIconColor,),
@@ -62,11 +63,24 @@ class CustomBottomNavBar extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => profilePage()),
+                        builder: (context) => ActivityAcreen()),
                   ) ;
                 },
               ),
-
+              IconButton(
+                icon: SvgPicture.asset(
+                  "assets/icons/User Icon.svg",
+                  color: MenuState.activity == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,
+                ),
+                onPressed: () =>
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => BookInfo()),
+                    ) ,
+              ),
               IconButton(
                 icon: SvgPicture.asset(
                   "assets/icons/User Icon.svg",
