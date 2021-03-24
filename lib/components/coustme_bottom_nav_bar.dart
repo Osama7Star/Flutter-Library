@@ -3,7 +3,6 @@ import 'package:flutter_library_new/Screens/Activity/Activity_screen.dart';
 import 'package:flutter_library_new/Screens/BookInfo/BookInfo.dart';
 import 'package:flutter_library_new/Screens/Category/category.dart';
 import 'package:flutter_library_new/Screens/Main/main_page.dart';
-import 'package:flutter_library_new/Screens/QrReader/QrReade_screen.dart';
 import 'package:flutter_library_new/Screens/User/UserProfile.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
@@ -68,23 +67,29 @@ class CustomBottomNavBar extends StatelessWidget {
                   ) ;
                 },
               ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: SvgPicture.asset(
+                    "assets/icons/User Icon.svg",
+                    color: MenuState.activity == selectedMenu
+                        ? kPrimaryColor
+                        : inActiveIconColor,
+                  ),
+                  onPressed: () =>
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BookInfo()),
+                      ) ,
+                ),
+                Text('test')
+              ],
+            ),
               IconButton(
                 icon: SvgPicture.asset(
                   "assets/icons/User Icon.svg",
-                  color: MenuState.activity == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,
-                ),
-                onPressed: () =>
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BookInfo()),
-                    ) ,
-              ),
-              IconButton(
-                icon: SvgPicture.asset(
-                  "assets/icons/Camera Icon.svg",
                   color: MenuState.book == selectedMenu
                       ? kPrimaryColor
                       : inActiveIconColor,
@@ -93,7 +98,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => QRScanPage()),
+                          builder: (context) => BookInfo()),
                     ) ,
               ),
             ],
