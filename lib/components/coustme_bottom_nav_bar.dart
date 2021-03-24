@@ -22,19 +22,21 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color inActiveIconColor = Color(0xFFB6B6B6);
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 14),
+
+      padding: EdgeInsets.symmetric(vertical: 0),
       decoration: BoxDecoration(
+
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            offset: Offset(0, -15),
-            blurRadius: 20,
+            offset: Offset(0, -45),
+            blurRadius: 90,
             color: kPrimaryColor.withOpacity(0.15),
           ),
         ],
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
         ),
       ),
       child: SafeArea(
