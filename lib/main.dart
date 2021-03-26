@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'Screens/Authors/Authors.dart';
-import 'Screens/Main/main_page.dart';
-import 'Screens/authentication/login/login.dart';
-import 'Screens/search/search.dart';
+import 'View/components/Screens/Main/main_page.dart';
+
+
 
 void main() {
   runApp(MyApp());
