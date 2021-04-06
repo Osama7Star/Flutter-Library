@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 class BookModel {
   String bookId;
+  String ISBN;
   String bookName;
   String bookPages;
   String categoryId;
@@ -13,6 +14,7 @@ class BookModel {
 
   BookModel({
       this.bookId,
+      this.ISBN,
       this.bookName,
       this.bookPages,
       this.categoryId,
@@ -26,6 +28,7 @@ class BookModel {
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
       bookId : json['bookId'],
+      ISBN: json['ISBN'],
       bookName: json['bookName'],
       bookPages: json['bookPages'],
       categoryId: json['categoryId'],
@@ -33,7 +36,7 @@ class BookModel {
       tag1: json['tag1'],
       tag2:json['tag2'],
       tag3:json['tag3'],
-      summary:json['bookName'],
+      summary:json['summary'],
       imageUrl:json['imageUrl'],
 
 

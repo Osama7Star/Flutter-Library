@@ -38,7 +38,7 @@ class category_list extends StatelessWidget {
             borderRadius: BorderRadius.circular(4),
 
           ),
-          child:Center(child: SubText(text:categoryModel.categoryName,color: Colors.white,))
+          child:Center(child: SubText(text:cat0,color: Colors.white,))
         ),
       ),
     );

@@ -1,7 +1,18 @@
 class CategoryModel {
   String categoryName;
+  String categoryId;
 
-  CategoryModel({this.categoryName});
+  CategoryModel({this.categoryName, this.categoryId});
+
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    return CategoryModel(
+      categoryId: json['categoryId'],
+      categoryName: json['categoryName']
+
+    );
+  }
+
 }
 
 List<CategoryModel> categoryDemo = [

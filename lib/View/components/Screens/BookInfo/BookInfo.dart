@@ -295,20 +295,23 @@ class BookInfoSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          SubText(
-            text: " ملخص الكتاب",
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(summary);
-                textAlign: TextAlign.center,
-                style: textStyle.copyWith(  fontWeight: FontWeight.normal,fontSize: 13
-                )),
-          ),
-        ],
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        child: Column(
+          children: [
+            SubText(
+              text: " ملخص الكتاب",
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(summary,
+                  textAlign: TextAlign.center,
+                  style: textStyle.copyWith(  fontWeight: FontWeight.normal,fontSize: 13
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -336,10 +339,11 @@ class BookInfoTag extends StatelessWidget {
 class BookImage extends StatelessWidget {
   const BookImage({
     Key key,
-    @required this.imageUrl,
+    @required this.imageUrl, this.ISBN,
   }) : super(key: key);
 
   final String imageUrl;
+  final String ISBN;
 
   @override
   Widget build(BuildContext context) {
@@ -357,7 +361,7 @@ class BookImage extends StatelessWidget {
                      imageUrl,
                   ),
                 ),
-                LabelW(text:"P12")
+                LabelW(text:ISBN)
               ],
             )
           ),
@@ -442,7 +446,7 @@ class BookDetailsW extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          BookImage(imageUrl:bookModel.imageUrl),
+          BookImage(imageUrl:bookModel.imageUrl,ISBN:bookModel.ISBN),
           SizedBox(height: 10),
           SubText(text: bookModel.bookName, textSize: 24),
           SizedBox(height: 15),
@@ -471,7 +475,7 @@ class BookDetailsW extends StatelessWidget {
           SizedBox(height: 15),
           BookInfoTag(bookModel:bookModel),
           SizedBox(height: 15),
-          BookInfoSummary(),
+          BookInfoSummary(summary: bookModel.summary),
           SizedBox(height: 15),
           Text('الكتاب متاح للإستعارة',style: textStyle.copyWith(color:kPrimaryColor,fontSize: 20),)
         ],
