@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
           height: 150,
           child: GridView.builder(itemCount:categoryDemo.length ,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 3,
             mainAxisSpacing: 1,
                 childAspectRatio: 3
 

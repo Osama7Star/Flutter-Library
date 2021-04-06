@@ -3,12 +3,14 @@ import 'package:flutter_library_new/View/components/Screens/Authors/AuthorInform
 import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
+import 'package:flutter_library_new/controller/book_info_controller.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BookReview.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter/cupertino.dart';
 
 
 
@@ -25,16 +27,23 @@ class BookInfo extends StatefulWidget {
 
 class _BookInfoState extends State<BookInfo> {
   double _rating = 0;
-
+   List<BookModel> futureBook;
   final _formKey = GlobalKey<FormState>();
 
   double userAdedRate = 0;
   String review;
 
   double width123=200;
+  @override
+  void initState() {
+    super.initState();
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    BookInfoController test= BookInfoController();
      MediaQueryData _mediaQueryData;
     _mediaQueryData = MediaQuery.of(context);
   double  screenWidth = _mediaQueryData.size.width;
@@ -47,7 +56,24 @@ class _BookInfoState extends State<BookInfo> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    BookDetailsW(),
+
+                  FutureBuilder(
+                  future:test.fetchBook(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<BookModel> fyck =snapshot.data;
+                      return                    BookDetailsW(bookModel:fyck[0]);
+
+                    } else if (snapshot.hasError) {
+                      return Text("Error");
+                    }
+
+                    // By default, show a loading spinner.
+                    return Text('Errrrrrro');
+                  },
+                ),
+
+
                     SizedBox(height: 20,),
                     LabelW(text:'تقييمات القراء',width: screenWidth/2),
                     SizedBox(height: 10,),
@@ -322,9 +348,12 @@ class BookImage extends StatelessWidget {
           Card(
             child: Stack(
               children: [
+
+                ///TODO :ADD PLACEHOLDER UNTIL DOWNLOAD THE IMAGE
                 Center(
                   child: Image.network(
-                      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1437734303l/25969404._SY475_.jpg"),
+                     imageUrl,
+                  ),
                 ),
                 LabelW(text:"P12")
               ],
@@ -403,14 +432,17 @@ class bookDetails extends StatelessWidget {
 }
 
 class BookDetailsW extends StatelessWidget {
+  final BookModel bookModel;
+
+  const BookDetailsW({Key key,@required this.bookModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Column(
         children: [
-          BookImage(),
+          BookImage(imageUrl:bookModel.imageUrl),
           SizedBox(height: 10),
-          SubText(text: "السيرة الذاتية للمسيري", textSize: 24),
+          SubText(text: bookModel.bookName, textSize: 24),
           SizedBox(height: 15),
           Directionality(
             textDirection: TextDirection.rtl,
@@ -444,4 +476,5 @@ class BookDetailsW extends StatelessWidget {
       ),
     );
   }
+
 }
