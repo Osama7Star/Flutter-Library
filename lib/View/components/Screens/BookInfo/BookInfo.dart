@@ -288,8 +288,10 @@ class BookInfoUserInfo extends StatelessWidget {
 
 class BookInfoSummary extends StatelessWidget {
   const BookInfoSummary({
-    Key key,
+    Key key,@required this.summary,
   }) : super(key: key);
+
+  final String summary;
 
   @override
   Widget build(BuildContext context) {
@@ -301,8 +303,7 @@ class BookInfoSummary extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Text(
-                "حينما لاحت مشارف ما تصورت أنه اكتمال أهم أعمالي، وجدت أنه قد يكون من المفيد أن أضع بين أيدي القراء، وبخاصة الشباب، بعض خبراتي الفكرية والمنهجية. وبالفعل، كتبت بضع صفحات عن حياتي وأفكاري كنت أنوي ضمها إلى الموسوعة. ولكن اتسع نطاق التأمل وزاد حجم الصفحات وترابطت الأفكار (الثمر) بجذورها (حياتي الثقافية بأسرها) وببذورها (تكويني في دمنهور)، بحيث وجدت أنها تشمل كل حياتي الفكرية. وهذا ليس بغريب؛ لأن الموسوعة، بمعنى من المعاني، هي نتاج حياتي كلها. فانفصلت التأملات والكلمات عن الموسوعة حتى أصبحت عملاً مستقلّا يحمل ولا شك بصمات ماضيه، ولكنه مع هذا يتجاوزه في نفس الوقت. وكانت النتيجة هي هذه الصفحات: رحلتي الفكرية - في البذور والجذور والثمر: سيرة غير ذاتية، غير موضوعية",
+            child: Text(summary);
                 textAlign: TextAlign.center,
                 style: textStyle.copyWith(  fontWeight: FontWeight.normal,fontSize: 13
                 )),
@@ -315,17 +316,18 @@ class BookInfoSummary extends StatelessWidget {
 
 class BookInfoTag extends StatelessWidget {
   const BookInfoTag({
-    Key key,
+    Key key, this.bookModel,
   }) : super(key: key);
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Button(text: "علم ", pressed: () {}, height: 30, peiece: 3.4),
-        Button(text: "ثقافة", pressed: () {}, height: 30, peiece: 3.4),
-        Button(text: "فكر", pressed: () {}, height: 30, peiece: 3.4),
+        Button(text: bookModel.tag1, pressed: () {}, height: 30, peiece: 3.4),
+        Button(text: bookModel.tag2, pressed: () {}, height: 30, peiece: 3.4),
+        Button(text: bookModel.tag3, pressed: () {}, height: 30, peiece: 3.4),
       ],
     );
   }
@@ -460,14 +462,14 @@ class BookDetailsW extends StatelessWidget {
                     },
                     child: bookDetails(
                         label: "الكاتب ", info: " عبد الوهاب المسيري")),
-                bookDetails(label: "عدد الصفحات ", info: "200"),
+                bookDetails(label: "عدد الصفحات ", info: bookModel.bookPages),
               ],
             ),
           ),
           SizedBox(height: 15),
           RatingBarW(),
           SizedBox(height: 15),
-          BookInfoTag(),
+          BookInfoTag(bookModel:bookModel),
           SizedBox(height: 15),
           BookInfoSummary(),
           SizedBox(height: 15),
