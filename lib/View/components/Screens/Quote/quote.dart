@@ -43,7 +43,7 @@ class GetQuotes extends StatelessWidget {
           return Text("Error");
         }
 
-        ///TODO: MAKE THE PRGORESSBAR IN THE CENTER
+        ///TODO: MAKE THE PROGRESSBAR IN THE CENTER
 
         // By default, show a loading spinner.
         return Column(
