@@ -4,8 +4,10 @@ import 'package:flutter_library_new/View/components/Screens/Main/components/Book
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 
 import '../../components.dart';
+import '../../coustme_bottom_nav_bar.dart';
 
 class AuthorInformation extends StatelessWidget {
   BookInfoController _con1 = BookInfoController();
@@ -30,6 +32,8 @@ class AuthorInformation extends StatelessWidget {
                         return Container(
                           height: double.maxFinite,
                           child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount: snapshot.data.length,
@@ -50,7 +54,9 @@ class AuthorInformation extends StatelessWidget {
               ),
             ),
           ],
-        )));
+        )),
+        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+    );
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
+import 'package:flutter_library_new/utilites/constants.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -75,7 +76,12 @@ class _MainPageState extends State<MainPage> {
       )
     ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: Icon(Icons.navigation),
+        backgroundColor: kPrimaryColor,
+      ),
     );
   }
 }

@@ -31,6 +31,8 @@ class Authros extends StatelessWidget {
           return Container(
             margin: EdgeInsets.all(10),
             child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
@@ -43,7 +45,7 @@ class Authros extends StatelessWidget {
             }
 
             // By default, show a loading spinner.
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           },
         ),
         ),

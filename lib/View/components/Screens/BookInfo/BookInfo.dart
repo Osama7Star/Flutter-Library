@@ -190,6 +190,8 @@ class GetBookReviewW extends StatelessWidget {
         if (snapshot.hasData) {
           List<BookReviewsModel> list = snapshot.data;
           return ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: snapshot.data.length,

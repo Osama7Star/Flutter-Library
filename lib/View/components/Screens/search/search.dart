@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
+import 'package:flutter_library_new/controller/SearchController.dart';
+import 'package:flutter_library_new/controller/book_info_controller.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -12,6 +14,8 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  SearchController _con1 = SearchController();
+
   bool isSearch = false;
   @override
   Widget build(BuildContext context) {
@@ -52,16 +56,32 @@ class _SearchState extends State<Search> {
 
                   SizedBox(height: 20,),
                   if (isSearch)
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Column(
-                        children: [
-                          ...List.generate(bookDemo.length,
-                                  (index) => OnebookWidget(bookModel: bookDemo[index],numberOfbook: 1,))
-                        ],
-                      ),
-                    ),
+                    FutureBuilder(
+                      future: _con1.fetchSearch(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          List<BookModel> list = snapshot.data;
+                          return Container(
+                            height: double.maxFinite,
+                            child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: snapshot.data.length,
+                                itemBuilder: (context, index) {
+                                  return snapshot.data.length>0? OnebookWidget(
+                                      bookModel: list[index], numberOfbook: 1)
+                                  :Text('لا يوجد كتاب');
+                                }),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text("Error");
+                        }
 
+                        // By default, show a loading spinner.
+                        return CircularProgressIndicator();
+                      },
+                    ),
 
 
                     ],
