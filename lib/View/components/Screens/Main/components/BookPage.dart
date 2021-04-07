@@ -38,22 +38,28 @@ class OnebookWidget extends StatelessWidget {
             },
             child: SizedBox(
               width: width11 / numberOfbook,
-              child: Card(
-                  elevation: 20,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: width11 / numberOfbook,
-                        height: 200,
-                        child: Image.network(
-                            bookModel.imageUrl
-                      ),
-                      ),
-                      SizedBox(height: 10),
-                      SubText(text: bookModel.bookName),
-                      SizedBox(height: 10),
-                    ],
-                  )),
+              child: Container(
+
+                child: Card(
+                    elevation: 20,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: width11 / numberOfbook,
+                          height: 200,
+                          // TODO : CORRECT SOME IMAGES URL
+                          child: Image.network(
+                              bookModel.imageUrl
+                        ),
+                        ),
+                        SizedBox(height: 10),
+                        SizedBox(
+                          height: 55,
+                            child: SubText(text: bookModel.bookName)),
+                        SizedBox(height: 10),
+                      ],
+                    )),
+              ),
             ),
           ),
         ],

@@ -58,8 +58,8 @@ class _BookInfoState extends State<BookInfo> {
                     future: _con1.fetchBook(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        List<BookModel> fyck = snapshot.data;
-                        return BookDetailsW(bookModel: fyck[0]);
+                        List<BookModel> list = snapshot.data;
+                        return BookDetailsW(bookModel: list[0]);
                       } else if (snapshot.hasError) {
                         return Text("Error");
                       }
@@ -135,13 +135,16 @@ class _BookInfoState extends State<BookInfo> {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<BookModel> list = snapshot.data;
-                        return ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, index) {
-                              return OnebookWidget(bookModel: list[index]);
-                            });
+                        return Container(
+                          height: double.maxFinite,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) {
+                                return OnebookWidget(bookModel: list[index]);
+                              }),
+                        );
                       } else if (snapshot.hasError) {
                         return Text("Error");
                       }

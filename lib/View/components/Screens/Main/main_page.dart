@@ -52,37 +52,19 @@ class _MainPageState extends State<MainPage> {
 
           ), itemBuilder: (context,index)=>category_list(categoryModel: categoryDemo[index])),
         ),
-            CategoryNameLabel(),
-            // SingleChildScrollView(
-            //   scrollDirection: Axis.horizontal,
-            //   child: Row(
-            //     children: [
-            //       ...List.generate(bookDemo.length,
-            //           (index) => OnebookWidget(bookModel: bookDemo[index]))
-            //     ],
-            //   ),
-            //
-            // ),
-            FutureBuilder(
-              future: _con1.fetchCategory1Books(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<BookModel> list = snapshot.data;
-                  return ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return OnebookWidget(bookModel: list[index]);
-                      });
-                } else if (snapshot.hasError) {
-                  return Text("Error");
-                }
 
-                // By default, show a loading spinner.
-                return CircularProgressIndicator();
-              },
-            ),
+            /// TODO : MAKE A MARING BETWEEN THE LABAEL AND THE BOOKS LIST
+            CategoryNameLabel(),
+            SizedBox(height: 5),
+            GetCategoryBooks(con1: _con1),
+
+            CategoryNameLabel(),
+            SizedBox(height: 5),
+            GetCategoryBooks(con1: _con1),
+
+            CategoryNameLabel(),
+            SizedBox(height: 5),
+            GetCategoryBooks(con1: _con1),
 
 
 
@@ -94,6 +76,43 @@ class _MainPageState extends State<MainPage> {
     ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
 
+    );
+  }
+}
+
+class GetCategoryBooks extends StatelessWidget {
+  const GetCategoryBooks({
+    Key key,
+    @required BookInfoController con1,
+  }) : _con1 = con1, super(key: key);
+
+  final BookInfoController _con1;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _con1.fetchCategory1Books(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<BookModel> list = snapshot.data;
+          return Container(
+            height: 300,
+            margin: EdgeInsets.all(10),
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return OnebookWidget(bookModel: list[index]);
+                }),
+          );
+        } else if (snapshot.hasError) {
+          return Text("Error");
+        }
+
+        // By default, show a loading spinner.
+        return CircularProgressIndicator();
+      },
     );
   }
 }

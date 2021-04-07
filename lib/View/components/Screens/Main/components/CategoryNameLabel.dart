@@ -10,12 +10,14 @@ class CategoryNameLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text('عرض الكل'),
-        SubText(text: "ثقافة"),
-      ],
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('عرض الكل'),
+          SubText(text: "ثقافة"),
+        ],
+      ),
     );
   }
 }
