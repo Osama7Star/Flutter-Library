@@ -1,38 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
+import 'package:flutter_library_new/controller/book_info_controller.dart';
+import 'package:flutter_library_new/utilites/constants.dart';
 import '../../components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 
 class CategoryBooks11 extends StatelessWidget {
+  BookInfoController _con1 = BookInfoController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar11(context),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-        SizedBox(
-          width: double.infinity,
-          child: Card(
-          child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: SubText(text: "روايات"),
+      body: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
 
-    )),
-        ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(
-                children: [
-                  ...List.generate(bookDemo.length,
-                          (index) => OnebookWidget(bookModel: bookDemo[index],numberOfbook:1))
-                ],
-              ),
+            child: Card(
+                color: kPrimaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SubText(
+                    text: "روايات",
+                    textSize: 22,
+                    color: kSecondPrimaryColor,
+                  ),
+                )),
+          ),
+
+          ///TODO: SINGLECHILD SCROLL VIEW NOT WORKING
+          SingleChildScrollView(
+            child: FutureBuilder(
+              future: _con1.fetchSimilarBooks(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<BookModel> list = snapshot.data;
+                  return Container(
+                    height: double.maxFinite,
+                    child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          return OnebookWidget(
+                              bookModel: list[index], numberOfbook: 1);
+                        }),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("Error");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
             ),
-          ],
-        ),
+          )
+        ],
       ),
-
     );
   }
 }

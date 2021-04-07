@@ -54,20 +54,7 @@ class _BookInfoState extends State<BookInfo> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  FutureBuilder(
-                    future: _con1.fetchBook(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        List<BookModel> list = snapshot.data;
-                        return BookDetailsW(bookModel: list[0]);
-                      } else if (snapshot.hasError) {
-                        return Text("Error");
-                      }
-
-                      // By default, show a loading spinner.
-                      return CircularProgressIndicator();
-                    },
-                  ),
+                  GetBookInfoW(con1: _con1),
 
                   /// USERS REVIEWS
                   SizedBox(
@@ -78,34 +65,8 @@ class _BookInfoState extends State<BookInfo> {
                     height: 10,
                   ),
 
-                  // ...List.generate(
-                  //     bookReviewsDemo.length,
-                  //     (index) => BookReviews1(
-                  //           bookReviews: bookReviewsDemo[index],
-                  //         )),
 
-                  FutureBuilder(
-                    future: _con2.fetchBookReviews(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        List<BookReviewsModel> list = snapshot.data;
-                        return ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: snapshot.data.length,
-                            itemBuilder: (context, index) {
-                              return BookReviews1(
-                                bookReviews: list[index],
-                              );
-                            });
-                      } else if (snapshot.hasError) {
-                        return Text("Error");
-                      }
-
-                      // By default, show a loading spinner.
-                      return CircularProgressIndicator();
-                    },
-                  ),
+                  SingleChildScrollView(child: GetBookReviewW(con2: _con2)),
 
                   ///END USERS REVIEWS
 
@@ -117,42 +78,12 @@ class _BookInfoState extends State<BookInfo> {
 
                   SizedBox(height: 20),
 
+                  /// GET SIMILAR BOOKS
                   LabelW(text: "كتب مشابهة", width: screenWidth / 2),
                   SizedBox(height: 10),
-                  // SingleChildScrollView(
-                  //   scrollDirection: Axis.horizontal,
-                  //   child: Row(
-                  //     children: [
-                  //       ...List.generate(
-                  //           bookDemo.length,
-                  //           (index) =>
-                  //               OnebookWidget(bookModel: bookDemo[index]))
-                  //     ],
-                  //   ),
-                  // ),
-                  FutureBuilder(
-                    future: _con1.fetchSimilarBooks(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        List<BookModel> list = snapshot.data;
-                        return Container(
-                          height: double.maxFinite,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (context, index) {
-                                return OnebookWidget(bookModel: list[index]);
-                              }),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text("Error");
-                      }
+                  GetSimilarBooksW(con1: _con1),
+                  ///END GET SIMILAR BOOKS
 
-                      // By default, show a loading spinner.
-                      return CircularProgressIndicator();
-                    },
-                  ),
                 ],
               ),
             ),
@@ -212,6 +143,104 @@ class _BookInfoState extends State<BookInfo> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class GetBookInfoW extends StatelessWidget {
+  const GetBookInfoW({
+    Key key,
+    @required BookInfoController con1,
+  }) : _con1 = con1, super(key: key);
+
+  final BookInfoController _con1;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _con1.fetchBook(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<BookModel> list = snapshot.data;
+          return BookDetailsW(bookModel: list[0]);
+        } else if (snapshot.hasError) {
+          return Text("Error");
+        }
+
+        // By default, show a loading spinner.
+        return CircularProgressIndicator();
+      },
+    );
+  }
+}
+
+class GetBookReviewW extends StatelessWidget {
+  const GetBookReviewW({
+    Key key,
+    @required BookReviewsController con2,
+  }) : _con2 = con2, super(key: key);
+
+  final BookReviewsController _con2;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _con2.fetchBookReviews(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<BookReviewsModel> list = snapshot.data;
+          return ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: snapshot.data.length,
+              itemBuilder: (context, index) {
+                return BookReviews1(
+                  bookReviews: list[index],
+                );
+              });
+        } else if (snapshot.hasError) {
+          return Text("Error");
+        }
+
+        // By default, show a loading spinner.
+        return CircularProgressIndicator();
+      },
+    );
+  }
+}
+
+class GetSimilarBooksW extends StatelessWidget {
+  const GetSimilarBooksW({
+    Key key,
+    @required BookInfoController con1,
+  }) : _con1 = con1, super(key: key);
+
+  final BookInfoController _con1;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: _con1.fetchSimilarBooks(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<BookModel> list = snapshot.data;
+          return Container(
+            height: 300,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return OnebookWidget(bookModel: list[index]);
+                }),
+          );
+        } else if (snapshot.hasError) {
+          return Text("Error");
+        }
+
+        // By default, show a loading spinner.
+        return CircularProgressIndicator();
+      },
     );
   }
 }
