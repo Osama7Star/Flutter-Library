@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
+import 'package:flutter_library_new/controller/book_info_controller.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -19,9 +20,11 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   _MainPageState();
+  BookInfoController _con1 = BookInfoController();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar11(context),
       body: SafeArea(
@@ -50,16 +53,38 @@ class _MainPageState extends State<MainPage> {
           ), itemBuilder: (context,index)=>category_list(categoryModel: categoryDemo[index])),
         ),
             CategoryNameLabel(),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  ...List.generate(bookDemo.length,
-                      (index) => OnebookWidget(bookModel: bookDemo[index]))
-                ],
-              ),
+            // SingleChildScrollView(
+            //   scrollDirection: Axis.horizontal,
+            //   child: Row(
+            //     children: [
+            //       ...List.generate(bookDemo.length,
+            //           (index) => OnebookWidget(bookModel: bookDemo[index]))
+            //     ],
+            //   ),
+            //
+            // ),
+            FutureBuilder(
+              future: _con1.fetchCategory1Books(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<BookModel> list = snapshot.data;
+                  return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return OnebookWidget(bookModel: list[index]);
+                      });
+                } else if (snapshot.hasError) {
+                  return Text("Error");
+                }
 
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
             ),
+
+
 
           ],
 

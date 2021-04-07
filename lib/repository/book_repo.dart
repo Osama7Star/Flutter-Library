@@ -9,3 +9,18 @@ import 'package:http/http.dart' as http;
 
  }
 
+Future<http.Response> fetchSimilarBooksR() async {
+  http.Response response =  await http.get(Config.apiUrl+"getcategorybook?access-token=test&categoryid=19");
+  return response ;
+
+
+}
+
+Future<http.Response> fetchCategory1BooksR() async {
+  http.Response response =  await http.get(Config.apiUrl+"getcategory1books?access-token=test&");
+  return response ;
+
+
+}
+
+

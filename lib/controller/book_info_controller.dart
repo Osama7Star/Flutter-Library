@@ -46,7 +46,60 @@ Future<List<BookModel>> fetchBook() async {
   {
     print("error is $e");
   }
+  return null;
 
 }
+
+
+Future<List<BookModel>> fetchSimilarBooks() async {
+  try{
+    final response = await fetchSimilarBooksR();
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+
+      var body =jsonDecode(response.body);
+      List<BookModel> books =[];
+      for ( var item in body)
+      {
+        books.add(BookModel.fromJson(item));
+      }
+      return books;
+    } else {
+
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
+Future<List<BookModel>> fetchCategory1Books() async {
+  try{
+    final response = await fetchSimilarBooksR();
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+
+      var body =jsonDecode(response.body);
+      List<BookModel> books =[];
+      for ( var item in body)
+      {
+        books.add(BookModel.fromJson(item));
+      }
+      return books;
+    } else {
+
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
 
 }

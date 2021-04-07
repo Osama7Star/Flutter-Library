@@ -4,10 +4,11 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.da
 import 'package:flutter_library_new/models/BookModel.dart';
 
 import '../../../components.dart';
+import 'package:flutter/cupertino.dart';
 
 class OnebookWidget extends StatelessWidget {
-  final BookModel bookModel;
-  final double numberOfbook;
+  @required final BookModel bookModel;
+  @required final double numberOfbook;
 
   const OnebookWidget(
       {Key key, @required this.bookModel, this.numberOfbook: 1.8})
@@ -45,7 +46,8 @@ class OnebookWidget extends StatelessWidget {
                         width: width11 / numberOfbook,
                         height: 200,
                         child: Image.network(
-                            "https://cdn02.plentymarkets.com/4n91gk7bomyj/item/images/124582293/full/--------------------------------------------------------------------------01.jpg"),
+                            bookModel.imageUrl
+                      ),
                       ),
                       SizedBox(height: 10),
                       SubText(text: bookModel.bookName),
