@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/View/components/Screens/AddQuote/AddQuote.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
@@ -78,8 +79,12 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddQuote()),
+          );
         },
-        child: Icon(Icons.navigation),
+        child: Icon(Icons.format_quote),
         backgroundColor: kPrimaryColor,
       ),
     );
