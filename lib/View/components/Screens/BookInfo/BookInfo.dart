@@ -431,7 +431,7 @@ class BookImage extends StatelessWidget {
   const BookImage({
     Key key,
     @required this.imageUrl,
-    this.ISBN,
+    this.ISBN="",
   }) : super(key: key);
 
   final String imageUrl;
@@ -451,6 +451,7 @@ class BookImage extends StatelessWidget {
               imageUrl,
             ),
           ),
+          if (ISBN.isNotEmpty)
           LabelW(text: ISBN)
         ],
       )),

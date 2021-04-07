@@ -1,17 +1,21 @@
 
 class AuthorModel{
+  final String authorId;
   final String authorName;
-  final String authroImage;
+  final String imageUrl;
 
-  AuthorModel({ this.authorName, this.authroImage});
-  
+  AuthorModel({ this.authorId,this.authorName, this.imageUrl});
+
+  factory AuthorModel.fromJson(Map<String, dynamic> json) {
+    return AuthorModel(
+      authorId:json['authorId'],
+      authorName:json['authrorName'],
+      imageUrl:json['imageUrl'],
+
+
+
+
+    );
+  }
 }
 
-List<AuthorModel> AuthorDemo =[
-  AuthorModel(authorName: "عبد الوهاب المسيري",authroImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCeRKSM00B9KJP7v0v56oiR0kVhJPtWocbQ&usqp=CAU"),
-    AuthorModel(authorName: "عبد الوهاب المسيري",authroImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCeRKSM00B9KJP7v0v56oiR0kVhJPtWocbQ&usqp=CAU"),
-  AuthorModel(authorName: "عبد الوهاب المسيري",authroImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCeRKSM00B9KJP7v0v56oiR0kVhJPtWocbQ&usqp=CAU"),
-  AuthorModel(authorName: "عبد الوهاب المسيري",authroImage:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkCeRKSM00B9KJP7v0v56oiR0kVhJPtWocbQ&usqp=CAU"),
-
-  
-];

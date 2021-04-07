@@ -4,6 +4,7 @@ import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
 import 'Screens/Activity/Activity_screen.dart';
+import 'Screens/Authors/Authors.dart';
 import 'Screens/Main/main_page.dart';
 import 'Screens/QrReader/QrReade_screen.dart';
 
@@ -87,7 +88,29 @@ class CustomBottomNavBar extends StatelessWidget {
                       ? kPrimaryColor
                       : inActiveIconColor,fontSize: 14,fontWeight: FontWeight.bold),)
                 ],
-              ), Column(
+              ),
+
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: new Icon(Icons.person),
+                    highlightColor: kPrimaryColor,
+                    color: MenuState.activity == selectedMenu
+                        ? kPrimaryColor
+                        : inActiveIconColor,
+                    onPressed: (){ Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Authros()),
+                    ); },
+                  ),
+
+                  Text('الكتاب',style: TextStyle( color: MenuState.activity == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,fontSize: 14,fontWeight: FontWeight.bold),)
+                ],
+              ),Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
