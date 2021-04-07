@@ -4,9 +4,11 @@ import 'package:flutter_library_new/View/components/Screens/Main/components/Book
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
+import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
-import 'package:flutter_library_new/models/BookReview.dart';
+import 'package:flutter_library_new/models/BookReview1.dart';
+import 'package:flutter_library_new/models/BookReviewsModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -43,8 +45,10 @@ class _BookInfoState extends State<BookInfo> {
 
   @override
   Widget build(BuildContext context) {
-    BookInfoController test= BookInfoController();
-     MediaQueryData _mediaQueryData;
+    BookInfoController _con1= BookInfoController();
+    BookReviewsController _con2= BookReviewsController();
+
+    MediaQueryData _mediaQueryData;
     _mediaQueryData = MediaQuery.of(context);
   double  screenWidth = _mediaQueryData.size.width;
     return Scaffold(
@@ -58,7 +62,7 @@ class _BookInfoState extends State<BookInfo> {
                   children: [
 
                   FutureBuilder(
-                  future:test.fetchBook(),
+                  future:_con1.fetchBook(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       List<BookModel> fyck =snapshot.data;
@@ -69,21 +73,56 @@ class _BookInfoState extends State<BookInfo> {
                     }
 
                     // By default, show a loading spinner.
-                    return Text('Errrrrrro');
+                    return CircularProgressIndicator();
                   },
                 ),
 
 
+                    /// USERS REVIEWS
                     SizedBox(height: 20,),
                     LabelW(text:'تقييمات القراء',width: screenWidth/2),
                     SizedBox(height: 10,),
 
-                    ...List.generate(
-                        bookReviewsDemo.length,
-                        (index) => BookReviews1(
-                              bookReviews: bookReviewsDemo[index],
-                            )),
+                    // ...List.generate(
+                    //     bookReviewsDemo.length,
+                    //     (index) => BookReviews1(
+                    //           bookReviews: bookReviewsDemo[index],
+                    //         )),
+
+                    FutureBuilder(
+                      future:_con2.fetchBookReviews(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          List<BookReviewsModel> list =snapshot.data;
+                          return                        ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.length,
+
+                              itemBuilder: (context,index){
+                                return BookReviews1(
+                                  bookReviews: list[index],
+                                );
+                              });
+
+                        } else if (snapshot.hasError) {
+                          return Text("Error");
+                        }
+
+                        // By default, show a loading spinner.
+                        return CircularProgressIndicator();
+                      },
+                    ),
+
+                    ///END USERS REVIEWS
+
+                    /// ADD REVIEWS
+
                     AddReviewW(),
+                    /// END ADD REVIEWS
+
+
+
                     SizedBox(height: 20),
 
                     LabelW(text:"كتب مشابهة",width: screenWidth/2),
@@ -165,13 +204,14 @@ class _BookInfoState extends State<BookInfo> {
 
 class RatingBarW extends StatelessWidget {
   const RatingBarW({
-    Key key,
+    Key key, this.rate,
   }) : super(key: key);
 
+  final double rate ;
   @override
   Widget build(BuildContext context) {
     return RatingBarIndicator(
-      rating: 4,
+      rating: rate,
       itemBuilder: (context, index) => Icon(
         Icons.star,
         color: kSecondPrimaryColor,
@@ -215,7 +255,7 @@ class BookReviews1 extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  final BookReviews bookReviews;
+  final BookReviewsModel bookReviews;
 
   @override
   Widget build(BuildContext context) {
@@ -230,6 +270,7 @@ class BookReviews1 extends StatelessWidget {
             bookReviews.review,
             style: textStyle,
           ),
+          RatingBarW(rate:double.parse(bookReviews.rate)),
           SizedBox(height: 10),
         ],
       ),
@@ -242,7 +283,7 @@ class BookInfoUserInfo extends StatelessWidget {
     Key key,
     @required this.bookReviews,
   }) : super(key: key);
-  final BookReviews bookReviews;
+  final BookReviewsModel bookReviews;
 
   @override
   Widget build(BuildContext context) {
@@ -262,15 +303,15 @@ class BookInfoUserInfo extends StatelessWidget {
               CircleAvatar(
                 radius: 20,
                 backgroundImage: NetworkImage(
-                    'https://www.alaraby.co.uk/sites/default/files/media/images/46514FB2-7F41-4E37-BD61-46AB78E4AE2B.jpg'),
+                    bookReviews.imageUrl),
               ),
               SizedBox(width: 10),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(bookReviews.name, style: TextStyle(fontSize: 14)),
+                  Text( bookReviews.fullName, style: TextStyle(fontSize: 14)),
                   Text(
-                    bookReviews.userName,
+                    bookReviews.fullName,
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black.withOpacity(.5),
@@ -471,7 +512,7 @@ class BookDetailsW extends StatelessWidget {
             ),
           ),
           SizedBox(height: 15),
-          RatingBarW(),
+          RatingBarW(rate:4.4),
           SizedBox(height: 15),
           BookInfoTag(bookModel:bookModel),
           SizedBox(height: 15),
