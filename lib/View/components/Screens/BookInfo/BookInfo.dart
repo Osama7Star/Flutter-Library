@@ -307,9 +307,15 @@ class BookReviews1 extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          BookInfoUserInfo(
+      Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+       child:   BookInfoUserInfo(
             bookReviews: bookReviews,
           ),
+      ),
+      ),
           SizedBox(height: 10),
           Text(
             bookReviews.review,
