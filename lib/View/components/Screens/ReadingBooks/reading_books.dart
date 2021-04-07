@@ -3,12 +3,14 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.da
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 import 'package:flutter_library_new/controller/quote_controller.dart';
+import 'package:flutter_library_new/controller/readingbooks_controller.dart';
 import 'package:flutter_library_new/models/QuoteModel.dart';
+import 'package:flutter_library_new/models/ReadingBooksModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
 
-class Quote extends StatelessWidget {
-  QuoteController _con = QuoteController();
+class ReadingBooks extends StatelessWidget {
+  ReadingBooksController _con = ReadingBooksController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,40 +21,32 @@ class Quote extends StatelessWidget {
 
 class GetQuotes extends StatelessWidget {
 
-  final QuoteController con;
+  final ReadingBooksController con;
 
   const GetQuotes({Key key, this.con}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: con.fetchQuotes(),
+      future: con.fetchReadingBooks(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List<QuoteModel> list = snapshot.data;
+          List<ReadingBooksModel> list = snapshot.data;
           return ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return BookReviews1(
-                  quoteModel: list[index],
+                  readingBooksModel: list[index],
                 );
               });
         } else if (snapshot.hasError) {
           return Text("Error");
         }
 
-        ///TODO: MAKE THE PRGORESSBAR IN THE CENTER
-
         // By default, show a loading spinner.
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircularProgressIndicator()
-          ],
-        );
+        return Center(child: CircularProgressIndicator());
       },
     );
   }
@@ -60,11 +54,11 @@ class GetQuotes extends StatelessWidget {
 
 class BookReviews1 extends StatelessWidget {
   const BookReviews1({
-    @required this.quoteModel,
+    @required this.readingBooksModel,
     Key key,
   }) : super(key: key);
 
-  final QuoteModel quoteModel;
+  final ReadingBooksModel readingBooksModel;
 
   @override
   Widget build(BuildContext context) {
@@ -76,16 +70,24 @@ class BookReviews1 extends StatelessWidget {
             child: Directionality(
               textDirection: TextDirection.rtl,
 
-                child: BookInfoUserInfo(
-                quoteModel: quoteModel,
+              child: BookInfoUserInfo(
+                readingBooksModel: readingBooksModel,
               ),
             ),
           ),
           SizedBox(height: 10),
-          Text(
-            quoteModel.quote,
+
+               ///TODO : MAKE THE TEXT BESIDE THE IMAGE 
+          ///MAKE THE NAME OF THE USER AND THE NAME OF THE BOOK BOLD BY USING RICH TEXT
+               Directionality(
+    textDirection: TextDirection.rtl,
+    child:Text(
+            "بدء    [${readingBooksModel.fullName}  ] بقراءة كتاب  [${readingBooksModel.bookName} ]",
+
             style: textStyle,
           ),
+
+               ),
           SizedBox(height: 10),
         ],
       ),
@@ -96,9 +98,9 @@ class BookReviews1 extends StatelessWidget {
 class BookInfoUserInfo extends StatelessWidget {
   const BookInfoUserInfo({
     Key key,
-    @required this.quoteModel,
+    @required this.readingBooksModel,
   }) : super(key: key);
-  final QuoteModel quoteModel;
+  final ReadingBooksModel readingBooksModel;
 
   @override
   Widget build(BuildContext context) {
@@ -115,22 +117,9 @@ class BookInfoUserInfo extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundImage: NetworkImage(quoteModel.imageUrl),
+                backgroundImage: NetworkImage(readingBooksModel.imageUrl),
               ),
-              SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(quoteModel.fullName, style: TextStyle(fontSize: 14)),
-                  Text(
-                    quoteModel.fullName,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black.withOpacity(.5),
-                    ),
-                  ),
-                ],
-              ),
+
             ],
           )
         ],

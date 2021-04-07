@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/Quote/quote.dart';
+import 'package:flutter_library_new/View/components/Screens/ReadingBooks/reading_books.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -48,14 +49,7 @@ class ActivityAcreen extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       // first tab bar view widget
-                      SingleChildScrollView(
-                          child:Column(
-                            children: [
-                              ...List.generate(bookDemo.length,
-                                      (index) => OnebookWidget(bookModel: bookDemo[index],numberOfbook: 1,))
-                            ],
-                          )
-                      ),
+                      ReadingBooks(),
 
                       // second tab bar viiew widget
                       SingleChildScrollView(
