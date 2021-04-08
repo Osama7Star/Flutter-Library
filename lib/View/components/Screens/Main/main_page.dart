@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/AddQuote/AddQuote.dart';
+import 'package:flutter_library_new/View/components/Screens/Authors/Authors.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
+import 'package:flutter_library_new/controller/authors_controller.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/controller/category_controller.dart';
+import 'package:flutter_library_new/models/AuthorModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
@@ -25,6 +29,7 @@ class _MainPageState extends State<MainPage> {
   _MainPageState();
   BookInfoController _con1 = BookInfoController();
   CategoryController _con2 = CategoryController();
+  AuthorController   _con3 = AuthorController();
 
 
   @override
@@ -92,6 +97,38 @@ class _MainPageState extends State<MainPage> {
             ),
             SizedBox(height: 40),
 
+            /// MOST RATED
+            FutureBuilder(
+              future: _con1.fetchSimilarBooks(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<BookModel> list = snapshot.data;
+                  return Container(
+                    child:  GridView.count(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      primary: false,
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 0,
+
+
+                        // Create a grid with 2 columns. If you change the scrollDirection to
+                      // horizontal, this produces 2 rows.
+                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
+                      // Generate 100 widgets that display their index in the List.
+                      children: List.generate(list.length, (index) {
+                        return OnebookWidget(bookModel: list[index]);
+                      })
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("Error");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
+            ),
 
             ////////////////////////
             /// TODO : MAKE A MARING BETWEEN THE LABAEL AND THE BOOKS LIST
@@ -107,6 +144,37 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 5),
             GetCategoryBooks(con1: _con1),
 
+
+            /// AUHTOR
+            FutureBuilder(
+              future: _con3.fetchAuthors(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<AuthorModel> list = snapshot.data;
+                  return Container(
+                    child:  GridView.count(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      primary: false,
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 0,
+                      // Create a grid with 2 columns. If you change the scrollDirection to
+                      // horizontal, this produces 2 rows.
+                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 3 : 4,
+                      // Generate 100 widgets that display their index in the List.
+                      children: List.generate(list.length, (index) {
+                        return AuthorInfo(authorInfo: list[index],);
+                      }),
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("Error");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
+            ),
 
 
           ],

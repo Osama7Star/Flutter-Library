@@ -77,10 +77,14 @@ class AuthorInfo extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                    width: 200,
-                    height: 200,
+                    width: 150,
+                    height: 150,
+
                     child: BookImage(imageUrl: authorInfo.imageUrl)),
-                SubText(text: authorInfo.authorName, textSize: 24),
+                SizedBox(height: 20,),
+                SubText(text: authorInfo.authorName, textSize: 20),
+                SizedBox(height: 20,),
+
               ],
             ),
           ),
