@@ -23,7 +23,6 @@ class category_list extends StatelessWidget {
 
 
         onTap: (){
-          print('testasdasd');
 
           Navigator.push(
             context,
@@ -31,8 +30,8 @@ class category_list extends StatelessWidget {
           );
         },
         child: Container(
-          width: screenWidth-10,
-          height: 50,
+          width: 50,
+          height: 10,
           decoration: BoxDecoration(
             color: kPrimaryColor,
             borderRadius: BorderRadius.circular(4),

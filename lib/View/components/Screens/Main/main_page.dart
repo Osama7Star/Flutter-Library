@@ -3,6 +3,7 @@ import 'package:flutter_library_new/View/components/Screens/AddQuote/AddQuote.da
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
+import 'package:flutter_library_new/controller/category_controller.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
@@ -23,6 +24,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   _MainPageState();
   BookInfoController _con1 = BookInfoController();
+  CategoryController _con2 = CategoryController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +47,35 @@ class _MainPageState extends State<MainPage> {
                 MaterialPageRoute(builder: (context) => Category()),
               );
             }),
-        SizedBox(
-          height: 150,
-          child: GridView.builder(itemCount:categoryDemo.length ,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 1,
-                childAspectRatio: 3
+        // SizedBox(
+        //   height: 250,
+        //   child: GridView.builder(itemCount:categoryDemo.length ,
+        //       shrinkWrap: true,
+        //
+        //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //     crossAxisCount: 2,
+        //     mainAxisSpacing: 1,
+        //         childAspectRatio: 3
+        //
+        //   ), itemBuilder: (context,index)=>category_list(categoryModel: categoryDemo[index])),
+        // ),
 
-          ), itemBuilder: (context,index)=>category_list(categoryModel: categoryDemo[index])),
-        ),
-
+            /////////////////////////
+            GridView.count(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              primary: false,
+              crossAxisSpacing: 2,
+              mainAxisSpacing: 1,
+              // Create a grid with 2 columns. If you change the scrollDirection to
+              // horizontal, this produces 2 rows.
+              crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
+              // Generate 100 widgets that display their index in the List.
+              children: List.generate(categoryDemo.length, (index) {
+                return category_list(categoryModel: categoryDemo[index]);
+              }),
+            ),
+            ////////////////////////
             /// TODO : MAKE A MARING BETWEEN THE LABAEL AND THE BOOKS LIST
             CategoryNameLabel(),
             SizedBox(height: 5),

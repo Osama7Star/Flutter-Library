@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
+import 'package:flutter_library_new/utilites/enums.dart';
 import '../../components.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
+
+import '../../coustme_bottom_nav_bar.dart';
 
 class CategoryBooks11 extends StatelessWidget {
   BookInfoController _con1 = BookInfoController();
@@ -12,26 +15,26 @@ class CategoryBooks11 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar11(context),
-      body: Column(
-        children: [
-          SizedBox(
-            width: double.infinity,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
 
-            child: Card(
-                color: kPrimaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: SubText(
-                    text: "روايات",
-                    textSize: 22,
-                    color: kSecondPrimaryColor,
-                  ),
-                )),
-          ),
+              child: Card(
+                  color: kPrimaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SubText(
+                      text: "روايات",
+                      textSize: 22,
+                      color: kSecondPrimaryColor,
+                    ),
+                  )),
+            ),
 
-          ///TODO: SINGLECHILD SCROLL VIEW NOT WORKING
-          SingleChildScrollView(
-            child: FutureBuilder(
+            ///TODO: SINGLECHILD SCROLL VIEW NOT WORKING
+            FutureBuilder(
               future: _con1.fetchSimilarBooks(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -39,6 +42,8 @@ class CategoryBooks11 extends StatelessWidget {
                   return Container(
                     height: double.maxFinite,
                     child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: snapshot.data.length,
@@ -54,10 +59,12 @@ class CategoryBooks11 extends StatelessWidget {
                 // By default, show a loading spinner.
                 return CircularProgressIndicator();
               },
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+
     );
   }
 }
