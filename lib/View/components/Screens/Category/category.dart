@@ -45,7 +45,16 @@ class Category extends StatelessWidget {
                     }
 
                     // By default, show a loading spinner.
-                    return CircularProgressIndicator();
+
+                    /// TO DO CHANGE THE POSITION OF THE PROGRESSBAR AND REPALCE IT WITH NICE ANIMATION
+                    return SizedBox(
+                      height: 500,
+                      child: Container(
+                        child: Align(
+                          alignment: AlignmentDirectional.center,
+                            child: CircularProgressIndicator()),
+                      ),
+                    );
                   },
                 )
               ],
