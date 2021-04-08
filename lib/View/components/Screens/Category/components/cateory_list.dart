@@ -30,8 +30,8 @@ class category_list extends StatelessWidget {
           );
         },
         child: Container(
-          width: 50,
-          height: 10,
+          width: 30,
+          height: 50,
           decoration: BoxDecoration(
             color: kPrimaryColor,
             borderRadius: BorderRadius.circular(4),

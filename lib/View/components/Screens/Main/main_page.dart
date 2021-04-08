@@ -61,20 +61,38 @@ class _MainPageState extends State<MainPage> {
         // ),
 
             /////////////////////////
-            GridView.count(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              primary: false,
-              crossAxisSpacing: 2,
-              mainAxisSpacing: 1,
-              // Create a grid with 2 columns. If you change the scrollDirection to
-              // horizontal, this produces 2 rows.
-              crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
-              // Generate 100 widgets that display their index in the List.
-              children: List.generate(categoryDemo.length, (index) {
-                return category_list(categoryModel: categoryDemo[index]);
-              }),
+            FutureBuilder(
+              future: _con2.fetchCategories(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<CategoryModel> list = snapshot.data;
+                  return Container(
+                    child:  GridView.count(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      primary: false,
+                      crossAxisSpacing: 2,
+                      mainAxisSpacing: 1,
+                      // Create a grid with 2 columns. If you change the scrollDirection to
+                      // horizontal, this produces 2 rows.
+                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
+                      // Generate 100 widgets that display their index in the List.
+                      children: List.generate(list.length, (index) {
+                        return category_list(categoryModel: list[index]);
+                      }),
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("Error");
+                }
+
+                // By default, show a loading spinner.
+                return CircularProgressIndicator();
+              },
             ),
+            SizedBox(height: 40),
+
+
             ////////////////////////
             /// TODO : MAKE A MARING BETWEEN THE LABAEL AND THE BOOKS LIST
             CategoryNameLabel(),

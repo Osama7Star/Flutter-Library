@@ -1,6 +1,7 @@
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/CategoryModel.dart';
 import 'package:flutter_library_new/repository/book_repo.dart';
+import 'package:flutter_library_new/repository/category_repo.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'dart:convert';
 
@@ -11,7 +12,7 @@ class CategoryController extends ControllerMVC{
 
 Future<List<CategoryModel>> fetchCategories() async {
   try{
-    final response = await fetchBookR();
+    final response = await fetchCategoriesR();
     print (response.statusCode);
     if (response.statusCode == 200) {
 
