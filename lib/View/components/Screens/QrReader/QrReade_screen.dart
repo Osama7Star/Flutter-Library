@@ -22,7 +22,7 @@ class _QRScanPageState extends State<QRScanPage> {
             'Scan Result',
             style: TextStyle(
               fontSize: 16,
-              color: Colors.white54,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -32,7 +32,8 @@ class _QRScanPageState extends State<QRScanPage> {
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Colors.black,
+
             ),
           ),
           SizedBox(height: 72),
@@ -58,6 +59,8 @@ class _QRScanPageState extends State<QRScanPage> {
 
       setState(() {
         this.qrCode = qrCode;
+
+
       });
     } on PlatformException {
       qrCode = 'Failed to get platform version.';

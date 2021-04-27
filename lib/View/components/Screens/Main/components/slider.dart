@@ -1,11 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/controller/slider_controller.dart';
 
 final imgList = [
   "https://images.unsplash.com/photo-1501183007986-d0d080b147f9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJlZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
 ];
 
 class Slider222 extends StatelessWidget {
+
   const Slider222({
     Key key,
     @required int current,
@@ -14,6 +16,13 @@ class Slider222 extends StatelessWidget {
 
   final int _current;
 
+  @override
+  void initState() {
+     SliderController _con1 = SliderController();
+     _con1.fetchSlider();
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Column(

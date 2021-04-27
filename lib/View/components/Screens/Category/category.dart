@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/controller/category_controller.dart';
 
 import 'package:flutter_library_new/models/CategoryModel.dart';
-import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
 import '../../components.dart';

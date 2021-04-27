@@ -6,9 +6,12 @@ import 'package:flutter_library_new/View/components/Screens/authentication/signu
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 
+
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BookReview1.dart';
+import 'package:flutter_library_new/models/route_argument.dart';
 import 'package:flutter_library_new/models/BookReviewsModel.dart';
+import 'package:flutter_library_new/models/route_argument.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -20,9 +23,17 @@ import '../../coustme_bottom_nav_bar.dart';
 class BookInfo extends StatefulWidget {
   @override
   _BookInfoState createState() => _BookInfoState();
+  static String routeName = "/bookinfo";
+
+  final RouteArgument routeArgument;
+
+  BookInfo({Key key, this.routeArgument}) : super(key: key);
+
+
 }
 
 class _BookInfoState extends State<BookInfo> {
+
   double _rating = 0;
   List<BookModel> futureBook;
   final _formKey = GlobalKey<FormState>();
@@ -45,6 +56,10 @@ class _BookInfoState extends State<BookInfo> {
     MediaQueryData _mediaQueryData;
     _mediaQueryData = MediaQuery.of(context);
     double screenWidth = _mediaQueryData.size.width;
+
+    String test = ModalRoute.of(context).settings.arguments;
+
+
     return Scaffold(
       appBar: AppBar11(context),
       body: SingleChildScrollView(
@@ -55,7 +70,6 @@ class _BookInfoState extends State<BookInfo> {
               child: Column(
                 children: [
                   GetBookInfoW(con1: _con1),
-
                   /// USERS REVIEWS
                   SizedBox(
                     height: 20,
@@ -79,7 +93,7 @@ class _BookInfoState extends State<BookInfo> {
                   SizedBox(height: 20),
 
                   /// GET SIMILAR BOOKS
-                  LabelW(text: "كتب مشابهة", width: screenWidth / 2),
+                  LabelW(text: widget.routeArgument.id, width: screenWidth / 2),
                   SizedBox(height: 10),
                   GetSimilarBooksW(con1: _con1),
                   ///END GET SIMILAR BOOKS
@@ -433,16 +447,17 @@ class BookImage extends StatelessWidget {
   const BookImage({
     Key key,
     @required this.imageUrl,
-    this.ISBN="",
+    this.ISBN="", this.imageHeight=500,
   }) : super(key: key);
 
   final String imageUrl;
   final String ISBN;
+  final double imageHeight;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 200,
       width: double.infinity,
       child: Card(
           child: Stack(

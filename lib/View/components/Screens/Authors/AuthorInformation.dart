@@ -76,7 +76,7 @@ class AuthorInfoHeader extends StatelessWidget {
               SizedBox(
                 width: 250,
                 height: 250,
-                child: BookImage(imageUrl: " "),
+                child: BookImage(imageUrl: " ",imageHeight: 150,),
               ),
               SizedBox(height: 10),
               SubText(text: "عبد الوهاب المسيري", textSize: 24),

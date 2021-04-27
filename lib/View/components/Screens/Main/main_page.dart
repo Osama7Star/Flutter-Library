@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/AddQuote/AddQuote.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/Authors.dart';
+import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/controller/authors_controller.dart';
@@ -44,7 +45,9 @@ class _MainPageState extends State<MainPage> {
             // ignore: missing_required_param
             Slider222(),
             SizedBox(height: 10),
-            //   Category(),
+
+
+            /// CATEGORY LABEL
             GestureDetector(child: SubText(text: "التصنيفات",),
             onTap: (){
               Navigator.push(
@@ -66,25 +69,40 @@ class _MainPageState extends State<MainPage> {
         // ),
 
             /////////////////////////
+            /// START CATEGORY IS HERE
             FutureBuilder(
               future: _con2.fetchCategories(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<CategoryModel> list = snapshot.data;
                   return Container(
-                    child:  GridView.count(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      primary: false,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 1,
-                      // Create a grid with 2 columns. If you change the scrollDirection to
-                      // horizontal, this produces 2 rows.
-                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
-                      // Generate 100 widgets that display their index in the List.
-                      children: List.generate(list.length, (index) {
-                        return category_list(categoryModel: list[index]);
-                      }),
+                    child:  Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.count(
+                            childAspectRatio: 3/2,
+
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            primary: false,
+                            crossAxisSpacing: 1,
+                            mainAxisSpacing: 1,
+
+                            crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
+                            // Generate 100 widgets that display their index in the List.
+                            children: List.generate(list.length, (index) {
+                              return SizedBox(
+                                height: 90,
+                                child: category_list(
+                                    categoryModel: list[index]),
+                              );
+                            }),
+                          ),
+                        ),
+                      ),
                     ),
                   );
                 } else if (snapshot.hasError) {
@@ -95,9 +113,14 @@ class _MainPageState extends State<MainPage> {
                 return CircularProgressIndicator();
               },
             ),
+            /// END CATEGORY IS HERE
+
             SizedBox(height: 40),
 
+
             /// MOST RATED
+
+            SubText(text: 'كتب  '),
             FutureBuilder(
               future: _con1.fetchSimilarBooks(),
               builder: (context, snapshot) {
@@ -105,6 +128,7 @@ class _MainPageState extends State<MainPage> {
                   List<BookModel> list = snapshot.data;
                   return Container(
                     child:  GridView.count(
+
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       primary: false,
@@ -145,7 +169,9 @@ class _MainPageState extends State<MainPage> {
             GetCategoryBooks(con1: _con1),
 
 
-            /// AUHTOR
+            /// AUTHOR
+
+            SubText(text: 'الكتاب '),
             FutureBuilder(
               future: _con3.fetchAuthors(),
               builder: (context, snapshot) {
@@ -156,11 +182,11 @@ class _MainPageState extends State<MainPage> {
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       primary: false,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 0,
+                      crossAxisSpacing: 1,
+                      mainAxisSpacing: 1,
                       // Create a grid with 2 columns. If you change the scrollDirection to
                       // horizontal, this produces 2 rows.
-                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 3 : 4,
+                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
                       // Generate 100 widgets that display their index in the List.
                       children: List.generate(list.length, (index) {
                         return AuthorInfo(authorInfo: list[index],);

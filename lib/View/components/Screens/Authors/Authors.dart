@@ -6,15 +6,10 @@ import 'package:flutter_library_new/utilites/enums.dart';
 
 import '../../coustme_bottom_nav_bar.dart';
 import 'AuthorInformation.dart';
-
-
 import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
-
-
-
-
-
 import '../../components.dart';
+
+
 class Authros extends StatelessWidget {
   AuthorController _con1 = AuthorController();
 
@@ -71,22 +66,19 @@ class AuthorInfo extends StatelessWidget {
         );
       },
       child: Center(
-        child: SizedBox(
-          width: double.infinity,
-          child: Card(
-            child: Column(
-              children: [
-                SizedBox(
-                    width: 150,
-                    height: 150,
+        child: Card(
+          child: Column(
+            children: [
+              SizedBox(
+                  width: 150,
+                  height: 250,
 
-                    child: BookImage(imageUrl: authorInfo.imageUrl)),
-                SizedBox(height: 20,),
-                SubText(text: authorInfo.authorName, textSize: 20),
-                SizedBox(height: 20,),
+                  child: BookImage(imageUrl: authorInfo.imageUrl,imageHeight:150)),
+              SizedBox(height: 20,),
+              SubText(text: authorInfo.authorName, textSize: 20),
+              SizedBox(height: 20,),
 
-              ],
-            ),
+            ],
           ),
         ),
       ),

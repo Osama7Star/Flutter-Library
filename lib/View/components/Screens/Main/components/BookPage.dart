@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
+import 'package:flutter_library_new/models/route_argument.dart';
 
 import '../../../components.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,19 +22,17 @@ class OnebookWidget extends StatelessWidget {
     double width11 = queryData.size.width;
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BookInfo()),
-        );
-        print('test');
+
+
       },
       child: Column(
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(builder: (context) => BookInfo()),
+                BookInfo.routeName,
+                arguments: RouteArgument(id: "10") ,
               );
             },
             child: SizedBox(
@@ -44,7 +43,7 @@ class OnebookWidget extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: width11 / numberOfbook,
-                        height: 200,
+                        height: 100,
                         // TODO : CORRECT SOME IMAGES URL
                         child: Image.network(
                             bookModel.imageUrl
