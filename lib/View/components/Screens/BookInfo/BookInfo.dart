@@ -5,13 +5,12 @@ import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
-
-
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BookReview1.dart';
 import 'package:flutter_library_new/models/route_argument.dart';
 import 'package:flutter_library_new/models/BookReviewsModel.dart';
 import 'package:flutter_library_new/models/route_argument.dart';
+import 'package:flutter_library_new/utilites/ScreenArguments.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -23,11 +22,14 @@ import '../../coustme_bottom_nav_bar.dart';
 class BookInfo extends StatefulWidget {
   @override
   _BookInfoState createState() => _BookInfoState();
-  static String routeName = "/bookinfo";
 
-  final RouteArgument routeArgument;
+  static const routeName = '/extractArguments';
 
-  BookInfo({Key key, this.routeArgument}) : super(key: key);
+  final String bookId;
+  final String categoryId;
+
+
+    BookInfo({Key key,@required this.bookId, this.categoryId, }) : super(key: key);
 
 
 }
@@ -52,12 +54,11 @@ class _BookInfoState extends State<BookInfo> {
   Widget build(BuildContext context) {
     BookInfoController _con1 = BookInfoController();
     BookReviewsController _con2 = BookReviewsController();
-
     MediaQueryData _mediaQueryData;
     _mediaQueryData = MediaQuery.of(context);
     double screenWidth = _mediaQueryData.size.width;
 
-    String test = ModalRoute.of(context).settings.arguments;
+ //   String test = ModalRoute.of(context).settings.arguments;
 
 
     return Scaffold(
@@ -69,12 +70,12 @@ class _BookInfoState extends State<BookInfo> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  GetBookInfoW(con1: _con1),
+                  GetBookInfoW(con1: _con1,bookId: widget.bookId ),
                   /// USERS REVIEWS
                   SizedBox(
                     height: 20,
                   ),
-                  LabelW(text: 'تقييمات القراء', width: screenWidth / 2),
+                  LabelW(text: "تقييمات القراء", width: screenWidth / 2),
                   SizedBox(
                     height: 10,
                   ),
@@ -93,9 +94,9 @@ class _BookInfoState extends State<BookInfo> {
                   SizedBox(height: 20),
 
                   /// GET SIMILAR BOOKS
-                  LabelW(text: widget.routeArgument.id, width: screenWidth / 2),
+                  LabelW(text: widget.bookId, width: screenWidth / 2),
                   SizedBox(height: 10),
-                  GetSimilarBooksW(con1: _con1),
+                  GetSimilarBooksW(con1: _con1,categoryId:"21" ,),
                   ///END GET SIMILAR BOOKS
 
                 ],
@@ -164,15 +165,16 @@ class _BookInfoState extends State<BookInfo> {
 class GetBookInfoW extends StatelessWidget {
   const GetBookInfoW({
     Key key,
-    @required BookInfoController con1,
+    @required BookInfoController con1,@required this.bookId,
   }) : _con1 = con1, super(key: key);
 
+  final String bookId;
   final BookInfoController _con1;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _con1.fetchBook(),
+      future: _con1.fetchBookById(bookId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;
@@ -191,15 +193,16 @@ class GetBookInfoW extends StatelessWidget {
 class GetBookReviewW extends StatelessWidget {
   const GetBookReviewW({
     Key key,
-    @required BookReviewsController con2,
+    @required BookReviewsController con2, this.bookId,
   }) : _con2 = con2, super(key: key);
 
   final BookReviewsController _con2;
+  final String bookId;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _con2.fetchBookReviews(),
+      future: _con2.fetchBookReviews(bookId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookReviewsModel> list = snapshot.data;
@@ -228,15 +231,16 @@ class GetBookReviewW extends StatelessWidget {
 class GetSimilarBooksW extends StatelessWidget {
   const GetSimilarBooksW({
     Key key,
-    @required BookInfoController con1,
+    @required BookInfoController con1, this.categoryId,
   }) : _con1 = con1, super(key: key);
 
   final BookInfoController _con1;
+  final String categoryId;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _con1.fetchSimilarBooks(),
+      future: _con1.fetchSimilarBookss(categoryId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;

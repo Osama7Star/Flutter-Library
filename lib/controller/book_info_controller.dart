@@ -53,7 +53,7 @@ Future<List<BookModel>> fetchBook() async {
 
 Future<List<BookModel>> fetchSimilarBooks() async {
   try{
-    final response = await fetchSimilarBooksR();
+    final response = await fetchCategorybook();
     print (response.statusCode);
     if (response.statusCode == 200) {
 
@@ -75,10 +75,36 @@ Future<List<BookModel>> fetchSimilarBooks() async {
   return null;
 
 }
+///
+Future<List<BookModel>> fetchSimilarBookss(String bookId) async {
+  try{
+    final response = await fetchSimilarBooksR(bookId);
+    print (response.statusCode);
+    if (response.statusCode == 200) {
 
+      var body =jsonDecode(response.body);
+      List<BookModel> books =[];
+      for ( var item in body)
+      {
+        books.add(BookModel.fromJson(item));
+      }
+      return books;
+    } else {
+
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+///
 Future<List<BookModel>> fetchCategory1Books() async {
   try{
-    final response = await fetchSimilarBooksR();
+    /// TODO:CHANGE THIS
+    final response = await fetchSimilarBooksR("10");
     print (response.statusCode);
     if (response.statusCode == 200) {
 
@@ -101,5 +127,35 @@ Future<List<BookModel>> fetchCategory1Books() async {
 
 }
 
+
+Future<List<BookModel>> fetchBookById(String bookId) async {
+  try{
+    final response = await fetchBookByIdR(bookId);
+    print ("the response is  ");
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+      print ("Fuck it's true");
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      var body =jsonDecode(response.body);
+      List<BookModel> books =[];
+      for ( var item in body)
+      {
+        books.add(BookModel.fromJson(item));
+      }
+      return books;
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      //  throw Exception('Failed to load book');
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.da
 
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/route_argument.dart';
+import 'package:flutter_library_new/utilites/ScreenArguments.dart';
 
 import '../../../components.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,10 +30,12 @@ class onBookWidget extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
+              Navigator.push(
                 context,
-                BookInfo.routeName,
-                arguments: RouteArgument(id: "10") ,
+                MaterialPageRoute(
+
+                  builder: (context) => BookInfo(bookId:bookModel.bookId,categoryId:"21" ,),
+                ),
               );
             },
             child: SizedBox(
@@ -50,9 +53,12 @@ class onBookWidget extends StatelessWidget {
                       ),
                       ),
                       SizedBox(height: 10),
-                      SizedBox(
-                        height: 55,
-                          child: SubText(text: bookModel.bookName)),
+                      Padding(
+                        padding: const EdgeInsets.all(7.0),
+                        child: SizedBox(
+                          height: 55,
+                            child: SubText(text: bookModel.bookName)),
+                      ),
                     ],
                   )),
             ),

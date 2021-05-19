@@ -11,9 +11,9 @@ class BookReviewsController extends ControllerMVC{
 
 
 
-  Future<List<BookReviewsModel>> fetchBookReviews() async {
+  Future<List<BookReviewsModel>> fetchBookReviews(String bookId) async {
     try{
-      final response = await fetchBookReviewss();
+      final response = await fetchBookReviewss(bookId);
 
       print (response.statusCode);
       if (response.statusCode == 200) {
