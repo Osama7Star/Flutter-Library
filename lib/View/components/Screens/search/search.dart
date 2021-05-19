@@ -32,11 +32,11 @@ class _SearchState extends State<Search> {
                   child: Column(
                     children: [
                       NameInputField(
-                        hint: " إبحث",
+                        hint: " أدخل إسم الكتاب",
                         minChar: 2,
                         emptyErroMessage: "الرجاء إدخل كلمة البحث",
                         lengehtErroMessage:
-                            "إسم الكلية يجب أن يكون أكثر من 2 أحرف",
+                            "إسم الكتاب يجب أن يكون أكثر من 2 أحرف",
                         icon: Icons.search,
                         label: "",
                         isSearch: true,
@@ -69,8 +69,9 @@ class _SearchState extends State<Search> {
                                 shrinkWrap: true,
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (context, index) {
-                                  return snapshot.data.length>0? OnebookWidget(
+                                  return snapshot.data.length>0? onBookWidget(
                                       bookModel: list[index], numberOfbook: 1)
+                                  /// TODO : SUGGEST BOOK
                                   :Text('لا يوجد كتاب');
                                 }),
                           );

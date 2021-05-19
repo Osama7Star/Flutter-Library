@@ -9,6 +9,8 @@ import 'package:flutter_library_new/utilites/enums.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 
+
+/// SHOW INFORMATIONS AND BOOKS FOR ONE AUTHOR
 class AuthorInformation extends StatelessWidget {
   BookInfoController _con1 = BookInfoController();
 
@@ -38,7 +40,7 @@ class AuthorInformation extends StatelessWidget {
                               shrinkWrap: true,
                               itemCount: snapshot.data.length,
                               itemBuilder: (context, index) {
-                                return OnebookWidget(
+                                return onBookWidget(
                                     bookModel: list[index], numberOfbook: 1);
                               }),
                         );

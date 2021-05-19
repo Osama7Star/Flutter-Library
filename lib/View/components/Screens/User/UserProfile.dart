@@ -58,7 +58,7 @@ class profilePageState extends State<profilePage> {
                         child:Column(
                           children: [
                             ...List.generate(bookDemo.length,
-                                    (index) => OnebookWidget(bookModel: bookDemo[index],numberOfbook: 1,))
+                                    (index) => onBookWidget(bookModel: bookDemo[index],numberOfbook: 1,))
                           ],
                         )
                       ),

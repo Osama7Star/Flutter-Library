@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/Authors/AuthorInformation.dart';
+import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
@@ -247,7 +247,7 @@ class GetSimilarBooksW extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
-                  return OnebookWidget(bookModel: list[index]);
+                  return onBookWidget(bookModel: list[index]);
                 }),
           );
         } else if (snapshot.hasError) {
@@ -459,19 +459,18 @@ class BookImage extends StatelessWidget {
     return SizedBox(
       height: 200,
       width: double.infinity,
-      child: Card(
-          child: Stack(
+      child: Stack(
         children: [
-          ///TODO :ADD PLACEHOLDER UNTIL DOWNLOAD THE IMAGE
-          Center(
-            child: Image.network(
-              imageUrl,
-            ),
-          ),
-          if (ISBN.isNotEmpty)
-          LabelW(text: ISBN)
+      ///TODO :ADD PLACEHOLDER UNTIL DOWNLOAD THE IMAGE
+      Center(
+        child: Image.network(
+          imageUrl,
+        ),
+      ),
+      if (ISBN.isNotEmpty)
+      LabelW(text: ISBN)
         ],
-      )),
+      ),
     );
   }
 }

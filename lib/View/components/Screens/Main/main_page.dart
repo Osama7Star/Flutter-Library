@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/AddQuote/AddQuote.dart';
-import 'package:flutter_library_new/View/components/Screens/Authors/Authors.dart';
+import 'package:flutter_library_new/View/components/Screens/Authors/All_Authors.dart';
+import '../Authors/Components/components.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
@@ -141,7 +142,7 @@ class _MainPageState extends State<MainPage> {
                       crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
                       // Generate 100 widgets that display their index in the List.
                       children: List.generate(list.length, (index) {
-                        return OnebookWidget(bookModel: list[index]);
+                        return onBookWidget(bookModel: list[index]);
                       })
                     ),
                   );
@@ -155,7 +156,7 @@ class _MainPageState extends State<MainPage> {
             ),
 
             ////////////////////////
-            /// TODO : MAKE A MARING BETWEEN THE LABAEL AND THE BOOKS LIST
+            /// TODO : MAKE A MARGIN BETWEEN THE LABEL AND THE BOOKS LIST
             CategoryNameLabel(),
             SizedBox(height: 5),
             GetCategoryBooks(con1: _con1),
@@ -189,7 +190,7 @@ class _MainPageState extends State<MainPage> {
                       crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
                       // Generate 100 widgets that display their index in the List.
                       children: List.generate(list.length, (index) {
-                        return AuthorInfo(authorInfo: list[index],);
+                        return AuthorInfoWidget(authorInfo: list[index],);
                       }),
                     ),
                   );
@@ -240,14 +241,14 @@ class GetCategoryBooks extends StatelessWidget {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;
           return Container(
-            height: 300,
+            height: 370,
             margin: EdgeInsets.all(10),
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) {
-                  return OnebookWidget(bookModel: list[index]);
+                  return onBookWidget(bookModel: list[index]);
                 }),
           );
         } else if (snapshot.hasError) {

@@ -4,7 +4,7 @@ import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
 import 'Screens/Activity/Activity_screen.dart';
-import 'Screens/Authors/Authors.dart';
+import 'Screens/Authors/All_Authors.dart';
 import 'Screens/Main/main_page.dart';
 import 'Screens/QrReader/QrReade_screen.dart';
 
@@ -102,7 +102,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     onPressed: (){ Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Authros()),
+                          builder: (context) => AllAuthors()),
                     ); },
                   ),
 

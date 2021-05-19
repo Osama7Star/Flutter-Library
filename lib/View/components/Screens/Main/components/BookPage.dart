@@ -7,11 +7,11 @@ import 'package:flutter_library_new/models/route_argument.dart';
 import '../../../components.dart';
 import 'package:flutter/cupertino.dart';
 
-class OnebookWidget extends StatelessWidget {
+class onBookWidget extends StatelessWidget {
   @required final BookModel bookModel;
   @required final double numberOfbook;
 
-  const OnebookWidget(
+  const onBookWidget(
       {Key key, @required this.bookModel, this.numberOfbook: 1.8})
       : super(key: key);
 
@@ -43,7 +43,7 @@ class OnebookWidget extends StatelessWidget {
                     children: [
                       SizedBox(
                         width: width11 / numberOfbook,
-                        height: 100,
+                        height: 250,
                         // TODO : CORRECT SOME IMAGES URL
                         child: Image.network(
                             bookModel.imageUrl

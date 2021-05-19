@@ -48,7 +48,7 @@ class CategoryBooks11 extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, index) {
-                          return OnebookWidget(
+                          return onBookWidget(
                               bookModel: list[index], numberOfbook: 1);
                         }),
                   );
