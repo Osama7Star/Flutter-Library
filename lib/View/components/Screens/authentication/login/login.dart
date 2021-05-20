@@ -10,28 +10,30 @@ class LogIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            Image.asset(
-              "assets/images/logo.png",
-              width: 120,
-              height: 120,
-            ),
-            SubText(
-              text: "تسجيل دخول",
-            ),
-            LoginForm(),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUp()),
-                );
-              },
-              child: SubText(text: 'Don\'t have account ? '),
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              Image.asset(
+                "assets/images/logo.png",
+                width: 120,
+                height: 120,
+              ),
+              SubText(
+                text: "تسجيل دخول",
+              ),
+              LoginForm(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUp()),
+                  );
+                },
+                child: SubText(text: 'ليس لديك حساب ؟ تسجيل حساب جديد '),
+              )
+            ],
+          ),
         ),
       ),
     );

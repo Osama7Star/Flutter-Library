@@ -42,16 +42,20 @@ class _LoginFormState extends State<LoginForm> {
 
 class PasswordInputField extends StatelessWidget {
   const PasswordInputField({
-    Key key,
+    Key key, this.controller,
   }) : super(key: key);
+
+  final controller;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
+        controller:controller,
         obscureText: true,
         decoration: InputDecoration(
+
           suffixIcon: Icon(Icons.lock, color: kPrimaryColor),
 
           labelText: "كلمة السر",
@@ -86,8 +90,10 @@ class PasswordInputField extends StatelessWidget {
 
 class EmailInputField extends StatelessWidget {
   const EmailInputField({
-    Key key,
+    Key key, this.controller,
   }) : super(key: key);
+
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +119,7 @@ class EmailInputField extends StatelessWidget {
       floatingLabelBehavior: FloatingLabelBehavior.always,
     );
     var textFormField = TextFormField(
+      controller :controller,
       keyboardType: TextInputType.emailAddress,
       decoration: inputDecoration,
       validator: (value) {

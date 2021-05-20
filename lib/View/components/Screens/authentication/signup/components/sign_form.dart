@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/main_page.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/login/components/login_form.dart';
+import 'package:flutter_library_new/controller/authentication_controller.dart';
 
 import 'package:flutter_library_new/utilites/constants.dart';
 
@@ -14,6 +15,12 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
+  AuthenticationController _con = new AuthenticationController();
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  TextEditingController universityController = new TextEditingController();
+  TextEditingController collageController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +32,24 @@ class _SignUpFormState extends State<SignUpForm> {
           child: Column(
             children: [
               NameInputField(
+                  controller: nameController,
                   hint: "محمد علي",
                   label: "الإسم ",
                   minChar: 5,
-                  emptyErroMessage: "الإسم فارغ",
-                  lengehtErroMessage: "الإسم يجب أن يكون أكثر من 3  أحرف",
+                  emptyErroMessage: "الإسم لا يمكن أن يكون فارغ",
+                  lengehtErroMessage: "الإسم يجب أن يكون أكثر من 5  أحرف",
                   icon: Icons.person),
               SizedBox(height: 15),
-              EmailInputField(),
+              EmailInputField(
+                controller: emailController,
+              ),
               SizedBox(height: 10),
-              PasswordInputField(),
+              PasswordInputField(
+                controller: passwordController,
+              ),
               SizedBox(height: 10),
               NameInputField(
+                  controller: universityController,
                   hint: "إسطنبول | جراح باشا",
                   label: " الجامعة",
                   minChar: 5,
@@ -45,6 +58,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   icon: Icons.apartment),
               SizedBox(height: 10),
               NameInputField(
+                controller: collageController,
                 hint: "كلية هندسة الحاسوب",
                 label: "الكلية ",
                 minChar: 5,
@@ -59,15 +73,13 @@ class _SignUpFormState extends State<SignUpForm> {
                   height: 50,
                   pressed: () {
                     if (_formKey.currentState.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MainPage()),
-                      );
-                    } else
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MainPage()),
-                      );
+                      _con.signUp(
+                          nameController.text,
+                          emailController.text,
+                          passwordController.text,
+                          universityController.text,
+                          collageController.text);
+                    } else {}
                   })
             ],
           ),
@@ -86,8 +98,9 @@ class NameInputField extends StatelessWidget {
     @required this.lengehtErroMessage,
     @required this.icon,
     this.isSearch: false,
-
-    Key key, this.couldBeEmpty:false, this.controller,
+    Key key,
+    this.couldBeEmpty: false,
+    this.controller,
   }) : super(key: key);
 
   final String hint;
@@ -97,8 +110,9 @@ class NameInputField extends StatelessWidget {
   final String lengehtErroMessage;
   final IconData icon;
   final bool isSearch;
-  final bool couldBeEmpty ;
-  final controller ;
+  final bool couldBeEmpty;
+
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -130,12 +144,10 @@ class NameInputField extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),
         validator: (value) {
-          if (!couldBeEmpty)
-            {
-              if (value.isEmpty) return emptyErroMessage;
-              if (value.length < minChar) return '$lengehtErroMessage  $minChar';
-
-            }
+          if (!couldBeEmpty) {
+            if (value.isEmpty) return emptyErroMessage;
+            if (value.length < minChar) return '$lengehtErroMessage  $minChar';
+          }
           return null;
         },
       ),
@@ -147,13 +159,14 @@ class NoteInputField extends StatelessWidget {
   const NoteInputField({
     @required this.hint,
     @required this.icon,
-    Key key, this.controller,
+    Key key,
+    this.controller,
   }) : super(key: key);
 
   final String hint;
 
   final IconData icon;
-  final  controller;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
@@ -190,6 +203,7 @@ class NoteInputField extends StatelessWidget {
       ),
     );
   }
+
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);

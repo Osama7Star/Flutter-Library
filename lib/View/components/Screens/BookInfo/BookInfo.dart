@@ -117,6 +117,7 @@ class _BookInfoState extends State<BookInfo> {
     );
   }
 
+  /// TODO : HIDE PROGRESSBAR IF THERE ARE NOT REVIEWS
   Card AddReviewW() {
     return Card(
       child: Padding(

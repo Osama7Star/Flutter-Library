@@ -3,6 +3,7 @@ import 'package:flutter_library_new/utilites/routes.dart';
 
 import 'View/components/Screens/BookInfo/BookInfo.dart';
 import 'View/components/Screens/Main/main_page.dart';
+import 'View/components/Screens/authentication/signup/sign_up.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
-      home: MainPage(),
+      home: SignUp(),
     );
   }
 }
