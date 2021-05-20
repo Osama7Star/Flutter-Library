@@ -22,7 +22,7 @@ class AddQuote extends StatelessWidget {
           children: [
             Form(
               key: _formKey,
-
+/// TODO: REMOVE SEARCH BUTTON FRO KEYPAD
               child: NameInputField(
                 controller: quoteController,
                 hint: " إدخل الإقتياس",
