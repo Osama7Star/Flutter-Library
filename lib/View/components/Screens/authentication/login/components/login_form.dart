@@ -23,7 +23,7 @@ class _LoginFormState extends State<LoginForm> {
             PasswordInputField(),
             SizedBox(height: 15),
             Button(
-              text: "Log in ",
+              text: "تسجيل الدخول ",
               pressed: () {
                 if (_formKey.currentState.validate())
                   print("Working");

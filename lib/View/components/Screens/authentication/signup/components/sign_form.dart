@@ -21,7 +21,7 @@ class _SignUpFormState extends State<SignUpForm> {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController universityController = new TextEditingController();
   TextEditingController collageController = new TextEditingController();
-
+  bool isClicked=false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +50,7 @@ class _SignUpFormState extends State<SignUpForm> {
               SizedBox(height: 10),
               NameInputField(
                   controller: universityController,
-                  hint: "إسطنبول | جراح باشا",
+                  hint: "يلدز تكنك",
                   label: " الجامعة",
                   minChar: 5,
                   emptyErroMessage: "إسم الجامعة لا يمكن أن يكون فارغا",
@@ -67,20 +67,42 @@ class _SignUpFormState extends State<SignUpForm> {
                 icon: Icons.apartment,
               ),
               SizedBox(height: 15),
-              Button(
-                  text: "Sign Up ",
-                  peiece: 1,
-                  height: 50,
-                  pressed: () {
-                    if (_formKey.currentState.validate()) {
-                      _con.signUp(
-                          nameController.text,
-                          emailController.text,
-                          passwordController.text,
-                          universityController.text,
-                          collageController.text);
-                    } else {}
-                  })
+           Stack(
+             children: [
+               Button(
+                   text: "إنشاء حساب ",
+                   peiece: 1,
+                   height: 50,
+                   pressed: () {
+                     if (_formKey.currentState.validate()) {
+                       // _con.signUp(
+                       //     nameController.text,
+                       //     emailController.text,
+                       //     passwordController.text,
+                       //     universityController.text,
+                       //     collageController.text);
+                       setState(() {
+                         isClicked = true;
+
+
+                       });
+                     } else {}
+                   }),
+               if (isClicked)
+                 Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Positioned(
+
+                      child: Center(child: CircularProgressIndicator(
+                        valueColor: new AlwaysStoppedAnimation<Color>(kSecondPrimaryColor),
+                      ),)
+                   ),
+                 ),
+             ],
+           )
+
+
+
             ],
           ),
         ),
