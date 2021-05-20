@@ -25,35 +25,40 @@ class GetQuotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: con.fetchQuotes(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<QuoteModel> list = snapshot.data;
-          return ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                return BookReviews1(
-                  quoteModel: list[index],
-                );
-              });
-        } else if (snapshot.hasError) {
-          return Text("Error");
-        }
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 200),
+      child: FutureBuilder(
+        future: con.fetchQuotes(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<QuoteModel> list = snapshot.data;
+            return ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
 
-        ///TODO: MAKE THE PROGRESSBAR IN THE CENTER
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) {
+                  return BookReviews1(
+                    quoteModel: list[index],
+                  );
+                });
+          } else if (snapshot.hasError) {
+            return Text("Error");
+          }
 
-        // By default, show a loading spinner.
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircularProgressIndicator()
-          ],
-        );
-      },
+          ///TODO: MAKE THE PROGRESSBAR IN THE CENTER
+
+          // By default, show a loading spinner.
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator()
+            ],
+          );
+        },
+      ),
     );
   }
 }
