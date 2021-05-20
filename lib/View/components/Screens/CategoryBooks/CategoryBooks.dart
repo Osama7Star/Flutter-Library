@@ -46,6 +46,7 @@ class CategoryBooks extends StatelessWidget {
                 if (snapshot.hasData) {
                   List<BookModel> list = snapshot.data;
                   return Container(
+                    /// TODO: HEIGHT IS TO LONG , FIX IT
                     height: double.maxFinite,
                     child: ListView.builder(
                         physics: NeverScrollableScrollPhysics(),

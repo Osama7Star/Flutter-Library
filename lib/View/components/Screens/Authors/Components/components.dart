@@ -19,7 +19,10 @@ class AuthorInfoWidget extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AuthorInformation()),
+          MaterialPageRoute(
+
+            builder: (context) => AuthorInformation(authorId: authorInfo.authorId,),
+          ),
         );
       },
       child: Center(
