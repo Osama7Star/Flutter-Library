@@ -32,7 +32,9 @@ class BookInfo extends StatefulWidget {
 
     BookInfo({Key key,@required this.bookId, this.categoryId, }) : super(key: key);
 
-
+/// TODO : CHANGE THE BOOK IMAGE LINK FROM THE SERVER
+/// THEY SHOW THE AUTHOR IMAGE
+/// TODO : ADD NOTE
 }
 
 class _BookInfoState extends State<BookInfo> {
