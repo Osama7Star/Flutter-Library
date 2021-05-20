@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/controller/category_controller.dart';
 import '../BookInfo/BookPage.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
@@ -8,8 +9,13 @@ import 'package:flutter_library_new/models/BookModel.dart';
 
 import '../../coustme_bottom_nav_bar.dart';
 
-class CategoryBooks11 extends StatelessWidget {
-  BookInfoController _con1 = BookInfoController();
+class CategoryBooks extends StatelessWidget {
+  CategoryController _con1 = CategoryController();
+
+  final String categoryId;
+  final String categoryName;
+
+   CategoryBooks({Key key, this.categoryId, this.categoryName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class CategoryBooks11 extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: SubText(
-                      text: "روايات",
+                      text: categoryName,
                       textSize: 22,
                       color: kSecondPrimaryColor,
                     ),
@@ -35,7 +41,7 @@ class CategoryBooks11 extends StatelessWidget {
 
             ///TODO: SINGLECHILD SCROLL VIEW NOT WORKING
             FutureBuilder(
-              future: _con1.fetchSimilarBooks(),
+              future: _con1.fetchCategoryBooks(categoryId),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<BookModel> list = snapshot.data;

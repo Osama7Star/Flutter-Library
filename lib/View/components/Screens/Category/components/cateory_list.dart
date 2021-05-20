@@ -26,7 +26,10 @@ class category_list extends StatelessWidget {
 
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CategoryBooks11()),
+            MaterialPageRoute(
+
+              builder: (context) => CategoryBooks(categoryId:categoryModel.categoryId ,categoryName: categoryModel.categoryName,),
+            ),
           );
         },
         child: Container(

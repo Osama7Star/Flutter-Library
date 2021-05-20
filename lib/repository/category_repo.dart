@@ -7,3 +7,10 @@ Future<http.Response> fetchCategoriesR() async {
 
 }
 
+
+Future<http.Response> fetchCategoryBooksR(String categoryId) async {
+  http.Response response =  await http.get("https://api.afropolicy.com/api/web/v1/recipes/getcategorybook?access-token=test&categoryid=$categoryId");
+  return response ;
+
+}
+
