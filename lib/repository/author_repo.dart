@@ -16,3 +16,10 @@ Future<http.Response> fetchAuthorInformationR(String authorId) async {
 
 }
 
+/// FETCH AUTHOR'S INFORMATION LIKE (NAMES, IMAGE ,BIO )
+Future<http.Response> fetchAuthorBooksR(String authorId) async {
+  http.Response response =  await http.get(Config.apiUrl+"getauthorbooks1?access-token=test&authorid=$authorId");
+  return response ;
+
+}
+

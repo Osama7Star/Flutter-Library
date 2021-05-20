@@ -15,6 +15,7 @@ import '../../coustme_bottom_nav_bar.dart';
 /// SHOW INFORMATIONS AND BOOKS FOR ONE AUTHOR
 class AuthorInformation extends StatelessWidget {
   BookInfoController _con1 = BookInfoController();
+  AuthorController   _con2 = AuthorController();
   final String authorId ;
 
    AuthorInformation({Key key, this.authorId}) : super(key: key);
@@ -30,9 +31,11 @@ class AuthorInformation extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
+
+                /// TODO : SHOW THE NUMBER OF BOOKS FOR ALL AUTHORS
                 children: [
                   FutureBuilder(
-                    future: _con1.fetchSimilarBooks(),
+                    future: _con2.fetchAuthorBooks(authorId),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<BookModel> list = snapshot.data;

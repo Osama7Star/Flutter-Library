@@ -62,4 +62,31 @@ class AuthorController extends ControllerMVC{
     return null;
 
   }
+
+
+  Future<List<BookModel>> fetchAuthorBooks(String authorId) async {
+    try{
+      final response = await fetchAuthorBooksR(authorId);
+      print (response.statusCode);
+      if (response.statusCode == 200) {
+
+        var body =jsonDecode(response.body);
+        List<BookModel> authorBooks =[];
+        for ( var item in body)
+        {
+          authorBooks.add(BookModel.fromJson(item));
+        }
+        return authorBooks;
+      } else {
+
+      }
+    }
+    catch(e)
+    {
+      print("error is $e");
+    }
+    return null;
+
+  }
+
 }
