@@ -99,11 +99,11 @@ class _BookInfoState extends State<BookInfo> {
                   SizedBox(height: 20),
 
                   /// GET SIMILAR BOOKS
-                  LabelW(text: widget.bookId, width: screenWidth / 2),
+                  LabelW(text: widget.categoryId, width: screenWidth / 2),
                   SizedBox(height: 10),
                   GetSimilarBooksW(
                     con1: _con1,
-                    categoryId: "21",
+                    categoryId: widget.categoryId,
                   ),
 
                   ///END GET SIMILAR BOOKS
@@ -188,7 +188,9 @@ class GetBookInfoW extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;
+
           return BookDetailsW(bookModel: list[0]);
+
         } else if (snapshot.hasError) {
           return Text("Error");
         }
@@ -253,7 +255,7 @@ class GetSimilarBooksW extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _con1.fetchSimilarBookss(categoryId),
+      future: _con1.fetchSimilarBooks(categoryId),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;

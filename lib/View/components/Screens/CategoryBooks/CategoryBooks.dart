@@ -34,7 +34,7 @@ class CategoryBooks extends StatelessWidget {
                     child: SubText(
                       text: categoryName,
                       textSize: 22,
-                      color: kSecondPrimaryColor,
+                      color: Colors.white,
                     ),
                   )),
             ),
@@ -47,7 +47,6 @@ class CategoryBooks extends StatelessWidget {
                   List<BookModel> list = snapshot.data;
                   return Container(
                     /// TODO: HEIGHT IS TO LONG , FIX IT
-                    height: double.maxFinite,
                     child: ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
 

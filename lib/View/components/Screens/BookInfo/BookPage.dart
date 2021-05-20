@@ -35,7 +35,7 @@ class onBookWidget extends StatelessWidget {
                 context,
                 MaterialPageRoute(
 
-                  builder: (context) => BookInfo(bookId:bookModel.bookId,categoryId:"21" ,),
+                  builder: (context) => BookInfo(bookId:bookModel.bookId,categoryId:bookModel.categoryId ,),
                 ),
               );
             },
