@@ -30,7 +30,10 @@ class LogIn extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => SignUp()),
                   );
                 },
-                child: SubText(text: 'ليس لديك حساب ؟ تسجيل حساب جديد '),
+                child: Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: SubText(text: 'ليس لديك حساب ؟ تسجيل حساب جديد '),
+                ),
               )
             ],
           ),
