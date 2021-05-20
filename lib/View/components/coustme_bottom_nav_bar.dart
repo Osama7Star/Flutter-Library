@@ -90,27 +90,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 ],
               ),
 
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    icon: new Icon(Icons.person),
-                    highlightColor: kPrimaryColor,
-                    color: MenuState.activity == selectedMenu
-                        ? kPrimaryColor
-                        : inActiveIconColor,
-                    onPressed: (){ Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AllAuthors()),
-                    ); },
-                  ),
-
-                  Text('الكتاب',style: TextStyle( color: MenuState.activity == selectedMenu
-                      ? kPrimaryColor
-                      : inActiveIconColor,fontSize: 14,fontWeight: FontWeight.bold),)
-                ],
-              ),Column(
+           Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(

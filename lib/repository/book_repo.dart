@@ -37,3 +37,12 @@ Future<http.Response> fetchBookByIdR(String bookId) async {
 
 }
 
+/// SUGGEST BOOK
+Future<http.Response> suggestBookR(String bookName,String bookAuthor,String note) async {
+  http.Response response =  await http.get("https://api.afropolicy.com/api/web/v1/recipes/getsuggestedbook?access-token=test&bookName=$bookName&authorName=$bookAuthor&note=$note");
+  return response ;
+
+
+}
+
+

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
+import 'package:flutter_library_new/controller/book_info_controller.dart';
 
 import 'package:flutter_library_new/utilites/enums.dart';
 
@@ -10,72 +11,84 @@ class SuggestBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
+    TextEditingController bookNameController = new TextEditingController();
+    TextEditingController authorNameController = new TextEditingController();
+    TextEditingController noteController = new TextEditingController();
+    BookInfoController _con1 = BookInfoController();
 
     return Scaffold(
-        appBar: AppBar11(context),
-        body: SafeArea(
-            child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                SubText(
-                  text: "إقترح الكتاب",
-                  textSize: 20,
-                ),
-                Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        NameInputField(
-                          hint: "إسم الكتاب",
-                          minChar: 2,
-                          emptyErroMessage: "الرجاء إدخال إسم الكتاب",
-                          lengehtErroMessage:
-                              "إسم الكلية يجب أن يكون أكثر من 2 أحرف",
-                          icon: Icons.book,
-                          label: "",
-                        ),
-                        SizedBox(height: 10),
-                        NameInputField(
-                          hint: "إسم الكاتب",
-                          minChar: 2,
-                          emptyErroMessage: "الرجاء إدخال إسم الكاتب",
-                          lengehtErroMessage:
-                              "إسم الكاتب يجب أن يكون أكثر من 2 أحرف",
-                          icon: Icons.person,
-                          label: "",
-                        ),
-
-                        SizedBox(height: 10),
-                        NoteInputField(
-                          hint: "ملاحظة",
-                          icon: Icons.note,
-
-                        ),
-                        SizedBox(height: 10),
-                        Button(
-                            text: "إبحث",
-                            peiece: 1,
-                            pressed: () {
-                              if (_formKey.currentState.validate()) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SuggestBook()),
+      appBar: AppBar11(context),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              SubText(
+                text: "إقترح الكتاب",
+                textSize: 20,
+              ),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      NameInputField(
+                        controller: bookNameController,
+                        hint: "إسم الكتاب",
+                        minChar: 2,
+                        emptyErroMessage: "الرجاء إدخال إسم الكتاب",
+                        lengehtErroMessage:
+                            "إسم الكلية يجب أن يكون أكثر من 2 أحرف",
+                        icon: Icons.book,
+                        label: "",
+                      ),
+                      SizedBox(height: 10),
+                      NameInputField(
+                        controller: authorNameController,
+                        hint: "إسم الكاتب",
+                        minChar: 2,
+                        emptyErroMessage: "الرجاء إدخال إسم الكاتب",
+                        lengehtErroMessage:
+                            "إسم الكاتب يجب أن يكون أكثر من 2 أحرف",
+                        icon: Icons.person,
+                        label: "",
+                      ),
+                      SizedBox(height: 10),
+                      NoteInputField(
+                        controller: noteController,
+                        hint: "ملاحظة",
+                        icon: Icons.note,
+                      ),
+                      SizedBox(height: 10),
+                      Button(
+                          text: "إقترح",
+                          peiece: 1,
+                          pressed: () {
+                            if (_formKey.currentState.validate()) {
+                              Future<String> name = _con1.suggestBook(
+                                  bookNameController.text,
+                                  authorNameController.text,
+                                  noteController.text);
+                              if (name.toString().isNotEmpty) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text("تم إضافة الاقتراح بنجاح"),
+                                  ),
                                 );
-                              } else
-                                print('Error');
-                            }),
-                      ],
-                    )),
-              ],
-            ),
+                                print('added successfully${name.toString()}');
+                              } else {
+                                print('note added successfully$name');
+                              }
+                            } else
+                              print('Error');
+                          }),
+                    ],
+                  )),
+            ],
           ),
-        )),
+        ),
+      )),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
-
-    )
-    ;
+    );
   }
 }

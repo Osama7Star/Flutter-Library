@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Main/main_page.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/login/components/login_form.dart';
@@ -146,12 +147,13 @@ class NoteInputField extends StatelessWidget {
   const NoteInputField({
     @required this.hint,
     @required this.icon,
-    Key key,
+    Key key, this.controller,
   }) : super(key: key);
 
   final String hint;
 
   final IconData icon;
+  final  controller;
 
   @override
   Widget build(BuildContext context) {
@@ -161,6 +163,7 @@ class NoteInputField extends StatelessWidget {
         child: Container(
           height: 100,
           child: TextFormField(
+            controller: controller,
             decoration: InputDecoration(
               suffixIcon: Icon(icon, color: kPrimaryColor),
 
@@ -186,5 +189,10 @@ class NoteInputField extends StatelessWidget {
         ),
       ),
     );
+  }
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('controller', controller));
   }
 }

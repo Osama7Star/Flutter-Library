@@ -36,4 +36,28 @@ class QuoteController extends ControllerMVC{
 
   }
 
+
+
+  /// ADD QUOTE
+
+  Future<String> addQuote(String quote,String userId) async {
+    try{
+      final response = await addQuoteR(quote,userId,);
+      print ("the response is  ");
+      print (response.statusCode);
+      if (response.statusCode == 200) {
+        return "True";
+      } else {
+        // If the server did not return a 200 OK response,
+        // then throw an exception.
+        //  throw Exception('Failed to load book');
+      }
+    }
+    catch(e)
+    {
+      print("error is $e");
+    }
+    return null;
+
+  }
 }

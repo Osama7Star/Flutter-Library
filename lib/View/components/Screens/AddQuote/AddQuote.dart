@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
+import 'package:flutter_library_new/controller/quote_controller.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
 import '../../components.dart';
@@ -7,6 +8,9 @@ import '../../coustme_bottom_nav_bar.dart';
 
 class AddQuote extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
+  QuoteController _con1 = QuoteController();
+  TextEditingController quoteController = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +24,7 @@ class AddQuote extends StatelessWidget {
               key: _formKey,
 
               child: NameInputField(
+                controller: quoteController,
                 hint: " إدخل الإقتياس",
                 minChar: 2,
                 emptyErroMessage: "الرجاء إدخل كلمة الإقتباس",
@@ -32,11 +37,16 @@ class AddQuote extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Button(
-                text: "إبحث",
+                text: "أضف الإقتباس",
                 peiece: 1,
                 pressed: () {
                   if (_formKey.currentState.validate()) {
-                    print('Good the quote is taken');
+                    _con1.addQuote(quoteController.text, "73");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("تم إضافة الإقتباس  بنجاح"),
+                      ),
+                    );
                   }
                 }),
           ],
