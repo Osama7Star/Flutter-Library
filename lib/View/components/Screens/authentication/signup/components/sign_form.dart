@@ -85,7 +85,8 @@ class NameInputField extends StatelessWidget {
     @required this.lengehtErroMessage,
     @required this.icon,
     this.isSearch: false,
-    Key key, this.couldBeEmpty:false,
+
+    Key key, this.couldBeEmpty:false, this.controller,
   }) : super(key: key);
 
   final String hint;
@@ -96,12 +97,14 @@ class NameInputField extends StatelessWidget {
   final IconData icon;
   final bool isSearch;
   final bool couldBeEmpty ;
+  final controller ;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
+        controller: controller,
         textInputAction: isSearch ? TextInputAction.search : TextInputAction.go,
         decoration: InputDecoration(
           suffixIcon: Icon(icon, color: kPrimaryColor),

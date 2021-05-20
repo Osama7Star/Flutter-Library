@@ -12,7 +12,8 @@ import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 
 
-/// SHOW INFORMATIONS AND BOOKS FOR ONE AUTHOR
+/// SHOW AUTHOR INFORMATION (NAME IMAGE BIO  )
+/// AND ALL BOOKS FOR ONE AUTHOR
 class AuthorInformation extends StatelessWidget {
   BookInfoController _con1 = BookInfoController();
   AuthorController   _con2 = AuthorController();
@@ -40,7 +41,6 @@ class AuthorInformation extends StatelessWidget {
                       if (snapshot.hasData) {
                         List<BookModel> list = snapshot.data;
                         return Container(
-                          height: double.maxFinite,
                           child: ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
 

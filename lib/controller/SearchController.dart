@@ -11,22 +11,26 @@ class SearchController extends ControllerMVC{
 
 
 
-
-  Future<List<BookModel>> fetchSearch() async {
+  Future<List<BookModel>> searchBook(String bookName) async {
     try{
-      final response = await fetchSearchR();
+      final response = await searchBooksR(bookName);
+      print ("the response is  ");
       print (response.statusCode);
       if (response.statusCode == 200) {
-
+        print ("Fuck it's true");
+        // If the server did return a 200 OK response,
+        // then parse the JSON.
         var body =jsonDecode(response.body);
-        List<BookModel> search =[];
+        List<BookModel> books =[];
         for ( var item in body)
         {
-          search.add(BookModel.fromJson(item));
+          books.add(BookModel.fromJson(item));
         }
-        return search;
+        return books;
       } else {
-
+        // If the server did not return a 200 OK response,
+        // then throw an exception.
+        //  throw Exception('Failed to load book');
       }
     }
     catch(e)

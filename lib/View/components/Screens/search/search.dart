@@ -15,6 +15,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   SearchController _con1 = SearchController();
+  TextEditingController fieldController = new TextEditingController();
 
   bool isSearch = false;
   @override
@@ -32,6 +33,8 @@ class _SearchState extends State<Search> {
                   child: Column(
                     children: [
                       NameInputField(
+                        controller: fieldController,
+
                         hint: " أدخل إسم الكتاب",
                         minChar: 2,
                         emptyErroMessage: "الرجاء إدخل كلمة البحث",
@@ -57,12 +60,11 @@ class _SearchState extends State<Search> {
                   SizedBox(height: 20,),
                   if (isSearch)
                     FutureBuilder(
-                      future: _con1.fetchSearch(),
+                      future: _con1.searchBook(fieldController.text),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           List<BookModel> list = snapshot.data;
                           return Container(
-                            height: double.maxFinite,
                             child: ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
                                 scrollDirection: Axis.vertical,
