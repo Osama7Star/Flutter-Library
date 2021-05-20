@@ -73,16 +73,25 @@ class _SignUpFormState extends State<SignUpForm> {
                    text: "إنشاء حساب ",
                    peiece: 1,
                    height: 50,
-                   pressed: () {
+                   pressed: () async {
                      if (_formKey.currentState.validate()) {
-                       // _con.signUp(
-                       //     nameController.text,
-                       //     emailController.text,
-                       //     passwordController.text,
-                       //     universityController.text,
-                       //     collageController.text);
+                 String correct =  await     _con.signUp(
+                           nameController.text,
+                           emailController.text,
+                           passwordController.text,
+                           universityController.text,
+                           collageController.text);
+
+                 if (correct.isNotEmpty)
+                   {
+                     print('works ');
+                   }
+                 else{
+                   print('not works');
+                 }
                        setState(() {
                          isClicked = true;
+
 
 
                        });

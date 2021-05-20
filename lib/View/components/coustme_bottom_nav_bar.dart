@@ -5,6 +5,7 @@ import 'package:flutter_library_new/utilites/enums.dart';
 
 import 'Screens/Activity/Activity_screen.dart';
 import 'Screens/Authors/All_Authors.dart';
+import 'Screens/BorrowBook/borrow_book.dart';
 import 'Screens/Main/main_page.dart';
 import 'Screens/QrReader/QrReade_screen.dart';
 
@@ -102,7 +103,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     onPressed: (){ Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => QRScanPage()),
+                          builder: (context) => borrowBook()),
                     ); },
                   ),
 

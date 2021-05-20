@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/View/components/Screens/Main/main_page.dart';
+import 'package:flutter_library_new/controller/authentication_controller.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
 import '../../../../components.dart';
 
 class LoginForm extends StatefulWidget {
+  const LoginForm({Key key, this.email, this.password}) : super(key: key);
+
   @override
   _LoginFormState createState() => _LoginFormState();
+  final String email ;
+  final String password ;
+
 }
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  AuthenticationController _con = new AuthenticationController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,15 +31,31 @@ class _LoginFormState extends State<LoginForm> {
         key: _formKey,
         child: Column(
           children: [
-            EmailInputField(),
+            EmailInputField(
+              controller: emailController,
+            ),
             SizedBox(height: 10),
-            PasswordInputField(),
+            PasswordInputField(
+              controller: passwordController,
+            ),
             SizedBox(height: 15),
             Button(
               text: "تسجيل الدخول ",
-              pressed: () {
+              pressed: () async{
                 if (_formKey.currentState.validate())
-                  print("Working");
+                  {
+                  //   bool loggedIn = await _con.login(emailController.text, passwordController.text);
+                  //
+                  //   if(loggedIn)
+                  //     print("true");
+                  //   else
+                  //     print("false");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()),
+                    );
+                   }
+
                 else
                   print("Not Working");
               },
@@ -42,20 +71,22 @@ class _LoginFormState extends State<LoginForm> {
 
 class PasswordInputField extends StatelessWidget {
   const PasswordInputField({
-    Key key, this.controller,
+    Key key,
+    this.controller,
   }) : super(key: key);
 
   final controller;
 
   @override
   Widget build(BuildContext context) {
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: TextFormField(
-        controller:controller,
+
+        controller: controller,
         obscureText: true,
         decoration: InputDecoration(
-
           suffixIcon: Icon(Icons.lock, color: kPrimaryColor),
 
           labelText: "كلمة السر",
@@ -90,7 +121,8 @@ class PasswordInputField extends StatelessWidget {
 
 class EmailInputField extends StatelessWidget {
   const EmailInputField({
-    Key key, this.controller,
+    Key key,
+    this.controller,
   }) : super(key: key);
 
   final controller;
@@ -119,7 +151,7 @@ class EmailInputField extends StatelessWidget {
       floatingLabelBehavior: FloatingLabelBehavior.always,
     );
     var textFormField = TextFormField(
-      controller :controller,
+      controller: controller,
       keyboardType: TextInputType.emailAddress,
       decoration: inputDecoration,
       validator: (value) {

@@ -6,6 +6,11 @@ import '../../../components.dart';
 import 'components/login_form.dart';
 
 class LogIn extends StatelessWidget {
+  final String email ;
+  final String password;
+
+  const LogIn({Key key, this.email, this.password}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +27,7 @@ class LogIn extends StatelessWidget {
               SubText(
                 text: "تسجيل دخول",
               ),
-              LoginForm(),
+              LoginForm(email:"Osama.alnagem@gmail.com",password:"123"),
               GestureDetector(
                 onTap: () {
                   Navigator.push(

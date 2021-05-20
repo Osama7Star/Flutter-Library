@@ -7,3 +7,8 @@ Future<http.Response> signUpR(String fullName,String email,String password , Str
   return response ;
 
 }
+Future<http.Response> loginR(String email,String password ) async {
+  http.Response response =  await http.get(Config.apiUrl+"login?access-token=test&userName=$email&password=$password");
+  return response ;
+
+}

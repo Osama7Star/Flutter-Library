@@ -22,4 +22,25 @@ class AuthenticationController{
     return null;
 
   }
+  Future<bool> login(String email,String password ) async {
+    try{
+      final response = await loginR(email,password);
+      print (response.statusCode);
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false ;
+      }
+    }
+    catch(e)
+    {
+      print("error is $e");
+    }
+    return false;
+
+  }
 }
+
+
+
+

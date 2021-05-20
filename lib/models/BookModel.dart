@@ -5,6 +5,7 @@ class BookModel {
   String ISBN;
   String bookName;
   String bookPages;
+  String bookStatus;
   String categoryId;
   String authorId;
   String tag1,tag2,tag3;
@@ -22,6 +23,7 @@ class BookModel {
       this.bookName,
       this.bookPages,
       this.categoryId,
+      this.bookStatus,
       this.authorId,
       this.tag1,
       this.tag2,
@@ -39,6 +41,7 @@ class BookModel {
       bookId : json['bookId'],
       ISBN: json['ISBN'],
       bookName: json['bookName'],
+      bookStatus : json['bookstatus'],
       bookPages: json['bookPages'],
       categoryId: json['categoryId'],
       authorId: json['authorId'],
