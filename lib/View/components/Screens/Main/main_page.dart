@@ -17,7 +17,7 @@ import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/CategoryModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
-import 'components/BookPage.dart';
+import '../BookInfo/BookPage.dart';
 
 import 'components/CategoryNameLabel.dart';
 import 'components/slider.dart';

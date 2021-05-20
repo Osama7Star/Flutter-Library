@@ -5,9 +5,10 @@ import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/route_argument.dart';
 import 'package:flutter_library_new/utilites/ScreenArguments.dart';
 
-import '../../../components.dart';
+import '../../components.dart';
 import 'package:flutter/cupertino.dart';
 
+/// THIS WIDGET SHOWS Brief information ABOUT BOOK (IMAGE AND NAME )
 class onBookWidget extends StatelessWidget {
   @required final BookModel bookModel;
   @required final double numberOfbook;

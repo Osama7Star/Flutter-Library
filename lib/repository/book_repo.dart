@@ -29,8 +29,9 @@ Future<http.Response> fetchCategory1BooksR() async {
 
 }
 
+/// FETCH BOOK'S INFORMATION BY BOOKID
 Future<http.Response> fetchBookByIdR(String bookId) async {
-  http.Response response =  await http.get("https://api.afropolicy.com/api/web/v1/recipes/getbookbyid?access-token=test&bookid=$bookId");
+  http.Response response =  await http.get("https://api.afropolicy.com/api/web/v1/recipes/getbookbyid?access-token=test&bookId=$bookId");
   return response ;
 
 

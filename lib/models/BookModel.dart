@@ -11,6 +11,9 @@ class BookModel {
   String summary;
   String imageUrl;
 
+  String categoryName;
+  String authorName;
+
 
   BookModel({
       this.bookId,
@@ -23,7 +26,9 @@ class BookModel {
       this.tag2,
       this.tag3,
       this.summary,
-      this.imageUrl});
+      this.imageUrl,
+      this.categoryName,
+      this.authorName,  });
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
@@ -38,6 +43,9 @@ class BookModel {
       tag3:json['tag3'],
       summary:json['summary'],
       imageUrl:json['imageUrl'],
+
+      categoryName: json['categoryName'],
+      authorName: json['authrorName']
 
 
 

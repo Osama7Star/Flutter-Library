@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
-import 'package:flutter_library_new/View/components/Screens/Main/components/BookPage.dart';
+import 'BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
@@ -19,6 +19,7 @@ import 'package:flutter/cupertino.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 
+/// THIS WIDGET SHOW THE ALL INFORMATIONS FOR ONE BOOK
 class BookInfo extends StatefulWidget {
   @override
   _BookInfoState createState() => _BookInfoState();
@@ -565,7 +566,7 @@ class BookDetailsW extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                bookDetails(label: "التصنيف ", info: " أدب"),
+                bookDetails(label: "التصنيف ", info: bookModel.categoryName),
                 GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -575,7 +576,7 @@ class BookDetailsW extends StatelessWidget {
                       );
                     },
                     child: bookDetails(
-                        label: "الكاتب ", info: " عبد الوهاب المسيري")),
+                        label: "الكاتب ", info: bookModel.authorName)),
                 bookDetails(label: "عدد الصفحات ", info: bookModel.bookPages),
               ],
             ),
