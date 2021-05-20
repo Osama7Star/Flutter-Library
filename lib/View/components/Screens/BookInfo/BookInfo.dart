@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
+import 'package:flutter_library_new/View/components/Screens/CategoryBooks/CategoryBooks.dart';
 import 'BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
@@ -29,16 +30,18 @@ class BookInfo extends StatefulWidget {
   final String bookId;
   final String categoryId;
 
+  BookInfo({
+    Key key,
+    @required this.bookId,
+    this.categoryId,
+  }) : super(key: key);
 
-    BookInfo({Key key,@required this.bookId, this.categoryId, }) : super(key: key);
-
-/// TODO : CHANGE THE BOOK IMAGE LINK FROM THE SERVER
-/// THEY SHOW THE AUTHOR IMAGE
-/// TODO : ADD NOTE
+  /// TODO : CHANGE THE BOOK IMAGE LINK FROM THE SERVER
+  /// THEY SHOW THE AUTHOR IMAGE
+  /// TODO : ADD NOTE
 }
 
 class _BookInfoState extends State<BookInfo> {
-
   double _rating = 0;
   List<BookModel> futureBook;
   final _formKey = GlobalKey<FormState>();
@@ -61,8 +64,7 @@ class _BookInfoState extends State<BookInfo> {
     _mediaQueryData = MediaQuery.of(context);
     double screenWidth = _mediaQueryData.size.width;
 
- //   String test = ModalRoute.of(context).settings.arguments;
-
+    //   String test = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       appBar: AppBar11(context),
@@ -73,7 +75,8 @@ class _BookInfoState extends State<BookInfo> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  GetBookInfoW(con1: _con1,bookId: widget.bookId ),
+                  GetBookInfoW(con1: _con1, bookId: widget.bookId),
+
                   /// USERS REVIEWS
                   SizedBox(
                     height: 20,
@@ -82,7 +85,6 @@ class _BookInfoState extends State<BookInfo> {
                   SizedBox(
                     height: 10,
                   ),
-
 
                   SingleChildScrollView(child: GetBookReviewW(con2: _con2)),
 
@@ -99,9 +101,12 @@ class _BookInfoState extends State<BookInfo> {
                   /// GET SIMILAR BOOKS
                   LabelW(text: widget.bookId, width: screenWidth / 2),
                   SizedBox(height: 10),
-                  GetSimilarBooksW(con1: _con1,categoryId:"21" ,),
-                  ///END GET SIMILAR BOOKS
+                  GetSimilarBooksW(
+                    con1: _con1,
+                    categoryId: "21",
+                  ),
 
+                  ///END GET SIMILAR BOOKS
                 ],
               ),
             ),
@@ -168,8 +173,10 @@ class _BookInfoState extends State<BookInfo> {
 class GetBookInfoW extends StatelessWidget {
   const GetBookInfoW({
     Key key,
-    @required BookInfoController con1,@required this.bookId,
-  }) : _con1 = con1, super(key: key);
+    @required BookInfoController con1,
+    @required this.bookId,
+  })  : _con1 = con1,
+        super(key: key);
 
   final String bookId;
   final BookInfoController _con1;
@@ -196,8 +203,10 @@ class GetBookInfoW extends StatelessWidget {
 class GetBookReviewW extends StatelessWidget {
   const GetBookReviewW({
     Key key,
-    @required BookReviewsController con2, this.bookId,
-  }) : _con2 = con2, super(key: key);
+    @required BookReviewsController con2,
+    this.bookId,
+  })  : _con2 = con2,
+        super(key: key);
 
   final BookReviewsController _con2;
   final String bookId;
@@ -211,7 +220,6 @@ class GetBookReviewW extends StatelessWidget {
           List<BookReviewsModel> list = snapshot.data;
           return ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: snapshot.data.length,
@@ -234,8 +242,10 @@ class GetBookReviewW extends StatelessWidget {
 class GetSimilarBooksW extends StatelessWidget {
   const GetSimilarBooksW({
     Key key,
-    @required BookInfoController con1, this.categoryId,
-  }) : _con1 = con1, super(key: key);
+    @required BookInfoController con1,
+    this.categoryId,
+  })  : _con1 = con1,
+        super(key: key);
 
   final BookInfoController _con1;
   final String categoryId;
@@ -330,15 +340,15 @@ class BookReviews1 extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-      Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-       child:   BookInfoUserInfo(
-            bookReviews: bookReviews,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: BookInfoUserInfo(
+                bookReviews: bookReviews,
+              ),
+            ),
           ),
-      ),
-      ),
           SizedBox(height: 10),
           Text(
             bookReviews.review,
@@ -454,7 +464,8 @@ class BookImage extends StatelessWidget {
   const BookImage({
     Key key,
     @required this.imageUrl,
-    this.ISBN="", this.imageHeight=500,
+    this.ISBN = "",
+    this.imageHeight = 500,
   }) : super(key: key);
 
   final String imageUrl;
@@ -468,14 +479,13 @@ class BookImage extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: [
-      ///TODO :ADD PLACEHOLDER UNTIL DOWNLOAD THE IMAGE
-      Center(
-        child: Image.network(
-          imageUrl,
-        ),
-      ),
-      if (ISBN.isNotEmpty)
-      LabelW(text: ISBN)
+          ///TODO :ADD PLACEHOLDER UNTIL DOWNLOAD THE IMAGE
+          Center(
+            child: Image.network(
+              imageUrl,
+            ),
+          ),
+          if (ISBN.isNotEmpty) LabelW(text: ISBN)
         ],
       ),
     );
@@ -568,17 +578,36 @@ class BookDetailsW extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                bookDetails(label: "التصنيف ", info: bookModel.categoryName),
                 GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AuthorInformation()),
-                      );
-                    },
-                    child: bookDetails(
-                        label: "الكاتب ", info: bookModel.authorName)),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryBooks(
+                          categoryId: bookModel.categoryId,
+                          categoryName: bookModel.categoryName,
+                        ),
+                      ),
+                    );
+                  },
+                  child: bookDetails(
+                      label: "التصنيف ", info: bookModel.categoryName),
+                ),
+
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AuthorInformation(
+                          authorId: bookModel.authorId,
+                        ),
+                      ),
+                    );
+                  },
+                  child:
+                      bookDetails(label: "الكاتب ", info: bookModel.authorName),
+                ),
                 bookDetails(label: "عدد الصفحات ", info: bookModel.bookPages),
               ],
             ),
@@ -587,6 +616,12 @@ class BookDetailsW extends StatelessWidget {
           RatingBarW(rate: 4.4),
           SizedBox(height: 15),
           BookInfoTag(bookModel: bookModel),
+          SizedBox(height: 15),
+
+          SubText(
+            text:bookModel.note,
+            color: kSecondPrimaryColor,
+          ),
           SizedBox(height: 15),
           BookInfoSummary(summary: bookModel.summary),
           SizedBox(height: 15),

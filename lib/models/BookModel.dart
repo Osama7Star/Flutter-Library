@@ -10,6 +10,7 @@ class BookModel {
   String tag1,tag2,tag3;
   String summary;
   String imageUrl;
+  String note ;
 
   String categoryName;
   String authorName;
@@ -28,7 +29,10 @@ class BookModel {
       this.summary,
       this.imageUrl,
       this.categoryName,
-      this.authorName,  });
+      this.authorName,
+      this.note
+
+  });
 
   factory BookModel.fromJson(Map<String, dynamic> json) {
     return BookModel(
@@ -45,7 +49,8 @@ class BookModel {
       imageUrl:json['imageUrl'],
 
       categoryName: json['categoryName'],
-      authorName: json['authrorName']
+      authorName: json['authrorName'],
+      note :json['note']
 
 
 
