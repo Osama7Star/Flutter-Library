@@ -32,6 +32,7 @@ dependencies:
   carousel_slider: ^2.3.1
   flutter_rating_bar: ^4.0.0
   flutter_barcode_scanner: ^1.0.1
+  intl: ^0.16.1
 
 
   mvc_pattern: ^7.0.0

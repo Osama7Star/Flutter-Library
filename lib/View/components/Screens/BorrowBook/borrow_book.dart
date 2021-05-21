@@ -3,21 +3,47 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.da
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BorrowingModel.dart';
+import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
+import 'package:flutter_library_new/utilites/functions.dart';
 
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 
-class borrowBook extends StatelessWidget {
+class borrowBook extends StatefulWidget {
+  @override
+  _borrowBookState createState() => _borrowBookState();
+}
+
+class _borrowBookState extends State<borrowBook> {
   BookInfoController _con1 = new BookInfoController();
+
   bool bookStatus1 = false;
+  DateTime selectedDate = DateTime.now();
+
+  DateTime _dateTime = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+
+      ///TODO:CHANGE IT TO BE FIRSTDATE IS CURRENT YEAR AND LASTDATE IS THE NEXT YEAR
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2022),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar11(context),
       body: FutureBuilder(
-        future: _con1.fetchBookByISBN("S87"),
+        future: _con1.fetchBookByISBN("S8"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<BookModel> list = snapshot.data;
@@ -42,10 +68,53 @@ class borrowBook extends StatelessWidget {
 
                 /// CHECK BOOK STATUS
                 list[0].bookStatus == "0"
-                    ? Text('متاح للإستعارة')
+
+                    /// IF BOOK IS AVAILABLE FOR BORROWING
+
+                    ? Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(Functions.getDate()),
+                              SubText(text: 'تاريخ الإستعارة '),
+                            ],
+                          ),
+                          SizedBox(height: 20),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RaisedButton(
+                                onPressed: () => _selectDate(context),
+                                child: Text(
+                                  'إختر التاريخ',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                color: kPrimaryColor,
+                              ),
+                              SubText(text: 'تاريخ الإرجاع '),
+                            ],
+                          ),
+                          SizedBox(height: 20),
+                          Text(selectedDate.toString()),
+                          SizedBox(height: 20),
+
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Button(text:"إستعارة"),
+
+                          ),
+
+
+
+                        ],
+                      )
                     :
 
-                    /// IF BOOK NOT AVAILABLE FOR BORROWING
+                    /// IF BOOK IS NOT AVAILABLE FOR BORROWING
 
                     NotAvilableWidget(con1: _con1, list: list),
               ],
@@ -68,7 +137,8 @@ class NotAvilableWidget extends StatelessWidget {
     Key key,
     @required BookInfoController con1,
     @required this.list,
-  }) : _con1 = con1, super(key: key);
+  })  : _con1 = con1,
+        super(key: key);
 
   final BookInfoController _con1;
   final List<BookModel> list;
@@ -82,31 +152,25 @@ class NotAvilableWidget extends StatelessWidget {
             List<BorrowingModel> list = snapshot.data;
 
             return Align(
-
               alignment: Alignment.center,
-
               child: (RichText(
                 text: TextSpan(
                     text: 'الكتاب غير متاح للإستعارة \n ',
                     style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-
-
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
                     children: <TextSpan>[
                       TextSpan(
-                        text:
-                            '  تم إستعارته من قبل ${list[0].fullName}  \n  ',
+                        text: '  تم إستعارته من قبل ${list[0].fullName}  \n  ',
                         style: TextStyle(
                             color: Colors.blueAccent,
                             fontSize: 18,
-                        fontWeight: FontWeight.normal),
+                            fontWeight: FontWeight.normal),
                       ),
                       TextSpan(
-                        text:
-                            ' حتى تاريخ  ${list[0].endDate}  ',
+                        text: ' حتى تاريخ  ${list[0].endDate}  ',
                         style: TextStyle(
                             color: Colors.blueAccent,
                             fontSize: 18,
