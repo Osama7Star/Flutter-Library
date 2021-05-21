@@ -24,10 +24,14 @@ class SuggestBook extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
+              SizedBox(
+                  height: 10
+              ),
               SubText(
-                text: "إقترح الكتاب",
+                text: "إقترح كتاب",
                 textSize: 20,
               ),
+              SizedBox(height: 10,),
               Form(
                   key: _formKey,
                   child: Column(

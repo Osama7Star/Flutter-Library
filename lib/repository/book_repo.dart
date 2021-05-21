@@ -36,6 +36,21 @@ Future<http.Response> fetchBookByIdR(String bookId) async {
 
 
 }
+/// FETCH BOOK'S INFORMATION BY ISBN
+Future<http.Response> fetchBookByISBNR(String ISBN) async {
+  http.Response response =  await http.get("https://api.afropolicy.com/api/web/v1/recipes/getbookbyisbn?access-token=test&ISBN=$ISBN");
+  return response ;
+
+
+}
+
+/// FETCH BOOK'S BORROWING INFORMATION BY ID
+Future<http.Response> fetchBorrowingInfoR(String bookId) async {
+  http.Response response =  await http.get("https://api.afropolicy.com/api/web/v1/recipes/getborrowedinfo?access-token=test&bookId=$bookId");
+  return response ;
+
+
+}
 
 /// SUGGEST BOOK
 Future<http.Response> suggestBookR(String bookName,String bookAuthor,String note) async {
