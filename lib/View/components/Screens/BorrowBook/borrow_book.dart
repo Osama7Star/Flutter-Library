@@ -46,22 +46,8 @@ class borrowBook extends StatelessWidget {
                     :
 
                     /// IF BOOK NOT AVAILABLE FOR BORROWING
-                    // SubText(text: 'غير متاح للإستعارة${list[0].bookId}',color: Colors.red,)
-                    //
-                    // fetchBorrowingInf
-                    FutureBuilder(
-                        future: _con1.fetchBorrowingInfo(list[0].bookId),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            List<BorrowingModel> list = snapshot.data;
 
-                            return (SubText(
-                              text: 'غير متاح للإستعارة تم إستعارته من قبل   \n حتى تاريخ ${list[0].fullName}${list[0].fullName}',
-                              color: Colors.red,
-                            ));
-                          }
-                          return Center(child: CircularProgressIndicator());
-                        }),
+                    NotAvilableWidget(con1: _con1, list: list),
               ],
             );
           } else if (snapshot.hasError) {
@@ -74,5 +60,63 @@ class borrowBook extends StatelessWidget {
       ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.scan),
     );
+  }
+}
+
+class NotAvilableWidget extends StatelessWidget {
+  const NotAvilableWidget({
+    Key key,
+    @required BookInfoController con1,
+    @required this.list,
+  }) : _con1 = con1, super(key: key);
+
+  final BookInfoController _con1;
+  final List<BookModel> list;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: _con1.fetchBorrowingInfo(list[0].bookId),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<BorrowingModel> list = snapshot.data;
+
+            return Align(
+
+              alignment: Alignment.center,
+
+              child: (RichText(
+                text: TextSpan(
+                    text: 'الكتاب غير متاح للإستعارة \n ',
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+
+
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text:
+                            '  تم إستعارته من قبل ${list[0].fullName}  \n  ',
+                        style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 18,
+                        fontWeight: FontWeight.normal),
+                      ),
+                      TextSpan(
+                        text:
+                            ' حتى تاريخ  ${list[0].endDate}  ',
+                        style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal),
+                      )
+                    ]),
+              )),
+            );
+          }
+          return Center(child: CircularProgressIndicator());
+        });
   }
 }
