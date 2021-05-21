@@ -7,28 +7,21 @@ import 'package:flutter_library_new/models/QuoteModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
 
+
+
+
 class Quote extends StatelessWidget {
+
   QuoteController _con = QuoteController();
-
-  @override
-  Widget build(BuildContext context) {
-    return GetQuotes(con: _con);
-  }
-}
-
-
-class GetQuotes extends StatelessWidget {
-
-  final QuoteController con;
-
-  const GetQuotes({Key key, this.con}) : super(key: key);
+  final Future<dynamic> function;
+   Quote({Key key, this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 200),
       child: FutureBuilder(
-        future: con.fetchQuotes(),
+        future: function,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<QuoteModel> list = snapshot.data;

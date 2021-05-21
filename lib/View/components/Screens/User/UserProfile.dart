@@ -31,45 +31,7 @@ class profilePageState extends State<profilePage> {
                 UserPage(),
 
                 // the tab bar with two items
-                SizedBox(
-                  height: 50,
-                  child: AppBar(
-                    bottom: TabBar(
-                      tabs: [
-                        Tab(
-                          icon: Icon(Icons.book),
-                        ),
-                        Tab(
-                          icon: Icon(
-                            Icons.local_activity,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
 
-                // create widgets for each tab bar here
-                Expanded(
-                  child: TabBarView(
-                    children: [
-                      // first tab bar view widget
-                      SingleChildScrollView(
-                        child:Column(
-                          children: [
-                            ...List.generate(bookDemo.length,
-                                    (index) => onBookWidget(bookModel: bookDemo[index],numberOfbook: 1,))
-                          ],
-                        )
-                      ),
-
-                      // second tab bar viiew widget
-                      SingleChildScrollView(
-                          child:UserPage()
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),

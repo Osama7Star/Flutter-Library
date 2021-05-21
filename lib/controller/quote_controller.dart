@@ -35,7 +35,33 @@ class QuoteController extends ControllerMVC{
     return null;
 
   }
+/// FETCH QUOTES USING ID
 
+  Future<List<QuoteModel>> fetchUserQuotes(String userId) async {
+    try{
+      final response = await fetchUserQuotesR(userId);
+      print (response.statusCode);
+      if (response.statusCode == 200) {
+
+        var body =jsonDecode(response.body);
+        List<QuoteModel> quotes =[];
+        for ( var item in body)
+        {
+          quotes.add(QuoteModel.fromJson(item));
+        }
+        return quotes;
+      } else {
+
+      }
+    }
+    catch(e)
+    {
+      print("error is $e");
+    }
+    return null;
+
+  }
+///
 
 
   /// ADD QUOTE

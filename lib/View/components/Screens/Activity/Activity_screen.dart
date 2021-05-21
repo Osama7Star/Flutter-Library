@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/controller/quote_controller.dart';
 import '../BookInfo/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/Quote/quote.dart';
 import 'package:flutter_library_new/View/components/Screens/ReadingBooks/reading_books.dart';
@@ -11,6 +12,8 @@ import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 
 class ActivityAcreen extends StatelessWidget {
+  QuoteController _con = QuoteController();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -53,7 +56,7 @@ class ActivityAcreen extends StatelessWidget {
 
                       // second tab bar viiew widget
                       SingleChildScrollView(
-                          child:Quote()
+                          child:Quote(function:_con.fetchQuotes())
                       ),
                     ],
                   ),

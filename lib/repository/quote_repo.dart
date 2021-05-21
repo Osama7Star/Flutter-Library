@@ -15,5 +15,15 @@ Future<http.Response> addQuoteR(String quote,String userId) async {
 
 }
 
+/// GET USER QUOTES BY USERID
+Future<http.Response> fetchUserQuotesR(String userId) async {
+  http.Response response =  await http.get(Config.apiUrl+"getuserquotes?access-token=test&userId=$userId");
+  return response ;
+
+}
+
+
+
+
 
 
