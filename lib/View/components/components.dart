@@ -5,7 +5,6 @@ import 'package:flutter_library_new/utilites/constants.dart';
 import 'Screens/SuggestBook/Suggestbook.dart';
 import 'Screens/search/search.dart';
 
-
 class HeaderText extends StatelessWidget {
   const HeaderText({Key key, @required this.text}) : super(key: key);
 
@@ -34,6 +33,7 @@ class SubText extends StatelessWidget {
   final double textSize;
   final Color color;
   final bool isCenter;
+
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -51,7 +51,7 @@ class Button extends StatelessWidget {
       @required this.text,
       @required this.pressed,
       this.height: 50,
-      this.peiece:1})
+      this.peiece: 1})
       : super(key: key);
 
   final String text;
@@ -71,8 +71,8 @@ class Button extends StatelessWidget {
         width: width11,
         height: height,
         child: RaisedButton(
-            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(15.0)),
-
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15.0)),
             onPressed: pressed,
             color: kPrimaryColor,
             child: Text(
@@ -99,7 +99,7 @@ AppBar AppBar11(BuildContext context) {
               MaterialPageRoute(builder: (context) => SuggestBook()),
             );
           },
-          child: Icon(Icons.add,color: kSecondPrimaryColor)),
+          child: Icon(Icons.add, color: kSecondPrimaryColor)),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
@@ -109,14 +109,41 @@ AppBar AppBar11(BuildContext context) {
                 MaterialPageRoute(builder: (context) => Search()),
               );
             },
-            child: Icon(Icons.search,color: kSecondPrimaryColor)),
+            child: Icon(Icons.search, color: kSecondPrimaryColor)),
       ),
     ],
     leading: IconButton(
       icon: Icon(Icons.arrow_back, color: kSecondPrimaryColor),
       onPressed: () => Navigator.of(context).pop(),
     ),
-    title: Image.asset("assets/images/logo.png",width: 50,height: 50,),
+    title: Image.asset(
+      "assets/images/logo.png",
+      width: 50,
+      height: 50,
+    ),
     centerTitle: true,
   );
+}
+
+//// SHOW THE DATE
+class DateWidget extends StatelessWidget {
+  const DateWidget({
+    Key key,
+    this.date,
+  }) : super(key: key);
+
+  final String date;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Align(
+          alignment: AlignmentDirectional.bottomStart,
+          child: Text(
+            date,
+            style: TextStyle(color: Colors.black54, fontSize: 10),
+          )),
+    );
+  }
 }

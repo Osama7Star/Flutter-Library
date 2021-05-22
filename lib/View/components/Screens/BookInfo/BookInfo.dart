@@ -295,7 +295,7 @@ class RatingBarW extends StatelessWidget {
         color: kSecondPrimaryColor,
       ),
       itemCount: 5,
-      itemSize: 50.0,
+      itemSize: 30.0,
       unratedColor: Colors.amber.withAlpha(50),
       direction: true ? Axis.horizontal : Axis.horizontal,
     );
@@ -355,6 +355,8 @@ class BookReviews1 extends StatelessWidget {
             style: textStyle,
           ),
           RatingBarW(rate: double.parse(bookReviews.rate)),
+          DateWidget(date: bookReviews.date),
+
           SizedBox(height: 10),
         ],
       ),

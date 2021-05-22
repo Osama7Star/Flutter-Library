@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
@@ -7,6 +8,8 @@ import 'package:flutter_library_new/controller/readingbooks_controller.dart';
 import 'package:flutter_library_new/models/QuoteModel.dart';
 import 'package:flutter_library_new/models/ReadingBooksModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
+
+import '../../components.dart';
 
 class ReadingBooks extends StatelessWidget {
   ReadingBooksController _con = ReadingBooksController();
@@ -87,7 +90,13 @@ class BookReviews1 extends StatelessWidget {
               style: textStyle,
             ),
           ),
-          Text(readingBooksModel.startDate),
+          SizedBox(
+            height: 15,
+          ),
+
+
+             DateWidget(date: readingBooksModel.startDate),
+
 
           SizedBox(height: 10),
         ],
@@ -95,6 +104,8 @@ class BookReviews1 extends StatelessWidget {
     );
   }
 }
+
+
 
 class BookInfoUserInfo extends StatelessWidget {
   const BookInfoUserInfo({

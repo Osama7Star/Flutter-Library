@@ -6,6 +6,8 @@ import 'package:flutter_library_new/controller/quote_controller.dart';
 import 'package:flutter_library_new/models/QuoteModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
+import '../../components.dart';
+
 
 
 
@@ -86,6 +88,7 @@ class BookReviews1 extends StatelessWidget {
             quoteModel.quote,
             style: textStyle,
           ),
+          DateWidget(date: quoteModel.date),
           SizedBox(height: 10),
         ],
       ),
