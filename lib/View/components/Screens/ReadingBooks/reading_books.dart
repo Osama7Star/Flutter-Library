@@ -70,33 +70,76 @@ class BookReviews1 extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: BookInfoUserInfo(
-                readingBooksModel: readingBooksModel,
-              ),
-            ),
-          ),
           SizedBox(height: 10),
 
           ///TODO : MAKE THE TEXT BESIDE THE IMAGE
           ///MAKE THE NAME OF THE USER AND THE NAME OF THE BOOK BOLD BY USING RICH TEXT
-          Directionality(
-            textDirection: TextDirection.rtl,
-            child: Text(
-              "بدء    [${readingBooksModel.fullName}  ] بقراءة كتاب  [${readingBooksModel.bookName} ]",
-              style: textStyle,
+          Padding(
+            padding: const EdgeInsets.only(left: 8,right: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child:
+                  // Text(
+                  //   "بدء   [ ${readingBooksModel.fullName} ]    بقراءة كتاب \n  [ ${readingBooksModel.bookName} ]",
+                  //   style: textStyle,
+                  // ),
+                  Wrap(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                            text: 'بدء',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text:' [ ${readingBooksModel.fullName} ]',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '  \n بقراءة كتاب ',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                              TextSpan(
+                                text: '[ ${readingBooksModel.bookName} ] ',
+
+                                style: TextStyle(
+
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ]),
+                      ),
+                    ],
+                  )
+                ),
+                SizedBox(width: 10),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: BookInfoUserInfo(
+                    readingBooksModel: readingBooksModel,
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
             height: 15,
           ),
 
-
-             DateWidget(date: readingBooksModel.startDate),
-
+          DateWidget(date: readingBooksModel.startDate),
 
           SizedBox(height: 10),
         ],
@@ -104,8 +147,6 @@ class BookReviews1 extends StatelessWidget {
     );
   }
 }
-
-
 
 class BookInfoUserInfo extends StatelessWidget {
   const BookInfoUserInfo({
