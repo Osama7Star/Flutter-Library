@@ -95,7 +95,7 @@ class _BookInfoState extends State<BookInfo> {
 
                   /// ADD REVIEWS
 
-                  AddReviewW(),
+                  AddReviewW(_con2),
 
                   /// END ADD REVIEWS
 
@@ -121,7 +121,7 @@ class _BookInfoState extends State<BookInfo> {
   }
 
   /// TODO : HIDE PROGRESSBAR IF THERE ARE NOT REVIEWS
-  Card AddReviewW() {
+  Card AddReviewW(BookReviewsController _con) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -160,7 +160,7 @@ class _BookInfoState extends State<BookInfo> {
                         pressed: () {
                           if (_formKey.currentState.validate() &&
                               userAdedRate != 0) {
-                            print('the rate is $userAdedRate');
+                            _con.addReview("review from flutter","5","78","100");
                           } else {
                             print("Error $userAdedRate");
                           }
