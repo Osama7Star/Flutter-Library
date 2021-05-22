@@ -104,7 +104,11 @@ class _borrowBookState extends State<borrowBook> {
 
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Button(text:"إستعارة"),
+                            child: Button(text:"إستعارة",pressed: (){
+                              _con1.borrowBook("100", "78");
+                              _con1.changeStatus("100", "78");
+                              print("Book Borrowing");
+                            }),
 
                           ),
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
 import 'package:flutter_library_new/View/components/Screens/CategoryBooks/CategoryBooks.dart';
+import 'package:flutter_library_new/models/BorrowingModel.dart';
 import 'BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
@@ -86,7 +87,9 @@ class _BookInfoState extends State<BookInfo> {
                     height: 10,
                   ),
 
-                  SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchBookReviews(widget.bookId))),
+                  SingleChildScrollView(
+                      child: GetBookReviewW(
+                          function: _con2.fetchBookReviews(widget.bookId))),
 
                   ///END USERS REVIEWS
 
@@ -191,7 +194,6 @@ class GetBookInfoW extends StatelessWidget {
           List<BookModel> list = snapshot.data;
 
           return BookDetailsW(bookModel: list[0]);
-
         } else if (snapshot.hasError) {
           return Text("Error");
         }
@@ -204,9 +206,8 @@ class GetBookInfoW extends StatelessWidget {
 }
 
 class GetBookReviewW extends StatelessWidget {
+  final Future<dynamic> function;
 
-
-  final Future<dynamic> function ;
   final String bookId;
 
   const GetBookReviewW({Key key, this.function, this.bookId}) : super(key: key);
@@ -218,28 +219,31 @@ class GetBookReviewW extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-
-            builder: (context) => BookInfo(bookId:bookId),
+            builder: (context) => BookInfo(bookId: bookId),
           ),
         );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder(
-          future:function,
+          future: function,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<BookReviewsModel> list = snapshot.data;
-              return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return BookReviews1(
-                      bookReviews: list[index],
-                    );
-                  });
+              if (list.length > 0) {
+                return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return BookReviews1(
+                        bookReviews: list[index],
+                      );
+                    });
+              } else {
+                Text('Nothing');
+              }
             } else if (snapshot.hasError) {
               return Text("Error");
             }
@@ -370,7 +374,6 @@ class BookReviews1 extends StatelessWidget {
           ),
           RatingBarW(rate: double.parse(bookReviews.rate)),
           DateWidget(date: bookReviews.date),
-
           SizedBox(height: 10),
         ],
       ),
@@ -578,7 +581,8 @@ class bookDetails extends StatelessWidget {
 class BookDetailsW extends StatelessWidget {
   final BookModel bookModel;
 
-  const BookDetailsW({Key key, @required this.bookModel}) : super(key: key);
+  BookDetailsW({Key key, @required this.bookModel}) : super(key: key);
+  BookInfoController _con1 = new BookInfoController();
 
   @override
   Widget build(BuildContext context) {
@@ -609,7 +613,6 @@ class BookDetailsW extends StatelessWidget {
                   child: bookDetails(
                       label: "التصنيف ", info: bookModel.categoryName),
                 ),
-
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -633,18 +636,73 @@ class BookDetailsW extends StatelessWidget {
           SizedBox(height: 15),
           BookInfoTag(bookModel: bookModel),
           SizedBox(height: 15),
-
           SubText(
-            text:bookModel.note,
+            text: bookModel.note,
             color: kSecondPrimaryColor,
           ),
           SizedBox(height: 15),
           BookInfoSummary(summary: bookModel.summary),
           SizedBox(height: 15),
-          Text(
-            'الكتاب متاح للإستعارة',
-            style: textStyle.copyWith(color: kPrimaryColor, fontSize: 20),
-          )
+          bookModel.bookStatus == "0"
+              ? Text(
+                  'الكتاب متاح للإستعارة',
+                  style: textStyle.copyWith(color: kPrimaryColor, fontSize: 20),
+                )
+              : FutureBuilder(
+                  future: _con1.fetchBorrowingInfo(bookModel.bookId),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<BorrowingModel> list = snapshot.data;
+
+                      return Align(
+
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+
+                              text:
+                                  'الكتاب غير متاح للإستعارة \n تم إستعارة الكتاب من قبل ',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 17,
+                                fontWeight: FontWeight.normal,
+
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: ' [ ${list[0].fullName} ]',
+                                  style: TextStyle(
+                                      color:kPrimaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(
+                                  text: '  \n حتى تاريخ  ',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                TextSpan(
+                                  text: '[ ${list[0].endDate}] ',
+                                  style: TextStyle(
+                                      color: kPrimaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ]),
+                        ),
+                      );
+                      //SubText(text: "   الكتاب غير متاح للإستعارة \n  تم الإستعارة من قبل ${list[0].fullName + list[0].endDate } \n حتى تاريخ ");
+
+                    } else if (snapshot.hasError) {
+                      return Text("Error");
+                    }
+
+                    // By default, show a loading spinner.
+                    return CircularProgressIndicator();
+                  },
+                ),
         ],
       ),
     );

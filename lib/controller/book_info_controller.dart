@@ -248,4 +248,51 @@ Future<List<BorrowingModel>> fetchBorrowingInfo(String bookId) async {
 
   }
 
+Future<String> borrowBook(String bookId,String userId) async {
+  try{
+    final response = await borrowBookR(bookId,userId);
+    print ("the response is  ");
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+      return "True";
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      //  throw Exception('Failed to load book');
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
+
+Future<String> changeStatus(String bookId,String userId) async {
+  try{
+    final response = await changeStatusR(bookId,userId,"1");
+    print ("the response is  ");
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+      return "True";
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      //  throw Exception('Failed to load book');
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
+
+
+
+
 }

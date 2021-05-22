@@ -60,4 +60,19 @@ Future<http.Response> suggestBookR(String bookName,String bookAuthor,String note
 
 }
 
+/// BORROW BOOK
+
+Future<http.Response> borrowBookR(String bookId,String userId) async {
+  http.Response response =  await http.get((Config.apiUrl+"addbookborrowing?access-token=test&userId=$userId&bookId=$bookId"));
+  return response ;
+
+
+}
+Future<http.Response> changeStatusR(String bookId,String userId,String bookStatus) async {
+  http.Response response =  await http.get((Config.apiUrl+"updatebookstatus?access-token=test&userId=$userId&bookId=$bookId&bookStatus=$bookStatus"));
+  return response ;
+
+
+}
+
 
