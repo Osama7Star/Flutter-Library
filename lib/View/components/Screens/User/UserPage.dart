@@ -18,6 +18,9 @@ class UserPage extends StatelessWidget {
 
   BookReviewsController _con2 = BookReviewsController();
   ReadingBooksController _con1 = ReadingBooksController();
+  final String userId;
+
+   UserPage({Key key, this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

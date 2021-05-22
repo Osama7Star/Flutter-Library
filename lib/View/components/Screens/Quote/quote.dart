@@ -71,26 +71,37 @@ class BookReviews1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Directionality(
-              textDirection: TextDirection.rtl,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
 
-                child: BookInfoUserInfo(
-                quoteModel: quoteModel,
+              builder: (context) => UserPage(userId:quoteModel.userId),
+            ),
+          );
+        },
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+
+                  child: BookInfoUserInfo(
+                  quoteModel: quoteModel,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            quoteModel.quote,
-            style: textStyle,
-          ),
-          DateWidget(date: quoteModel.date),
-          SizedBox(height: 10),
-        ],
+            SizedBox(height: 10),
+            Text(
+              quoteModel.quote,
+              style: textStyle,
+            ),
+            DateWidget(date: quoteModel.date),
+            SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }
