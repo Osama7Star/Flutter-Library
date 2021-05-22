@@ -38,4 +38,32 @@ class BookReviewsController extends ControllerMVC{
 
   }
 
+
+
+  Future<List<BookReviewsModel>> fetchUserReviews(String userId) async {
+    try{
+      final response = await fetchUserReviewsR(userId);
+
+      print (response.statusCode);
+      if (response.statusCode == 200) {
+
+        var body =jsonDecode(response.body);
+
+        List<BookReviewsModel> bookReviews =[];
+        for ( var item in body)
+        {
+          bookReviews.add(BookReviewsModel.fromJson(item));
+        }
+        print("The Book Lengeth is $bookReviews.length");
+        return bookReviews;
+      } else {
+
+      }
+    }
+    catch(e)
+    {
+      print("error is $e");
+    }
+
+  }
 }

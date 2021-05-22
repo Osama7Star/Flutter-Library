@@ -86,7 +86,7 @@ class _BookInfoState extends State<BookInfo> {
                     height: 10,
                   ),
 
-                  SingleChildScrollView(child: GetBookReviewW(con2: _con2)),
+                  SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchBookReviews(widget.bookId))),
 
                   ///END USERS REVIEWS
 
@@ -99,7 +99,7 @@ class _BookInfoState extends State<BookInfo> {
                   SizedBox(height: 20),
 
                   /// GET SIMILAR BOOKS
-                  LabelW(text: widget.categoryId, width: screenWidth / 2),
+                  LabelW(text: "كتب مشابهة", width: screenWidth / 2),
                   SizedBox(height: 10),
                   GetSimilarBooksW(
                     con1: _con1,
@@ -204,20 +204,17 @@ class GetBookInfoW extends StatelessWidget {
 }
 
 class GetBookReviewW extends StatelessWidget {
-  const GetBookReviewW({
-    Key key,
-    @required BookReviewsController con2,
-    this.bookId,
-  })  : _con2 = con2,
-        super(key: key);
 
-  final BookReviewsController _con2;
+
+  final Future<dynamic> function ;
   final String bookId;
+
+  const GetBookReviewW({Key key, this.function, this.bookId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _con2.fetchBookReviews(bookId),
+      future:function,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookReviewsModel> list = snapshot.data;
