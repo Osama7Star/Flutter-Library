@@ -4,10 +4,7 @@ import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 import 'package:flutter_library_new/controller/quote_controller.dart';
 import 'package:flutter_library_new/models/QuoteModel.dart';
-import 'package:flutter_library_new/models/UserModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
-
-import '../../components.dart';
 
 
 
@@ -23,49 +20,23 @@ class Quote extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 200),
-      child: Padding(
+      child: Center(
         child: FutureBuilder(
           future: function,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              List<UserModel> list = snapshot.data;
-              return Card(
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          width: 200,
-                          height: 200,
-                          child: CircleAvatar(
-                            radius: 0,
-                            backgroundImage: NetworkImage(
-                                'https://qph.fs.quoracdn.net/main-qimg-134e3bf89fff27bf56bdbd04e7dbaedf.webp'),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SubText(text:list[0].fullName, textSize: 24),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        SubText(
-                          text: list[0].universityName,
-                          textSize: 16,
-                          color: Colors.black,
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        SubText(text:list[0].collageName, textSize: 16, color: Colors.black),
-                      ],
-                    ),
-                  ),);
+              List<QuoteModel> list = snapshot.data;
+              return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return BookReviews1(
+                      quoteModel: list[index],
+                    );
+                  });
             } else if (snapshot.hasError) {
               return Text("Error");
             }

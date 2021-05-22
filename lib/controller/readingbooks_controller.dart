@@ -36,4 +36,31 @@ class ReadingBooksController extends ControllerMVC{
 
   }
 
+  /// GET THE BOOKS READED BY USER
+  Future<List<ReadingBooksModel>> fetchUserReadingBooks(String userId) async {
+    try{
+      final response = await fetchUserReadingBooksR(userId);
+      print (response.statusCode);
+      if (response.statusCode == 200) {
+
+        var body =jsonDecode(response.body);
+        List<ReadingBooksModel> readingbooks =[];
+        for ( var item in body)
+        {
+          readingbooks.add(ReadingBooksModel.fromJson(item));
+        }
+        return readingbooks;
+      } else {
+
+      }
+    }
+    catch(e)
+    {
+      print("error is $e");
+    }
+    return null;
+
+  }
+
+
 }

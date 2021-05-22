@@ -8,33 +8,33 @@ import 'package:flutter_library_new/models/QuoteModel.dart';
 import 'package:flutter_library_new/models/ReadingBooksModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
-
 class ReadingBooks extends StatelessWidget {
   ReadingBooksController _con = ReadingBooksController();
+  final Future<dynamic> function;
+
+  ReadingBooks({Key key, this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetQuotes(con: _con);
+    return GetQuotes(con: _con, function: function);
   }
 }
 
-
 class GetQuotes extends StatelessWidget {
-
   final ReadingBooksController con;
+  final Future<dynamic> function;
 
-  const GetQuotes({Key key, this.con}) : super(key: key);
+  const GetQuotes({Key key, this.con, this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: con.fetchReadingBooks(),
+      future: function,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<ReadingBooksModel> list = snapshot.data;
           return ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: snapshot.data.length,
@@ -71,7 +71,6 @@ class BookReviews1 extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Directionality(
               textDirection: TextDirection.rtl,
-
               child: BookInfoUserInfo(
                 readingBooksModel: readingBooksModel,
               ),
@@ -79,17 +78,17 @@ class BookReviews1 extends StatelessWidget {
           ),
           SizedBox(height: 10),
 
-               ///TODO : MAKE THE TEXT BESIDE THE IMAGE 
+          ///TODO : MAKE THE TEXT BESIDE THE IMAGE
           ///MAKE THE NAME OF THE USER AND THE NAME OF THE BOOK BOLD BY USING RICH TEXT
-               Directionality(
-    textDirection: TextDirection.rtl,
-    child:Text(
-            "بدء    [${readingBooksModel.fullName}  ] بقراءة كتاب  [${readingBooksModel.bookName} ]",
-
-            style: textStyle,
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: Text(
+              "بدء    [${readingBooksModel.fullName}  ] بقراءة كتاب  [${readingBooksModel.bookName} ]",
+              style: textStyle,
+            ),
           ),
+          Text(readingBooksModel.startDate),
 
-               ),
           SizedBox(height: 10),
         ],
       ),
@@ -121,7 +120,6 @@ class BookInfoUserInfo extends StatelessWidget {
                 radius: 20,
                 backgroundImage: NetworkImage(readingBooksModel.imageUrl),
               ),
-
             ],
           )
         ],

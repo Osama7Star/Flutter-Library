@@ -8,3 +8,10 @@ Future<http.Response> fetchReadingBooksR() async {
 
 }
 
+Future<http.Response> fetchUserReadingBooksR(String userId) async {
+  http.Response response =  await http.get(Config.apiUrl+"getuserrebooks?access-token=test&userId=$userId");
+  return response ;
+
+}
+
+

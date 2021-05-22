@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/controller/quote_controller.dart';
+import 'package:flutter_library_new/controller/readingbooks_controller.dart';
 import '../BookInfo/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/Quote/quote.dart';
 import 'package:flutter_library_new/View/components/Screens/ReadingBooks/reading_books.dart';
@@ -13,6 +14,7 @@ import '../../coustme_bottom_nav_bar.dart';
 
 class ActivityAcreen extends StatelessWidget {
   QuoteController _con = QuoteController();
+  ReadingBooksController _con1 = ReadingBooksController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,7 @@ class ActivityAcreen extends StatelessWidget {
           child: SizedBox(
             height: 800,
             child: Column(
-
               children: <Widget>[
-
-
                 // the tab bar with two items
                 SizedBox(
                   height: 50,
@@ -51,13 +50,12 @@ class ActivityAcreen extends StatelessWidget {
                 Expanded(
                   child: TabBarView(
                     children: [
-                      // first tab bar view widget
-                      ReadingBooks(),
+                      /// GET THE READING
+                      ReadingBooks(function: _con1.fetchReadingBooks()),
 
                       // second tab bar viiew widget
                       SingleChildScrollView(
-                          child:Quote(function:_con.fetchQuotes())
-                      ),
+                          child: Quote(function: _con.fetchQuotes())),
                     ],
                   ),
                 ),
@@ -65,10 +63,9 @@ class ActivityAcreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.activity),
-
+        bottomNavigationBar:
+            CustomBottomNavBar(selectedMenu: MenuState.activity),
       ),
-
     );
   }
 }

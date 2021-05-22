@@ -5,6 +5,7 @@ import 'package:flutter_library_new/View/components/Screens/Quote/quote.dart';
 import 'package:flutter_library_new/View/components/Screens/ReadingBooks/reading_books.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 import 'package:flutter_library_new/controller/quote_controller.dart';
+import 'package:flutter_library_new/controller/readingbooks_controller.dart';
 import 'package:flutter_library_new/controller/user_controller.dart';
 import 'package:flutter_library_new/models/UserModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
@@ -16,6 +17,7 @@ class UserPage extends StatelessWidget {
   QuoteController _con = QuoteController();
 
   BookReviewsController _con2 = BookReviewsController();
+  ReadingBooksController _con1 = ReadingBooksController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +62,16 @@ class UserPage extends StatelessWidget {
                     Expanded(
                       child: TabBarView(
                         children: [
-                          // first tab bar view widget
-                          ReadingBooks(),
+                          /// GET THE BOOK READED BY USER
+                          ReadingBooks(function: _con1.fetchUserReadingBooks("78")),
 
-                          // second tab bar viiew widget
+                          /// GET THE QUOTES READED BY USER
+
                           SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes("78") ,)),
-                          GetBookReviewW(function: _con2.fetchUserReviews("76")),
+
+                          /// GET THE REVIEWS READED BY USER
+
+                          GetBookReviewW(function: _con2.fetchUserReviews("78")),
                         ],
                       ),
                     ),
