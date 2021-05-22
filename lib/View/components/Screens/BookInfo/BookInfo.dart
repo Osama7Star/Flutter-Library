@@ -225,32 +225,34 @@ class GetBookReviewW extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: FutureBuilder(
-          future: function,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<BookReviewsModel> list = snapshot.data;
-              if (list.length > 0) {
-                return ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (context, index) {
-                      return BookReviews1(
-                        bookReviews: list[index],
-                      );
-                    });
-              } else {
-                Text('Nothing');
+        child: SingleChildScrollView(
+          child: FutureBuilder(
+            future: function,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<BookReviewsModel> list = snapshot.data;
+                if (list.length > 0) {
+                  return ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, index) {
+                        return BookReviews1(
+                          bookReviews: list[index],
+                        );
+                      });
+                } else {
+                  Text('Nothing');
+                }
+              } else if (snapshot.hasError) {
+                return Text("Error");
               }
-            } else if (snapshot.hasError) {
-              return Text("Error");
-            }
 
-            // By default, show a loading spinner.
-            return Center(child: CircularProgressIndicator());
-          },
+              // By default, show a loading spinner.
+              return Center(child: CircularProgressIndicator());
+            },
+          ),
         ),
       ),
     );
