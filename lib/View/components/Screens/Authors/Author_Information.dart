@@ -40,17 +40,39 @@ class AuthorInformation extends StatelessWidget {
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<BookModel> list = snapshot.data;
-                        return Container(
-                          child: ListView.builder(
-                              physics: NeverScrollableScrollPhysics(),
+                        return Column(
+                          children: [
+                            SizedBox(height: 10),
 
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (context, index) {
-                                return onBookWidget(
-                                    bookModel: list[index], numberOfbook: 1);
-                              }),
+                           Card(
+                              child: Padding(
+                           padding: const EdgeInsets.only(top:8,bottom: 8),
+                           child:   Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SubText(text:'${list.length}'),
+                                  SubText(text:" : عدد الكتب  "),
+
+                                ],
+                              ),
+                            ),
+                           ),
+
+                            SizedBox(height: 10),
+
+                            Container(
+                              child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context, index) {
+                                    return onBookWidget(
+                                        bookModel: list[index], numberOfbook: 1);
+                                  }),
+                            ),
+                          ],
                         );
                       } else if (snapshot.hasError) {
                         return Text("Error");

@@ -34,13 +34,13 @@ class CategoryNameLabel extends StatelessWidget {
               );
             },
             child: Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: const EdgeInsets.only(left: 15, right: 15),
               child: Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('عرض الكل'),
-                    SubText(text: list[0].categoryName),
+                    SubText(text: list[0].categoryName,textSize: 18,),
                   ],
                 ),
               ),

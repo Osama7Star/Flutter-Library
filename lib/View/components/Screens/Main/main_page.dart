@@ -79,9 +79,9 @@ class _MainPageState extends State<MainPage> {
             GetCategoryBooks(con1: _con1, categoryId: "21",con2: _con2),
 
 
-            /// AUTHOR
-            SubText(text: 'الكٌتّاب '),
-            getAuthorsW(con3: _con3),
+            // /// AUTHOR
+            // SubText(text: 'الكٌتّاب '),
+            // getAuthorsW(con3: _con3),
           ],
         ),
       )),

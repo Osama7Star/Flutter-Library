@@ -22,7 +22,6 @@ class AddQuote extends StatelessWidget {
           children: [
             Form(
               key: _formKey,
-/// TODO: REMOVE SEARCH BUTTON FRO KEYPAD
               child: NameInputField(
                 controller: quoteController,
                 hint: " إدخل الإقتياس",
@@ -32,7 +31,7 @@ class AddQuote extends StatelessWidget {
                 "الإقتباس يجب أن يكون أكثر من حرفين ",
                 icon: Icons.format_quote,
                 label: "",
-                isSearch: true,
+                isSearch: false,
               ),
             ),
             SizedBox(height: 10),

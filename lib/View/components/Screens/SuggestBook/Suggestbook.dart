@@ -3,6 +3,7 @@ import 'package:flutter_library_new/View/components/Screens/authentication/signu
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 
 import 'package:flutter_library_new/utilites/enums.dart';
+import 'package:flutter_library_new/utilites/functions.dart';
 
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
@@ -16,6 +17,7 @@ class SuggestBook extends StatelessWidget {
     TextEditingController noteController = new TextEditingController();
     BookInfoController _con1 = BookInfoController();
 
+    getaa();
     return Scaffold(
       appBar: AppBar11(context),
       body: SafeArea(
@@ -95,4 +97,11 @@ class SuggestBook extends StatelessWidget {
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
+}
+
+Future<String> getaa () async
+{
+  String intValue= await getName();
+    print ("The value is "+intValue);
+
 }
