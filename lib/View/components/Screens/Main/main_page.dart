@@ -20,6 +20,7 @@ import 'package:flutter_library_new/utilites/enums.dart';
 import '../BookInfo/BookPage.dart';
 
 import 'components/CategoryNameLabel.dart';
+import 'components/components.dart';
 import 'components/getAuthorsW.dart';
 import 'components/getBooksW.dart';
 import 'components/getCategoriesW.dart';
@@ -56,31 +57,29 @@ class _MainPageState extends State<MainPage> {
             /// START CATEGORY IS HERE
             getCategoriesW(con2: _con2),
 
-            /// END CATEGORY IS HERE
-
             SizedBox(height: 40),
 
             /// MOST RATED
 
-            SubText(text: 'كتب  '),
-            getBooksW(con1: _con1),
+           // SubText(text: 'كتب  '),
+           // getBooksW(con1: _con1),
 
             ////////////////////////
             /// TODO : MAKE A MARGIN BETWEEN THE LABEL AND THE BOOKS LIST
-            CategoryNameLabel(),
-            SizedBox(height: 5),
-            GetCategoryBooks(con1: _con1, categoryId: "19"),
 
-            CategoryNameLabel(),
             SizedBox(height: 5),
-            GetCategoryBooks(con1: _con1, categoryId: "20"),
+            GetCategoryBooks(con1: _con1, categoryId: "19",con2: _con2),
 
-            CategoryNameLabel(),
+           // CategoryNameLabel(),
             SizedBox(height: 5),
-            GetCategoryBooks(con1: _con1, categoryId: "21"),
+            GetCategoryBooks(con1: _con1, categoryId: "20",con2: _con2),
+
+            //CategoryNameLabel(),
+            SizedBox(height: 5),
+            GetCategoryBooks(con1: _con1, categoryId: "21",con2: _con2),
+
 
             /// AUTHOR
-
             SubText(text: 'الكٌتّاب '),
             getAuthorsW(con3: _con3),
           ],
@@ -92,45 +91,4 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-class floatingActionButtonW extends StatelessWidget {
-  const floatingActionButtonW({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddQuote()),
-        );
-      },
-      child: Icon(Icons.format_quote),
-      backgroundColor: kPrimaryColor,
-    );
-  }
-}
-
-
-
-class categorylabel extends StatelessWidget {
-  const categorylabel({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        child: SubText(
-          text: "التصنيفات",
-        ),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Category()),
-          );
-        });
-  }
-}
 

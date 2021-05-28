@@ -63,4 +63,30 @@ Future<List<BookModel>> fetchCategoryBooks(String categoryId) async {
 
 
 
+Future<List<CategoryModel>> fetchCategoryInfo(String categoryId) async {
+  try{
+    final response = await fetchCategoryInfoR(categoryId);
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+
+      var body =jsonDecode(response.body);
+      List<CategoryModel> categories =[];
+      for ( var item in body)
+      {
+        categories.add(CategoryModel.fromJson(item));
+      }
+      return categories;
+    } else {
+
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
+
 }
