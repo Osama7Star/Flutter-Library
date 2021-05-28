@@ -33,7 +33,7 @@ class UserPage extends StatelessWidget {
 
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 100),
+              padding: const EdgeInsets.only(bottom: 200),
               child: SizedBox(
                 /// TODO : Change the size of the page
                 height: 2000,
@@ -47,7 +47,6 @@ class UserPage extends StatelessWidget {
                         bottom: TabBar(
                           tabs: [
 
-                            /// TODO : ADD WORd TO THE ICONS
                             /// TODO : MAKE MARGIN BETWEN BOTTOMNAVIGATION BAR
                             Tab(
                               child:  Column(
@@ -63,7 +62,7 @@ class UserPage extends StatelessWidget {
                                 child:Column(
                                   children: [
                                     Icon(
-                                      Icons.question_answer_rounded,
+                                      Icons.format_quote,
                                     ),
                                     Text('إقتباسات ',style: TextStyle(fontSize: 10),)
                                   ],
@@ -86,8 +85,7 @@ class UserPage extends StatelessWidget {
 
                     // create widgets for each tab bar here
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 200.0),
+
                         child: TabBarView(
                           children: [
                             /// GET THE BOOK READED BY USER
@@ -100,10 +98,10 @@ class UserPage extends StatelessWidget {
 
                             /// GET THE REVIEWS READED BY USER
 
-                             GetBookReviewW(function: _con2.fetchUserReviews(userId)),
+                            SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId))),
                           ],
                         ),
-                      ),
+
                     ),
                   ],
                 ),
@@ -127,75 +125,79 @@ class UserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: FutureBuilder(
-          future: _con3.fetchUser(userId),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<UserModel> list = snapshot.data;
-              return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+    return SizedBox(
+      width: double.infinity,
+      height: 400,
+      child: Card(
+          child: FutureBuilder(
+            future: _con3.fetchUser(userId),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<UserModel> list = snapshot.data;
+                return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
 
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            SizedBox(
-                              width: 200,
-                              height: 200,
-                              child: CircleAvatar(
-                                radius: 0,
-                                backgroundImage: NetworkImage(
-                                    list[0].imageUrl),
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: 20,
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            SubText(text: list[0].fullName, textSize: 24),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            SubText(
-                              text: list[0].universityName,
-                              textSize: 16,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            SubText(text: list[0].collageName, textSize: 16, color: Colors.black),
-                          ],
+                              SizedBox(
+                                width: 200,
+                                height: 200,
+                                child: CircleAvatar(
+                                  radius: 0,
+                                  backgroundImage: NetworkImage(
+                                      list[0].imageUrl),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              SubText(text: list[0].fullName, textSize: 24),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              SubText(
+                                text: list[0].universityName,
+                                textSize: 16,
+                                color: Colors.black,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              SubText(text: list[0].collageName, textSize: 16, color: Colors.black),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  });
-            } else if (snapshot.hasError) {
-              return Text("Error");
-            }
+                      );
+                    });
+              } else if (snapshot.hasError) {
+                return Text("Error");
+              }
 
-            ///TODO: MAKE THE PROGRESSBAR IN THE CENTER
+              ///TODO: MAKE THE PROGRESSBAR IN THE CENTER
 
-            // By default, show a loading spinner.
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircularProgressIndicator()
-              ],
-            );
-          },
-        ),);
+              // By default, show a loading spinner.
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator()
+                ],
+              );
+            },
+          ),),
+    );
   }
 }
 
