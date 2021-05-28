@@ -13,12 +13,19 @@ import 'components/bookIsAvilableW.dart';
 import 'components/bookIsNotAvilable.dart';
 
 class borrowBook extends StatefulWidget {
+  const borrowBook({Key key, this.categoryId}) : super(key: key);
+
   @override
   _borrowBookState createState() => _borrowBookState();
+
+  final String categoryId;
+
+
 }
 
 class _borrowBookState extends State<borrowBook> {
   BookInfoController _con1 = new BookInfoController();
+
 
 
 
@@ -29,7 +36,7 @@ class _borrowBookState extends State<borrowBook> {
     return Scaffold(
       appBar: AppBar11(context),
       body: FutureBuilder(
-        future: _con1.fetchBookByISBN("S8"),
+        future: _con1.fetchBookByISBN(widget.categoryId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<BookModel> list = snapshot.data;
@@ -41,7 +48,7 @@ class _borrowBookState extends State<borrowBook> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => BookInfo(bookId: list[0].bookId),
+                        builder: (context) => BookInfo(bookId: list[0].bookId,categoryId: list[0].categoryId),
                       ),
                     );
                   },

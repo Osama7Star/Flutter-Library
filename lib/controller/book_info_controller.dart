@@ -32,6 +32,7 @@ Future<List<BookModel>> fetchBook() async {
       // then parse the JSON.
       var body =jsonDecode(response.body);
       List<BookModel> books =[];
+
       for ( var item in body)
       {
         books.add(BookModel.fromJson(item));

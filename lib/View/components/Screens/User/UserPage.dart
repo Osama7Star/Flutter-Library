@@ -86,20 +86,23 @@ class UserPage extends StatelessWidget {
                     // create widgets for each tab bar here
                     Expanded(
 
-                        child: TabBarView(
-                          children: [
-                            /// GET THE BOOK READED BY USER
-                            ///TODO :USER USERID
-                            ReadingBooks(function: _con1.fetchUserReadingBooks(userId)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 200.0),
+                          child: TabBarView(
+                            children: [
+                              /// GET THE BOOK READED BY USER
+                              ///TODO :USER USERID
+                              ReadingBooks(function: _con1.fetchUserReadingBooks(userId)),
 
-                            /// GET THE QUOTES READED BY USER
+                              /// GET THE QUOTES READED BY USER
 
-                            SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes(userId) ,)),
+                              SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes(userId) ,)),
 
-                            /// GET THE REVIEWS READED BY USER
+                              /// GET THE REVIEWS READED BY USER
 
-                            SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId))),
-                          ],
+                              SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId))),
+                            ],
+                          ),
                         ),
 
                     ),

@@ -103,7 +103,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     onPressed: (){ Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => borrowBook()),
+                          builder: (context) => QRScanPage()),
                     ); },
                   ),
 

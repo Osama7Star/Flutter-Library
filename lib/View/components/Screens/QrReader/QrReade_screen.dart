@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_library_new/View/components/Screens/BorrowBook/borrow_book.dart';
 
 
 class QRScanPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _QRScanPageState extends State<QRScanPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Scan Result',
+            'إضغط من أجل تشغيل قارىء الباركود',
             style: TextStyle(
               fontSize: 16,
               color: Colors.black,
@@ -28,18 +29,10 @@ class _QRScanPageState extends State<QRScanPage> {
           ),
 
           SizedBox(height: 8),
-          Text(
-            '$qrCode',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
 
-            ),
-          ),
           SizedBox(height: 72),
           ButtonWidget(
-            text: 'Start QR scan',
+            text: 'إضغط',
             onClicked: () => scanQRCode1(),
           ),
         ],
@@ -61,6 +54,11 @@ class _QRScanPageState extends State<QRScanPage> {
       setState(() {
         this.qrCode = qrCode;
 
+        { Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => borrowBook(categoryId: qrCode,)),
+        ); }
 
       });
     } on PlatformException {
