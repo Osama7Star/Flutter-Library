@@ -33,7 +33,6 @@ class AuthorInformation extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Column(
 
-                /// TODO : SHOW THE NUMBER OF BOOKS FOR ALL AUTHORS
                 children: [
                   FutureBuilder(
                     future: _con2.fetchAuthorBooks(authorId),
@@ -44,19 +43,7 @@ class AuthorInformation extends StatelessWidget {
                           children: [
                             SizedBox(height: 10),
 
-                           Card(
-                              child: Padding(
-                           padding: const EdgeInsets.only(top:8,bottom: 8),
-                           child:   Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SubText(text:'${list.length}'),
-                                  SubText(text:" : عدد الكتب  "),
-
-                                ],
-                              ),
-                            ),
-                           ),
+                            booksNumbersW(booksNumbers: list.length),
 
                             SizedBox(height: 10),
 

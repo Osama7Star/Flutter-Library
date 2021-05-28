@@ -147,3 +147,33 @@ class DateWidget extends StatelessWidget {
     );
   }
 }
+
+
+class booksNumbersW extends StatelessWidget {
+  const booksNumbersW({
+    Key key, this.booksNumbers,
+
+  }) : super(key: key);
+
+  final int booksNumbers;
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.only(top:8,bottom: 8),
+        child:   Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SubText(text:'${booksNumbers}'),
+            SubText(text:" : عدد الكتب  "),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+

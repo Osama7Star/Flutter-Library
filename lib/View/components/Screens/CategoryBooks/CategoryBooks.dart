@@ -45,18 +45,24 @@ class CategoryBooks extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   List<BookModel> list = snapshot.data;
-                  return Container(
-                    /// TODO: HEIGHT IS TO LONG , FIX IT
-                    child: ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                  return Column(
+                    children: [
+                      booksNumbersW(booksNumbers: list.length),
 
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, index) {
-                          return onBookWidget(
-                              bookModel: list[index], numberOfbook: 1);
-                        }),
+                      Container(
+                        /// TODO: HEIGHT IS TO LONG , FIX IT
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              return onBookWidget(
+                                  bookModel: list[index], numberOfbook: 1);
+                            }),
+                      ),
+                    ],
                   );
                 } else if (snapshot.hasError) {
                   return Text("Error");

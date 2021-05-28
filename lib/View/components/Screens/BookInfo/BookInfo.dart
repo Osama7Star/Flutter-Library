@@ -38,8 +38,8 @@ class BookInfo extends StatefulWidget {
   }) : super(key: key);
 
   /// TODO : CHANGE THE BOOK IMAGE LINK FROM THE SERVER
-  /// THEY SHOW THE AUTHOR IMAGE
-  /// TODO : ADD NOTE
+  /// TODO SHOW THE AUTHOR IMAGE
+
 }
 
 class _BookInfoState extends State<BookInfo> {
