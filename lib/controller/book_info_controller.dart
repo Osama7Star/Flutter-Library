@@ -102,10 +102,10 @@ Future<List<BookModel>> fetchSimilarBookss(String bookId) async {
 
 }
 ///
-Future<List<BookModel>> fetchCategory1Books() async {
+Future<List<BookModel>> fetchCategory1Books(String categoryId) async {
   try{
     /// TODO:CHANGE THIS
-    final response = await fetchSimilarBooksR("10");
+    final response = await fetchSimilarBooksR(categoryId);
     print (response.statusCode);
     if (response.statusCode == 200) {
 

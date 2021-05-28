@@ -20,6 +20,10 @@ import 'package:flutter_library_new/utilites/enums.dart';
 import '../BookInfo/BookPage.dart';
 
 import 'components/CategoryNameLabel.dart';
+import 'components/getAuthorsW.dart';
+import 'components/getBooksW.dart';
+import 'components/getCategoriesW.dart';
+import 'components/getCategorysBooks.dart';
 import 'components/slider.dart';
 
 class MainPage extends StatefulWidget {
@@ -29,14 +33,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   _MainPageState();
+
   BookInfoController _con1 = BookInfoController();
   CategoryController _con2 = CategoryController();
-  AuthorController   _con3 = AuthorController();
-
+  AuthorController _con3 = AuthorController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar11(context),
       body: SafeArea(
@@ -47,217 +50,87 @@ class _MainPageState extends State<MainPage> {
             Slider222(),
             SizedBox(height: 10),
 
-
             /// CATEGORY LABEL
-            GestureDetector(child: SubText(text: "التصنيفات",),
-            onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Category()),
-              );
-            }),
-        // SizedBox(
-        //   height: 250,
-        //   child: GridView.builder(itemCount:categoryDemo.length ,
-        //       shrinkWrap: true,
-        //
-        //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //     crossAxisCount: 2,
-        //     mainAxisSpacing: 1,
-        //         childAspectRatio: 3
-        //
-        //   ), itemBuilder: (context,index)=>category_list(categoryModel: categoryDemo[index])),
-        // ),
+            categorylabel(),
 
-            /////////////////////////
             /// START CATEGORY IS HERE
-            FutureBuilder(
-              future: _con2.fetchCategories(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<CategoryModel> list = snapshot.data;
-                  return Container(
-                    child:  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GridView.count(
-                            childAspectRatio: 3/2,
+            getCategoriesW(con2: _con2),
 
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            primary: false,
-                            crossAxisSpacing: 1,
-                            mainAxisSpacing: 1,
-
-                            crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
-                            // Generate 100 widgets that display their index in the List.
-                            children: List.generate(list.length, (index) {
-                              return SizedBox(
-                                height: 90,
-                                child: category_list(
-                                    categoryModel: list[index]),
-                              );
-                            }),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("Error");
-                }
-
-                // By default, show a loading spinner.
-                return CircularProgressIndicator();
-              },
-            ),
             /// END CATEGORY IS HERE
 
             SizedBox(height: 40),
 
-
             /// MOST RATED
 
             SubText(text: 'كتب  '),
-            FutureBuilder(
-              future: _con1.fetchSimilarBooks("19"),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<BookModel> list = snapshot.data;
-                  return Container(
-                    child:  GridView.count(
-
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      primary: false,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 0,
-
-
-                        // Create a grid with 2 columns. If you change the scrollDirection to
-                      // horizontal, this produces 2 rows.
-                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
-                      // Generate 100 widgets that display their index in the List.
-                      children: List.generate(list.length, (index) {
-                        return onBookWidget(bookModel: list[index]);
-                      })
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("Error");
-                }
-
-                // By default, show a loading spinner.
-                return CircularProgressIndicator();
-              },
-            ),
+            getBooksW(con1: _con1),
 
             ////////////////////////
             /// TODO : MAKE A MARGIN BETWEEN THE LABEL AND THE BOOKS LIST
             CategoryNameLabel(),
             SizedBox(height: 5),
-            GetCategoryBooks(con1: _con1),
+            GetCategoryBooks(con1: _con1, categoryId: "19"),
 
             CategoryNameLabel(),
             SizedBox(height: 5),
-            GetCategoryBooks(con1: _con1),
+            GetCategoryBooks(con1: _con1, categoryId: "20"),
 
             CategoryNameLabel(),
             SizedBox(height: 5),
-            GetCategoryBooks(con1: _con1),
-
+            GetCategoryBooks(con1: _con1, categoryId: "21"),
 
             /// AUTHOR
 
-            SubText(text: 'الكتاب '),
-            FutureBuilder(
-              future: _con3.fetchAuthors(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List<AuthorModel> list = snapshot.data;
-                  return Container(
-                    child:  GridView.count(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      primary: false,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 1,
-                      // Create a grid with 2 columns. If you change the scrollDirection to
-                      // horizontal, this produces 2 rows.
-                      crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 4,
-                      // Generate 100 widgets that display their index in the List.
-                      children: List.generate(list.length, (index) {
-                        return AuthorInfoWidget(authorInfo: list[index],);
-                      }),
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("Error");
-                }
-
-                // By default, show a loading spinner.
-                return CircularProgressIndicator();
-              },
-            ),
-
-
+            SubText(text: 'الكٌتّاب '),
+            getAuthorsW(con3: _con3),
           ],
-
         ),
-
-      )
-    ),
+      )),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddQuote()),
-          );
-        },
-        child: Icon(Icons.format_quote),
-        backgroundColor: kPrimaryColor,
-      ),
+      floatingActionButton: floatingActionButtonW(),
     );
   }
 }
 
-class GetCategoryBooks extends StatelessWidget {
-  const GetCategoryBooks({
+class floatingActionButtonW extends StatelessWidget {
+  const floatingActionButtonW({
     Key key,
-    @required BookInfoController con1,
-  }) : _con1 = con1, super(key: key);
-
-  final BookInfoController _con1;
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _con1.fetchCategory1Books(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<BookModel> list = snapshot.data;
-          return Container(
-            height: 370,
-            margin: EdgeInsets.all(10),
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: snapshot.data.length,
-                itemBuilder: (context, index) {
-                  return onBookWidget(bookModel: list[index]);
-                }),
-          );
-        } else if (snapshot.hasError) {
-          return Text("Error");
-        }
-
-        // By default, show a loading spinner.
-        return CircularProgressIndicator();
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddQuote()),
+        );
       },
+      child: Icon(Icons.format_quote),
+      backgroundColor: kPrimaryColor,
     );
   }
 }
+
+
+
+class categorylabel extends StatelessWidget {
+  const categorylabel({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        child: SubText(
+          text: "التصنيفات",
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Category()),
+          );
+        });
+  }
+}
+
