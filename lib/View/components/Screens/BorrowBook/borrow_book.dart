@@ -19,24 +19,10 @@ class _borrowBookState extends State<borrowBook> {
   BookInfoController _con1 = new BookInfoController();
 
   bool bookStatus1 = false;
-  DateTime selectedDate = DateTime.now();
 
   DateTime _dateTime = DateTime.now();
 
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
 
-      ///TODO:CHANGE IT TO BE FIRSTDATE IS CURRENT YEAR AND LASTDATE IS THE NEXT YEAR
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2021),
-      lastDate: DateTime(2022),
-    );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,77 +36,46 @@ class _borrowBookState extends State<borrowBook> {
 
             return Column(
               children: [
-                Card(
-                  //TODO : CHECK IF THE BOOK IS EXIST
-                  child: Column(
-                    children: [
-                      BookImage(imageUrl: list[0].imageUrl, ISBN: "12L"),
-                      SizedBox(height: 10),
-                      SubText(text: list[0].bookName, textSize: 24),
-                      SizedBox(height: 15),
-                    ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BookInfo(bookId: list[0].bookId),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    //TODO : CHECK IF THE BOOK IS EXIST
+                    child: Column(
+                      children: [
+                        BookImage(imageUrl: list[0].imageUrl, ISBN: "12L"),
+                        SizedBox(height: 10),
+                        SubText(text: list[0].bookName, textSize: 24),
+                        SizedBox(height: 15),
+                      ],
+                    ),
                   ),
                 ),
-
                 SizedBox(
                   height: 20,
+                ),
+                SubText(text:'إستعارة'),
+                SizedBox(
+                  height: 10,
                 ),
 
                 /// CHECK BOOK STATUS
                 list[0].bookStatus == "0"
 
-                    /// IF BOOK IS AVAILABLE FOR BORROWING
+                /// IF BOOK IS AVAILABLE FOR BORROWING
 
-                    ? Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(Functions.getDate()),
-                              SubText(text: 'تاريخ الإستعارة '),
-                            ],
-                          ),
-                          SizedBox(height: 20),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RaisedButton(
-                                onPressed: () => _selectDate(context),
-                                child: Text(
-                                  'إختر التاريخ',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                color: kPrimaryColor,
-                              ),
-                              SubText(text: 'تاريخ الإرجاع '),
-                            ],
-                          ),
-                          SizedBox(height: 20),
-                          Text(selectedDate.toString()),
-                          SizedBox(height: 20),
-
-                          Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Button(text:"إستعارة",pressed: (){
-                              _con1.borrowBook("100", "78");
-                              _con1.changeStatus("100", "78");
-                              print("Book Borrowing");
-                            }),
-
-                          ),
-
-
-
-                        ],
-                      )
+                    ? bookIsAvilableW()
                     :
 
-                    /// IF BOOK IS NOT AVAILABLE FOR BORROWING
+                /// IF BOOK IS NOT AVAILABLE FOR BORROWING
 
-                    NotAvilableWidget(con1: _con1, list: list),
+                NotAvilableWidget(con1: _con1, list: list),
               ],
             );
           } else if (snapshot.hasError) {
@@ -141,7 +96,8 @@ class NotAvilableWidget extends StatelessWidget {
     Key key,
     @required BookInfoController con1,
     @required this.list,
-  })  : _con1 = con1,
+  })
+      : _con1 = con1,
         super(key: key);
 
   final BookInfoController _con1;
@@ -187,4 +143,85 @@ class NotAvilableWidget extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         });
   }
+
+
 }
+
+class bookIsAvilableW extends StatefulWidget {
+  @override
+  _bookIsAvilableWState createState() => _bookIsAvilableWState();
+}
+
+class _bookIsAvilableWState extends State<bookIsAvilableW> {
+  DateTime selectedDate = DateTime.now();
+  BookInfoController _con1 = new BookInfoController();
+
+  _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+
+      ///TODO:CHANGE IT TO BE FIRSTDATE IS CURRENT YEAR AND LASTDATE IS THE NEXT YEAR
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2022),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(Functions.getDate()),
+                SubText(text: 'تاريخ الإستعارة '),
+              ],
+            ),
+            SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RaisedButton(
+                  onPressed: () => _selectDate(context),
+                  child: Text(
+                    'إختر التاريخ',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  color: kPrimaryColor,
+                ),
+                SubText(text: 'تاريخ الإرجاع '),
+              ],
+            ),
+            SizedBox(height: 20),
+            Text(selectedDate.toString()),
+            SizedBox(height: 20),
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Button(text: "إستعارة", pressed: () {
+                _con1.borrowBook("100", "78");
+                _con1.changeStatus("100", "78");
+                print("Book Borrowing");
+              }),
+
+            ),
+
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
