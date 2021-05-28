@@ -21,7 +21,6 @@ class Category extends StatelessWidget {
               children: [
 
 
-                ///TODO: SINGLECHILD SCROLL VIEW NOT WORKING
                 FutureBuilder(
                   future: _con.fetchCategories(),
                   builder: (context, snapshot) {

@@ -64,8 +64,6 @@ class _MainPageState extends State<MainPage> {
            // SubText(text: 'كتب  '),
            // getBooksW(con1: _con1),
 
-            ////////////////////////
-            /// TODO : MAKE A MARGIN BETWEEN THE LABEL AND THE BOOKS LIST
 
             SizedBox(height: 5),
             GetCategoryBooks(con1: _con1, categoryId: "19",con2: _con2),

@@ -10,6 +10,7 @@ import 'package:flutter_library_new/models/ReadingBooksModel.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 
 import '../../components.dart';
+import 'Components/components.dart';
 
 class ReadingBooks extends StatelessWidget {
   ReadingBooksController _con = ReadingBooksController();
@@ -19,15 +20,15 @@ class ReadingBooks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetQuotes(con: _con, function: function);
+    return ReadingBookW(con: _con, function: function);
   }
 }
 
-class GetQuotes extends StatelessWidget {
+class ReadingBookW extends StatelessWidget {
   final ReadingBooksController con;
   final Future<dynamic> function;
 
-  const GetQuotes({Key key, this.con, this.function}) : super(key: key);
+  const ReadingBookW({Key key, this.con, this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class GetQuotes extends StatelessWidget {
               shrinkWrap: true,
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
-                return BookReviews1(
+                return ReadingBookWidget(
                   readingBooksModel: list[index],
                 );
               });
@@ -57,8 +58,8 @@ class GetQuotes extends StatelessWidget {
   }
 }
 
-class BookReviews1 extends StatelessWidget {
-  const BookReviews1({
+class ReadingBookWidget extends StatelessWidget {
+  const ReadingBookWidget({
     @required this.readingBooksModel,
     Key key,
   }) : super(key: key);
@@ -75,6 +76,7 @@ class BookReviews1 extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => BookInfo(
                 bookId: readingBooksModel.bookId,
+                /// TODO : ADD CATEGORYID
                 categoryId: "20",
               ),
             ),
@@ -94,46 +96,8 @@ class BookReviews1 extends StatelessWidget {
                   Directionality(
                       textDirection: TextDirection.rtl,
                       child:
-                          // Text(
-                          //   "بدء   [ ${readingBooksModel.fullName} ]    بقراءة كتاب \n  [ ${readingBooksModel.bookName} ]",
-                          //   style: textStyle,
-                          // ),
-                          Wrap(
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                                text: 'بدء',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: ' [ ${readingBooksModel.fullName} ]',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  TextSpan(
-                                    text: '  \n بقراءة كتاب ',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.normal),
-                                  ),
-                                  TextSpan(
-                                    text: '[ ${readingBooksModel.bookName} ] ',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ]),
-                          ),
-                        ],
-                      )),
+
+                  readingBookTextW(readingBooksModel: readingBooksModel)),
                   SizedBox(width: 10),
                   Directionality(
                     textDirection: TextDirection.rtl,
@@ -158,10 +122,12 @@ class BookReviews1 extends StatelessWidget {
   }
 }
 
+
+
 class BookInfoUserInfo extends StatelessWidget {
   const BookInfoUserInfo({
     Key key,
-    @required this.readingBooksModel,
+    @required this.readingBooksModel
   }) : super(key: key);
   final ReadingBooksModel readingBooksModel;
 
@@ -171,7 +137,7 @@ class BookInfoUserInfo extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => UserPage()),
+          MaterialPageRoute(builder: (context) => UserPage(userId: readingBooksModel.userId)),
         );
       },
       child: Column(
@@ -180,6 +146,7 @@ class BookInfoUserInfo extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
+                /// TODO : CHANGE THE IMAGE FROM BOOK IMAGE TO USER
                 backgroundImage: NetworkImage(readingBooksModel.imageUrl),
               ),
             ],

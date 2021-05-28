@@ -39,7 +39,6 @@ class CategoryBooks extends StatelessWidget {
                   )),
             ),
 
-            ///TODO: SINGLECHILD SCROLL VIEW NOT WORKING
             FutureBuilder(
               future: _con1.fetchCategoryBooks(categoryId),
               builder: (context, snapshot) {
@@ -50,7 +49,6 @@ class CategoryBooks extends StatelessWidget {
                       booksNumbersW(booksNumbers: list.length),
 
                       Container(
-                        /// TODO: HEIGHT IS TO LONG , FIX IT
                         child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
 

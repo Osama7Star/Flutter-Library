@@ -27,7 +27,10 @@ class UserPage extends StatelessWidget {
     return DefaultTabController(
         length: 3,
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
+
           appBar: AppBar11(context),
+
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 100),
@@ -36,25 +39,45 @@ class UserPage extends StatelessWidget {
                 height: 2000,
                 child: Column(
                   children: <Widget>[
-                    UserInfo(),
+                    UserInfo(userId: userId),
                     // the tab bar with two items
                     SizedBox(
-                      height: 50,
+                      height: 70,
                       child: AppBar(
                         bottom: TabBar(
                           tabs: [
 
-                            /// TODO : ADD WOR TO THE ICONS
+                            /// TODO : ADD WORd TO THE ICONS
+                            /// TODO : MAKE MARGIN BETWEN BOTTOMNAVIGATION BAR
                             Tab(
-                              icon: Icon(Icons.book),
+                              child:  Column(
+                                  children: [
+                                    Icon(
+                                      Icons.local_activity,
+                                    ),
+                                    Text('كتب ')
+                                  ],
+                                )
                             ),
                             Tab(
-                              icon: Icon(
-                                Icons.local_activity,
-                              ),
+                                child:  Column(
+                                  children: [
+                                    Icon(
+                                      Icons.local_activity,
+                                    ),
+                                    Text('إقتباسات')
+                                  ],
+                                )
                             ),
                             Tab(
-                              icon: Icon(Icons.book),
+                                child:  Column(
+                                  children: [
+                                    Icon(
+                                      Icons.local_activity,
+                                    ),
+                                    Text('مراجعات')
+                                  ],
+                                )
                             ),
                           ],
                         ),
@@ -63,19 +86,23 @@ class UserPage extends StatelessWidget {
 
                     // create widgets for each tab bar here
                     Expanded(
-                      child: TabBarView(
-                        children: [
-                          /// GET THE BOOK READED BY USER
-                          ReadingBooks(function: _con1.fetchUserReadingBooks("78")),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 200.0),
+                        child: TabBarView(
+                          children: [
+                            /// GET THE BOOK READED BY USER
+                            ///TODO :USER USERID
+                            ReadingBooks(function: _con1.fetchUserReadingBooks(userId)),
 
-                          /// GET THE QUOTES READED BY USER
+                            /// GET THE QUOTES READED BY USER
 
-                          SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes("78") ,)),
+                            SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes(userId) ,)),
 
-                          /// GET THE REVIEWS READED BY USER
+                            /// GET THE REVIEWS READED BY USER
 
-                          GetBookReviewW(function: _con2.fetchUserReviews("78")),
-                        ],
+                             GetBookReviewW(function: _con2.fetchUserReviews(userId)),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -93,15 +120,16 @@ class UserPage extends StatelessWidget {
 
 class UserInfo extends StatelessWidget {
    UserInfo({
-    Key key,
+    Key key, this.userId,
   }) : super(key: key);
   UserController _con3 = UserController();
+  final String userId ;
 
   @override
   Widget build(BuildContext context) {
     return Card(
         child: FutureBuilder(
-          future: _con3.fetchUser("78"),
+          future: _con3.fetchUser(userId),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<UserModel> list = snapshot.data;

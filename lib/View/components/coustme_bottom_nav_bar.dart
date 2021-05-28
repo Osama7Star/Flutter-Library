@@ -81,7 +81,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     onPressed: (){ Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ActivityAcreen()),
+                          builder: (context) => ActivityScreen()),
                     ); },
                   ),
 

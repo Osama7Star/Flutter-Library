@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/controller/quote_controller.dart';
 import 'package:flutter_library_new/controller/readingbooks_controller.dart';
-import '../BookInfo/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/Quote/quote.dart';
 import 'package:flutter_library_new/View/components/Screens/ReadingBooks/reading_books.dart';
-import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
-
-import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
-
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 
-class ActivityAcreen extends StatelessWidget {
+class ActivityScreen extends StatelessWidget {
   QuoteController _con = QuoteController();
   ReadingBooksController _con1 = ReadingBooksController();
 
@@ -51,7 +46,7 @@ class ActivityAcreen extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       /// GET THE READING
-                      ReadingBooks(function: _con1.fetchReadingBooks()),
+                      SingleChildScrollView(child: ReadingBooks(function: _con1.fetchReadingBooks())),
 
                       // second tab bar viiew widget
                       SingleChildScrollView(

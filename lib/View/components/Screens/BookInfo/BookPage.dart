@@ -49,9 +49,7 @@ class onBookWidget extends StatelessWidget {
                         width: width11 / numberOfbook,
                         height: 250,
                         // TODO : CORRECT SOME IMAGES URL
-                        child: Image.network(
-                            bookModel.imageUrl
-                      ),
+                        child: FadeInImage(image: NetworkImage(bookModel.imageUrl), placeholder: AssetImage("assets/images/default-book.png")),
                       ),
                       SizedBox(height: 10),
                       Padding(

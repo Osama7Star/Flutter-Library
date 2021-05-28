@@ -120,7 +120,6 @@ class _BookInfoState extends State<BookInfo> {
     );
   }
 
-  /// TODO : HIDE PROGRESSBAR IF THERE ARE NOT REVIEWS
   Card AddReviewW(BookReviewsController _con) {
     return Card(
       child: Padding(
@@ -250,7 +249,7 @@ class GetBookReviewW extends StatelessWidget {
               }
 
               // By default, show a loading spinner.
-              return Center(child: CircularProgressIndicator());
+              return Text('');
             },
           ),
         ),
@@ -500,11 +499,10 @@ class BookImage extends StatelessWidget {
       width: double.infinity,
       child: Stack(
         children: [
-          ///TODO :ADD PLACEHOLDER UNTIL DOWNLOAD THE IMAGE
           Center(
-            child: Image.network(
-              imageUrl,
-            ),
+            child:
+              FadeInImage(image: NetworkImage(imageUrl), placeholder: AssetImage("assets/images/default-book.png"),
+          ),
           ),
           if (ISBN.isNotEmpty) LabelW(text: ISBN)
         ],
