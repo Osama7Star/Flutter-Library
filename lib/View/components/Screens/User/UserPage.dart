@@ -42,7 +42,7 @@ class UserPage extends StatelessWidget {
                     UserInfo(userId: userId),
                     // the tab bar with two items
                     SizedBox(
-                      height: 70,
+                      height: 60,
                       child: AppBar(
                         bottom: TabBar(
                           tabs: [
@@ -51,31 +51,31 @@ class UserPage extends StatelessWidget {
                             /// TODO : MAKE MARGIN BETWEN BOTTOMNAVIGATION BAR
                             Tab(
                               child:  Column(
+                                children: [
+                                  Icon(
+                                    Icons.book,
+                                  ),
+                                  Text('قراءات ',style: TextStyle(fontSize: 10),)
+                                ],
+                              )
+                            ),
+                            Tab(
+                                child:Column(
                                   children: [
                                     Icon(
-                                      Icons.local_activity,
+                                      Icons.question_answer_rounded,
                                     ),
-                                    Text('كتب ')
+                                    Text('إقتباسات ',style: TextStyle(fontSize: 10),)
                                   ],
                                 )
                             ),
                             Tab(
-                                child:  Column(
+                                child:Column(
                                   children: [
                                     Icon(
-                                      Icons.local_activity,
+                                      Icons.rate_review,
                                     ),
-                                    Text('إقتباسات')
-                                  ],
-                                )
-                            ),
-                            Tab(
-                                child:  Column(
-                                  children: [
-                                    Icon(
-                                      Icons.local_activity,
-                                    ),
-                                    Text('مراجعات')
+                                    Text('مراجعات ',style: TextStyle(fontSize: 10),)
                                   ],
                                 )
                             ),

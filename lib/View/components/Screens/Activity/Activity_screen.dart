@@ -24,17 +24,30 @@ class ActivityScreen extends StatelessWidget {
               children: <Widget>[
                 // the tab bar with two items
                 SizedBox(
-                  height: 50,
+                  height: 60,
                   child: AppBar(
                     bottom: TabBar(
                       tabs: [
                         Tab(
-                          icon: Icon(Icons.book),
+                            child:  Column(
+                              children: [
+                                Icon(
+                                  Icons.book,
+                                ),
+                                Text('قراءات ',style: TextStyle(fontSize: 10),)
+                              ],
+                            )
                         ),
                         Tab(
-                          icon: Icon(
-                            Icons.local_activity,
-                          ),
+
+                            child:  Column(
+                              children: [
+                                Icon(
+                                  Icons.question_answer_rounded,
+                                ),
+                                Text('إقتباسات ',style: TextStyle(fontSize: 10),)
+                              ],
+                            )
                         ),
                       ],
                     ),
