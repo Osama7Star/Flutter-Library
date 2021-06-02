@@ -22,21 +22,21 @@ class onBookWidget extends StatelessWidget {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     double width11 = queryData.size.width;
-    return SizedBox(
-      height:400,
-      width: width11 / numberOfbook,
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
 
-                  builder: (context) => BookInfo(bookId:bookModel.bookId,categoryId:bookModel.categoryId ,),
-                ),
-              );
-            },
+                builder: (context) => BookInfo(bookId:bookModel.bookId,categoryId:bookModel.categoryId ,),
+              ),
+            );
+          },
+          child: SizedBox(
+            height:500,
+            width: width11 / numberOfbook,
             child: Card(
                 elevation: 20,
                 child: SizedBox(
@@ -55,8 +55,8 @@ class onBookWidget extends StatelessWidget {
                   ),
                 )),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

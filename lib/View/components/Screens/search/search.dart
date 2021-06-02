@@ -8,6 +8,8 @@ import '../../coustme_bottom_nav_bar.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
+import 'components/book_not_found.dart';
+
 class Search extends StatefulWidget {
   @override
   _SearchState createState() => _SearchState();
@@ -31,16 +33,12 @@ class _SearchState extends State<Search> {
               padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
-                  SizedBox(
-                      height: 10
-                  ),
+                  SizedBox(height: 10),
                   SubText(
                     text: "إبحث عن  كتاب",
                     textSize: 20,
                   ),
-                  SizedBox(
-                    height: 10
-                  ),
+                  SizedBox(height: 10),
                   Form(
                     key: _formKey,
                     child: Column(
@@ -77,29 +75,33 @@ class _SearchState extends State<Search> {
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 List<BookModel> list = snapshot.data;
-                                return Container(
-                                  child: ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: true,
-                                      itemCount: snapshot.data.length,
-                                      itemBuilder: (context, index) {
-                                        return snapshot.data.length > 0
-                                            ? onBookWidget(
-                                                bookModel: list[index],
-                                                numberOfbook: 1)
+                                return  snapshot.data.length > 0
+                                    ? Container(
+                                        child: ListView.builder(
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            scrollDirection: Axis.vertical,
+                                            shrinkWrap: true,
+                                            itemCount: snapshot.data.length,
+                                            itemBuilder: (context, index) {
+                                              return list.length > 0
+                                                  ? onBookWidget(
+                                                      bookModel: list[index],
+                                                      numberOfbook: 1)
 
-                                            /// TODO : SUGGEST BOOK
-                                        /// TODO : BUTTON SEARCH IN KEYPAD
-                                            : Text('لا يوجد كتاب');
-                                      }),
-                                );
+                                                  /// TODO : SUGGEST BOOK
+                                                  /// TODO : BUTTON SEARCH IN KEYPAD
+                                                  : Column();
+                                            }),
+                                      )
+                                    :BookNotFound(text: ' الكتاب غير موجود هل تريد إقتراحه');
                               } else if (snapshot.hasError) {
                                 return Text("Error");
                               }
 
+
                               // By default, show a loading spinner.
-                              return CircularProgressIndicator();
+                              return BookNotFound(text: ' الكتاب غير موجود هل تريد إقتراحه');
                             },
                           ),
                       ],

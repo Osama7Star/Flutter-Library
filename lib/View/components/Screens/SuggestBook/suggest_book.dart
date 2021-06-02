@@ -14,6 +14,7 @@ class SuggestBook extends StatelessWidget {
   String name = '';
   String userId = '';
   String status = '';
+  static const routeName = '/SuggestBook';
 
   @override
   void initState() {

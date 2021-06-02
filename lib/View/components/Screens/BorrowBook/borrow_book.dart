@@ -76,6 +76,8 @@ class _borrowBookState extends State<borrowBook> {
                             NotAvilableWidget(con1: _con1, list1: list),
                       ],
                     )
+
+              /// if the book is not available
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
