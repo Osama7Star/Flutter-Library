@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
+import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 import 'package:flutter_library_new/controller/quote_controller.dart';

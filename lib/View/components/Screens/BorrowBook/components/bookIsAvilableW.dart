@@ -82,10 +82,11 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
               padding: const EdgeInsets.all(10.0),
               child: Button(
                   text: "إستعارة",
-                  pressed: () {
-                    _con1.borrowBook(widget.bookId, "78");
-                    _con1.changeStatus(widget.bookId, widget.userId, "1");
-                    print("Book Borrowing");
+                  pressed: () async {
+                    _con1.borrowBook(widget.bookId, "5555");
+                String test =   await  _con1.changeStatus(widget.bookId, widget.userId, "1");
+                print("The resut is$test");
+                /// TODO : SHOW PROGRESSBAR AND CHECK IF IT WORKED PROPERLY
                   }),
             ),
           ],
@@ -95,4 +96,9 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
   }
 }
 
-BorrowthisBook() {}
+BorrowthisBook() async {
+  BookInfoController _con1 = new BookInfoController();
+String done = await  _con1.borrowBook("100", "78");
+
+  _con1.changeStatus("100", "78", "1");
+}

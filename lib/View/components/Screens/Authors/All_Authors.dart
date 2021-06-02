@@ -4,7 +4,7 @@ import 'package:flutter_library_new/models/AuthorModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 import '../../coustme_bottom_nav_bar.dart';
 import 'Author_Information.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
+import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import '../../components.dart';
 import 'Components/components.dart';
 

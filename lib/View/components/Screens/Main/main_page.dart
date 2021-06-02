@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/AddQuote/AddQuote.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/All_Authors.dart';
 import '../Authors/Components/components.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
+import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/controller/authors_controller.dart';

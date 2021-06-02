@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/BookInfo.dart';
+import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
+import 'package:flutter_library_new/View/components/Screens/BookInfo/Components/components.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/BorrowingModel.dart';
