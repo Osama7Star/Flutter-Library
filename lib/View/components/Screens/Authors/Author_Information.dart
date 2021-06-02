@@ -3,7 +3,7 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_S
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Components/components.dart';
 import 'package:flutter_library_new/controller/authors_controller.dart';
 import 'package:flutter_library_new/models/AuthorModel.dart';
-import '../BookInfo/BookPage.dart';
+import '../BookInfo/Components/BookPage.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';

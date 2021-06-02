@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 
-import '../BookPage.dart';
+import 'BookPage.dart';
 
 class GetSimilarBooksW extends StatelessWidget {
   const GetSimilarBooksW({

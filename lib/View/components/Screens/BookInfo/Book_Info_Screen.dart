@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
 import 'package:flutter_library_new/View/components/Screens/CategoryBooks/CategoryBooks.dart';
 import 'package:flutter_library_new/models/BorrowingModel.dart';
-import 'BookPage.dart';
+import 'Components/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';

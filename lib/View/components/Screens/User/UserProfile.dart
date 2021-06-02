@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../BookInfo/BookPage.dart';
+import '../BookInfo/Components/BookPage.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';

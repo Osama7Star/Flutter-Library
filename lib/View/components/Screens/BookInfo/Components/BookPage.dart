@@ -5,7 +5,7 @@ import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/route_argument.dart';
 import 'package:flutter_library_new/utilites/ScreenArguments.dart';
 
-import '../../components.dart';
+import '../../../components.dart';
 import 'package:flutter/cupertino.dart';
 
 /// THIS WIDGET SHOWS Brief information ABOUT BOOK (IMAGE AND NAME )
@@ -22,11 +22,9 @@ class onBookWidget extends StatelessWidget {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     double width11 = queryData.size.width;
-    return GestureDetector(
-      onTap: () {
-
-
-      },
+    return SizedBox(
+      height:400,
+      width: width11 / numberOfbook,
       child: Column(
         children: [
           GestureDetector(
@@ -39,28 +37,23 @@ class onBookWidget extends StatelessWidget {
                 ),
               );
             },
-            child: SizedBox(
-              width: width11 / numberOfbook,
-              child: Card(
-                  elevation: 20,
+            child: Card(
+                elevation: 20,
+                child: SizedBox(
+                  height: 300,
                   child: Column(
                     children: [
-                      SizedBox(
-                        width: width11 / numberOfbook,
-                        height: 250,
-                        // TODO : CORRECT SOME IMAGES URL
-                        child: FadeInImage(image: NetworkImage(bookModel.imageUrl), placeholder: AssetImage("assets/images/default-book.png")),
-                      ),
+                      FadeInImage(image: NetworkImage(bookModel.imageUrl), placeholder: AssetImage("assets/images/default-book.png")),
                       SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.all(7.0),
                         child: SizedBox(
-                          height: 55,
+                          height: 50,
                             child: SubText(text: bookModel.bookName)),
                       ),
                     ],
-                  )),
-            ),
+                  ),
+                )),
           ),
         ],
       ),

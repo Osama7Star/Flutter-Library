@@ -17,7 +17,7 @@ import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/models/CategoryModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
-import '../BookInfo/BookPage.dart';
+import '../BookInfo/Components/BookPage.dart';
 
 import 'components/CategoryNameLabel.dart';
 import 'components/components.dart';
@@ -61,8 +61,8 @@ class _MainPageState extends State<MainPage> {
 
             /// MOST RATED
 
-           // SubText(text: 'كتب  '),
-           // getBooksW(con1: _con1),
+           SubText(text: 'كتب  '),
+           getBooksW(con1: _con1),
 
 
             SizedBox(height: 5),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/BookPage.dart';
+import '../../BookInfo/Components/BookPage.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 class getBooksW extends StatelessWidget {
@@ -17,24 +17,27 @@ class getBooksW extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;
-          return Container(
-            child: GridView.count(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                primary: false,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0,
+          return SizedBox(
+            
+            child: Container(
+              child: GridView.count(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  primary: false,
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0,
 
-                // Create a grid with 2 columns. If you change the scrollDirection to
-                // horizontal, this produces 2 rows.
-                crossAxisCount: MediaQuery.of(context).orientation ==
-                    Orientation.portrait
-                    ? 2
-                    : 4,
-                // Generate 100 widgets that display their index in the List.
-                children: List.generate(list.length, (index) {
-                  return onBookWidget(bookModel: list[index]);
-                })),
+                  // Create a grid with 2 columns. If you change the scrollDirection to
+                  // horizontal, this produces 2 rows.
+                  crossAxisCount: MediaQuery.of(context).orientation ==
+                      Orientation.portrait
+                      ? 2
+                      : 4,
+                  // Generate 100 widgets that display their index in the List.
+                  children: List.generate(list.length, (index) {
+                    return onBookWidget(bookModel: list[index]);
+                  })),
+            ),
           );
         } else if (snapshot.hasError) {
           return Text("Error");

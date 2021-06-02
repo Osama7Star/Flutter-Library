@@ -43,7 +43,7 @@ class ActivityScreen extends StatelessWidget {
                             child:  Column(
                               children: [
                                 Icon(
-                                  Icons.question_answer_rounded,
+                                  Icons.format_quote,
                                 ),
                                 Text('إقتباسات ',style: TextStyle(fontSize: 10),)
                               ],

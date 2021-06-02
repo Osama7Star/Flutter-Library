@@ -31,7 +31,7 @@ class GetBookInfoW extends StatelessWidget {
         }
 
         // By default, show a loading spinner.
-        return SizedBox(height: 200, child: Column(
+        return SizedBox(height: 700, child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
