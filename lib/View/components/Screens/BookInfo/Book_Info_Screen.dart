@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
 import 'package:flutter_library_new/View/components/Screens/CategoryBooks/CategoryBooks.dart';
 import 'package:flutter_library_new/models/BorrowingModel.dart';
+import 'package:flutter_library_new/utilites/functions.dart';
 import 'Components/BookPage.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
@@ -36,12 +37,21 @@ class BookInfo extends StatefulWidget {
 
   final String bookId;
   final String categoryId;
-
+  String name = '';
+  String userId = '';
+  String status = '';
   BookInfo({
     Key key,
     @required this.bookId,
     this.categoryId,
   }) : super(key: key);
+  @override
+  void initState() {
+
+    name  = UserSimplePreferences.getName() ?? '';
+    userId = UserSimplePreferences.getUserId() ?? '';
+    status = UserSimplePreferences.getStatus() ?? '';
+  }
 
   /// TODO : CHANGE THE BOOK IMAGE LINK FROM THE SERVER
   /// TODO SHOW THE AUTHOR IMAGE
@@ -96,7 +106,7 @@ class _BookInfoState extends State<BookInfo> {
 
                   /// ADD REVIEWS
 
-                  AddReviewW(_con2),
+                  AddReviewW(_con2,widget.status),
 
                   /// END ADD REVIEWS
 

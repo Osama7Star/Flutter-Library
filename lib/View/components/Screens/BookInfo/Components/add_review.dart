@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/View/components/Screens/AddQuote/components/not_logged.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/controller/bookreviews_controller.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
@@ -6,7 +7,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import '../../../components.dart';
 
-Card AddReviewW(BookReviewsController _con) {
+Card AddReviewW(BookReviewsController _con,String status) {
   final _formKey = GlobalKey<FormState>();
 
   double userAdedRate = 0;
@@ -15,6 +16,7 @@ Card AddReviewW(BookReviewsController _con) {
       padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
+          status =="1" ?NotLogged(text: 'الرجاء تسجيل الدخول حتى تتمكن من إضافة إقتباس') :
           Form(
               key: _formKey,
               child: Column(
