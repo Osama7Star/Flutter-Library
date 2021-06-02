@@ -271,9 +271,9 @@ Future<String> borrowBook(String bookId,String userId) async {
 }
 
 
-Future<String> changeStatus(String bookId,String userId) async {
+Future<String> changeStatus(String bookId,String userId,String status) async {
   try{
-    final response = await changeStatusR(bookId,userId,"1");
+    final response = await changeStatusR(bookId,userId,status);
     print ("the response is  ");
     print (response.statusCode);
     if (response.statusCode == 200) {

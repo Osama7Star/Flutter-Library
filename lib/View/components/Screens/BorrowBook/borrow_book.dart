@@ -19,71 +19,68 @@ class borrowBook extends StatefulWidget {
   _borrowBookState createState() => _borrowBookState();
 
   final String categoryId;
-
-
 }
 
 class _borrowBookState extends State<borrowBook> {
   BookInfoController _con1 = new BookInfoController();
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar11(context),
-      body: FutureBuilder(
-        future: _con1.fetchBookByISBN(widget.categoryId),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<BookModel> list = snapshot.data;
+      body: SingleChildScrollView(
+        child: FutureBuilder(
+          future: _con1.fetchBookByISBN(widget.categoryId),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<BookModel> list = snapshot.data;
 
-            return Column(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BookInfo(bookId: list[0].bookId,categoryId: list[0].categoryId),
-                      ),
-                    );
-                  },
+              return Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BookInfo(
+                              bookId: list[0].bookId,
+                              categoryId: list[0].categoryId),
+                        ),
+                      );
+                    },
 
-                  /// GET USER BASIC INFORMATION (IMAGE,NAME)
-                  child: bookInfoW(list: list),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                SubText(text:'إستعارة'),
-                SizedBox(
-                  height: 10,
-                ),
+                    /// GET USER BASIC INFORMATION (IMAGE,NAME)
+                    /// TODO: CHANGE ISBN
+                    child: bookInfoW(list: list),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
 
-                /// CHECK BOOK STATUS
-                list[0].bookStatus == "0"
+                  /// CHECK BOOK STATUS
+                  list[0].bookStatus == "0"
 
-                /// IF BOOK IS AVAILABLE FOR BORROWING
+                      /// IF BOOK IS AVAILABLE FOR BORROWING
 
-                    ? bookIsAvilableW()
-                    :
+                      ? bookIsAvilableW(bookId:list[0].bookId ,userId: "80")
+                      :
 
-                /// IF BOOK IS NOT AVAILABLE FOR BORROWING
+                      /// IF BOOK IS NOT AVAILABLE FOR BORROWING
 
-                NotAvilableWidget(con1: _con1, list: list),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Text("Error");
-          }
+                      NotAvilableWidget(con1: _con1, list1: list),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text("Error");
+            }
 
-          // By default, show a loading spinner.
-          return Center(child: CircularProgressIndicator());
-        },
+            // By default, show a loading spinner.
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
       ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.scan),
     );
@@ -104,7 +101,7 @@ class bookInfoW extends StatelessWidget {
       //TODO : CHECK IF THE BOOK IS EXIST
       child: Column(
         children: [
-          BookImage(imageUrl: list[0].imageUrl, ISBN: "12L"),
+          BookImage(imageUrl: list[0].imageUrl, ISBN: list[0].ISBN),
           SizedBox(height: 10),
           SubText(text: list[0].bookName, textSize: 24),
           SizedBox(height: 15),
@@ -113,7 +110,3 @@ class bookInfoW extends StatelessWidget {
     );
   }
 }
-
-
-
-
