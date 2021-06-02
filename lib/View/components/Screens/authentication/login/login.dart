@@ -8,6 +8,7 @@ import 'components/login_form.dart';
 class LogIn extends StatelessWidget {
   final String email ;
   final String password;
+  static const routeName = '/login';
 
   const LogIn({Key key, this.email, this.password}) : super(key: key);
 
