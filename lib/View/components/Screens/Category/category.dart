@@ -10,7 +10,7 @@ import 'components/cateory_list.dart';
 
 class Category extends StatelessWidget {
   CategoryController _con= CategoryController();
-
+  static const routeName = '/category';
   @override
   Widget build(BuildContext context) {
 

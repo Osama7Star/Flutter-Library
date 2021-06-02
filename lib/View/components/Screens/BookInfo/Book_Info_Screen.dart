@@ -108,6 +108,7 @@ class _BookInfoState extends State<BookInfo> {
 
                   AddReviewW(_con2,widget.status),
 
+                  ///TODO : CHANGE THE PROGRESS BAR TO ANIMATION
                   /// END ADD REVIEWS
 
                   SizedBox(height: 20),
