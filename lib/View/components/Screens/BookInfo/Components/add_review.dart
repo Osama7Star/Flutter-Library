@@ -16,7 +16,7 @@ Card AddReviewW(BookReviewsController _con,String status) {
       padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
-          status =="1" ?NotLogged(text: 'الرجاء تسجيل الدخول حتى تتمكن من إضافة إقتباس') :
+          status =="1" ?NotLogged(text: 'الرجاء تسجيل الدخول حتى تتمكن من إضافة مراجعة') :
           Form(
               key: _formKey,
               child: Column(
