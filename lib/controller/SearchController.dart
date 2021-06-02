@@ -9,13 +9,16 @@ import 'dart:convert';
 
 class SearchController extends ControllerMVC {
   Future<List<BookModel>> searchBook(String bookName) async {
+    List<BookModel> books = [];
+
     try {
       final response = await searchBooksR(bookName);
 
       print(response.statusCode);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
-        List<BookModel> books = [];
+
+
         for (var item in body) {
           books.add(BookModel.fromJson(item));
         }
@@ -28,6 +31,6 @@ class SearchController extends ControllerMVC {
     } catch (e) {
       print("error is $e");
     }
-    return null;
+    return books;
   }
 }

@@ -70,40 +70,45 @@ class _SearchState extends State<Search> {
                           height: 20,
                         ),
                         if (isSearch)
-                          FutureBuilder(
+                          FutureBuilder<List<BookModel>>(
                             future: _con1.searchBook(fieldController.text),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                List<BookModel> list = snapshot.data;
-                                return  snapshot.data.length > 0
-                                    ? Container(
-                                        child: ListView.builder(
-                                            physics:
-                                                NeverScrollableScrollPhysics(),
-                                            scrollDirection: Axis.vertical,
-                                            shrinkWrap: true,
-                                            itemCount: snapshot.data.length,
-                                            itemBuilder: (context, index) {
-                                              return list.length > 0
-                                                  ? onBookWidget(
-                                                      bookModel: list[index],
-                                                      numberOfbook: 1)
+                            // function where you call your api
+                            builder: (BuildContext context,
+                                AsyncSnapshot<List<BookModel>> snapshot) {
+                              List<BookModel > booksList = snapshot.data;
 
-                                                  /// TODO : SUGGEST BOOK
-                                                  /// TODO : BUTTON SEARCH IN KEYPAD
-                                                  : Column();
-                                            }),
-                                      )
-                                    :BookNotFound(text: ' الكتاب غير موجود هل تريد إقتراحه');
-                              } else if (snapshot.hasError) {
-                                return Text("Error");
+                              // AsyncSnapshot<Your object type>
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              } else {
+                                if (snapshot.hasError)
+                                  return Center(
+                                      child: BookNotFound());
+                                else
+                                  return snapshot.data.length>0 ?
+                                  Container(
+                                    child: ListView.builder(
+                                        physics:
+                                        NeverScrollableScrollPhysics(),
+                                        scrollDirection: Axis.vertical,
+                                        shrinkWrap: true,
+                                        itemCount: snapshot.data.length,
+                                        itemBuilder: (context, index) {
+                                          return  onBookWidget(
+                                              bookModel: snapshot.data[index],
+                                              numberOfbook: 1);
+
+                                          /// TODO : SUGGEST BOOK
+                                          /// TODO : BUTTON SEARCH IN KEYPAD
+
+                                        }),
+                                  ):
+                                  BookNotFound(text: "الكتاب غير موجود هل تريد إقتراخه",); // snapshot.data  :- get your object which is pass from your downloadData() function
                               }
-
-
-                              // By default, show a loading spinner.
-                              return BookNotFound(text: ' الكتاب غير موجود هل تريد إقتراحه');
                             },
-                          ),
+                          )
                       ],
                     ),
                   ),
