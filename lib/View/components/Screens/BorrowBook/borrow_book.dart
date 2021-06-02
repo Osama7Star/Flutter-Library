@@ -88,7 +88,7 @@ class _borrowBookState extends State<borrowBook> {
                         ),
                         SubText(
                           text: "تأكد من قراءة الباركود الصحيح",
-                          textSize: 20,
+                          textSize: 20  ,
                         ),
                         SizedBox(height: 45),
                         Image.asset(

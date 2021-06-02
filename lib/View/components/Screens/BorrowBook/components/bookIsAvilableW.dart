@@ -18,8 +18,6 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
   DateTime selectedDate = DateTime.now();
   BookInfoController _con1 = new BookInfoController();
 
-
-
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
       ///TODO:CHANGE IT TO BE FIRSTDATE IS CURRENT YEAR AND LASTDATE IS THE NEXT YEAR
@@ -42,7 +40,6 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
         child: Column(
           children: [
             SubText(text: 'إستعارة', textSize: 25),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -54,20 +51,32 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                RaisedButton(
-                  onPressed: () => _selectDate(context),
-                  child: Text(
-                    'إختر التاريخ',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  color: kPrimaryColor,
+                TextButton(
+                    onPressed: () => _selectDate(context),
+                    style: TextButton.styleFrom(
+                      primary: kPrimaryColor,
+                    ),
+                    child:
+                    Row(
+                      children: [
+                        Icon(Icons.date_range),
+                        SizedBox(width: 8),
+                        Text(
+                          'إختر التاريخ',
+                          style: TextStyle(fontSize: 18),
+                        ),
+
+                      ],
+                    )
+
                 ),
+              //  IconButton(icon: Icon(Icons.date_range,color: kPrimaryColor),   onPressed: () => _selectDate(context),),
+
                 SubText(text: ' : تاريخ الإرجاع'),
               ],
             ),
             SizedBox(height: 20),
-            Text(selectedDate.toString()),
+            //Text(selectedDate.toString()),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -75,7 +84,7 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
                   text: "إستعارة",
                   pressed: () {
                     _con1.borrowBook(widget.bookId, "78");
-                    _con1.changeStatus(widget.bookId, widget.userId,"1");
+                    _con1.changeStatus(widget.bookId, widget.userId, "1");
                     print("Book Borrowing");
                   }),
             ),
@@ -86,7 +95,4 @@ class _bookIsAvilableWState extends State<bookIsAvilableW> {
   }
 }
 
-BorrowthisBook()
-{
-
-}
+BorrowthisBook() {}
