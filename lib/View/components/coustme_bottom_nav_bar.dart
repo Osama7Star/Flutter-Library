@@ -73,7 +73,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: new Icon(Icons.volunteer_activism),
+                    icon: new Icon(Icons.workspaces_outline),
                     highlightColor: kPrimaryColor,
                     color: MenuState.activity == selectedMenu
                         ? kPrimaryColor
