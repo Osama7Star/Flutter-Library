@@ -22,6 +22,7 @@ class onBookWidget extends StatelessWidget {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
     double width11 = queryData.size.width;
+    
     return Column(
       children: [
         GestureDetector(
@@ -35,7 +36,7 @@ class onBookWidget extends StatelessWidget {
             );
           },
           child: SizedBox(
-            height:500,
+            height:width11/5,
             width: width11 / numberOfbook,
             child: Card(
                 elevation: 20,
