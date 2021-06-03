@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
+import 'package:flutter_library_new/View/components/Screens/Authors/author_information_screen.dart';
 import 'package:flutter_library_new/View/components/Screens/CategoryBooks/CategoryBooks.dart';
 import 'package:flutter_library_new/models/BorrowingModel.dart';
 import 'package:flutter_library_new/utilites/functions.dart';
@@ -85,45 +85,42 @@ class _BookInfoState extends State<BookInfo> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  GetBookInfoW(con1: _con1, bookId: widget.bookId),
+            Column(
+              children: [
+                GetBookInfoW(con1: _con1, bookId: widget.bookId),
 
-                  /// USERS REVIEWS
-                  SizedBox(height: 20),
-                  LabelW(text: "تقييمات القراء", width: screenWidth / 2),
-                  SizedBox(
-                    height: 10
-                  ),
+                /// USERS REVIEWS
+                SizedBox(height: 20),
+                LabelW(text: "تقييمات القراء", width: screenWidth / 2),
+                SizedBox(
+                  height: 10
+                ),
 
-                  SingleChildScrollView(
-                      child: GetBookReviewW(
-                          function: _con2.fetchBookReviews(widget.bookId))),
+                SingleChildScrollView(
+                    child: GetBookReviewW(
+                        function: _con2.fetchBookReviews(widget.bookId))),
 
-                  ///END USERS REVIEWS
+                ///END USERS REVIEWS
 
-                  /// ADD REVIEWS
+                /// ADD REVIEWS
 
-                  AddReviewW(_con2,widget.status),
+                AddReviewW(_con2,widget.status),
 
-                  ///TODO : CHANGE THE PROGRESS BAR TO ANIMATION
-                  /// END ADD REVIEWS
+                ///TODO : CHANGE THE PROGRESS BAR TO ANIMATION
+                /// END ADD REVIEWS
 
-                  SizedBox(height: 20),
+                SizedBox(height: 20),
 
-                  /// GET SIMILAR BOOKS
-                  LabelW(text: "كتب مشابهة", width: screenWidth / 2),
-                  SizedBox(height: 10),
-                  GetSimilarBooksW(
-                    con1: _con1,
-                    categoryId: widget.categoryId,
-                  ),
+                /// GET SIMILAR BOOKS
+                LabelW(text: "كتب مشابهة", width: screenWidth / 2),
+                SizedBox(height: 10),
+                GetSimilarBooksW(
+                  con1: _con1,
+                  categoryId: widget.categoryId,
+                ),
 
-                  ///END GET SIMILAR BOOKS
-                ],
-              ),
+                ///END GET SIMILAR BOOKS
+              ],
             ),
           ],
         ),

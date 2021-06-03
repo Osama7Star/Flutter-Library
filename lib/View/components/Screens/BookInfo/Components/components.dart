@@ -138,7 +138,7 @@ class BookImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 400,
       width: double.infinity,
       child: Stack(
         children: [
@@ -152,7 +152,7 @@ class BookImage extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(imageUrl),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
 
               ),
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/Authors/Author_Information.dart';
+import 'package:flutter_library_new/View/components/Screens/Authors/author_information_screen.dart';
 import 'package:flutter_library_new/View/components/Screens/CategoryBooks/CategoryBooks.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -49,7 +49,7 @@ class BookDetailsW extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => AuthorInformation(
+                        builder: (context) => AuthorInformationScreen(
                           authorId: bookModel.authorId,
                         ),
                       ),
@@ -131,6 +131,7 @@ class BookDetailsW extends StatelessWidget {
               return CircularProgressIndicator();
             },
           ),
+
         ],
       ),
     );

@@ -1,28 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/AddQuote/add_quote.dart';
-import 'package:flutter_library_new/View/components/Screens/Authors/All_Authors.dart';
-import 'package:flutter_library_new/utilites/SizeConfig.dart';
-import '../Authors/Components/components.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
-import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
-import 'package:flutter_library_new/View/components/Screens/Category/components/cateory_list.dart';
 import 'package:flutter_library_new/controller/authors_controller.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/controller/category_controller.dart';
-import 'package:flutter_library_new/models/AuthorModel.dart';
-import 'package:flutter_library_new/utilites/constants.dart';
-import '../../components.dart';
-import '../../coustme_bottom_nav_bar.dart';
-import 'package:flutter_library_new/models/BookModel.dart';
-import 'package:flutter_library_new/models/CategoryModel.dart';
+import 'package:flutter_library_new/utilites/SizeConfig.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
-import '../BookInfo/Components/one_book_widget.dart';
-
-import 'components/CategoryNameLabel.dart';
+import '../../components.dart';
+import '../../coustme_bottom_nav_bar.dart';
 import 'components/components.dart';
-import 'components/getAuthorsW.dart';
 import 'components/getBooksW.dart';
 import 'components/getCategoriesW.dart';
 import 'components/getCategorysBooks.dart';

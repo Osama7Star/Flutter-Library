@@ -4,7 +4,7 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/Components/
 import 'package:flutter_library_new/models/AuthorModel.dart';
 
 import '../../../components.dart';
-import '../Author_Information.dart';
+import '../author_information_screen.dart';
 
 
 
@@ -22,7 +22,7 @@ class AuthorInfoWidget extends StatelessWidget {
           context,
           MaterialPageRoute(
 
-            builder: (context) => AuthorInformation(authorId: authorInfo.authorId,),
+            builder: (context) => AuthorInformationScreen(authorId: authorInfo.authorId,),
           ),
         );
       },

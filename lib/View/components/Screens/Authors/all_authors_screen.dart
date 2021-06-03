@@ -3,13 +3,13 @@ import 'package:flutter_library_new/controller/authors_controller.dart';
 import 'package:flutter_library_new/models/AuthorModel.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 import '../../coustme_bottom_nav_bar.dart';
-import 'Author_Information.dart';
+import 'author_information_screen.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import '../../components.dart';
 import 'Components/components.dart';
 
 /// SHOW ALL THE AUTHORS
-class AllAuthors extends StatelessWidget {
+class AllAuthorsScreen extends StatelessWidget {
   AuthorController _con1 = AuthorController();
 
   @override
