@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/View/components/Screens/AddQuote/components/not_logged.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Components/components.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
@@ -14,7 +15,7 @@ import 'components/bookIsAvilableW.dart';
 import 'components/bookIsNotAvilable.dart';
 
 class borrowBook extends StatefulWidget {
-  const borrowBook({Key key, this.categoryId}) : super(key: key);
+  borrowBook({Key key, this.categoryId}) : super(key: key);
 
   @override
   _borrowBookState createState() => _borrowBookState();
@@ -24,90 +25,108 @@ class borrowBook extends StatefulWidget {
 
 class _borrowBookState extends State<borrowBook> {
   BookInfoController _con1 = new BookInfoController();
+  String name = '';
+  String userId = '';
+  String status = '';
+
+  @override
+  void initState() {
+    super.initState();
+    UserSimplePreferences.setName("Osama");
+    UserSimplePreferences.setStatus("1");
+    UserSimplePreferences.setUserId("10");
+
+    name = UserSimplePreferences.getName() ?? '';
+    userId = UserSimplePreferences.getUserId() ?? '';
+    status = UserSimplePreferences.getStatus() ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar11(context),
-      body: SingleChildScrollView(
-        child: FutureBuilder(
-          future: _con1.fetchBookByISBN(widget.categoryId),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<BookModel> list = snapshot.data;
+      body: Container(
+        child: status == '1aa'
+            ? NotLogged(text: 'الرجاء تسجيل الدخول حتى تتمكن من إستعارة الكتاب')
+            : SingleChildScrollView(
+                child: FutureBuilder(
+                  future: _con1.fetchBookByISBN(widget.categoryId),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<BookModel> list = snapshot.data;
 
-              return list.length > 0
-                  ? Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BookInfo(
-                                    bookId: list[0].bookId,
-                                    categoryId: list[0].categoryId),
-                              ),
+                      return list.length > 0
+                          ? Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => BookInfo(
+                                            bookId: list[0].bookId,
+                                            categoryId: list[0].categoryId),
+                                      ),
+                                    );
+                                  },
+
+                                  /// GET USER BASIC INFORMATION (IMAGE,NAME)
+                                  /// TODO: CHANGE ISBN
+                                  child: bookInfoW(list: list),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+
+                                /// CHECK BOOK STATUS
+                                list[0].bookStatus == "0"
+
+                                    /// IF BOOK IS AVAILABLE FOR BORROWING
+
+                                    ? bookIsAvilableW(
+                                        bookId: list[0].bookId, userId: "80")
+                                    :
+
+                                    /// IF BOOK IS NOT AVAILABLE FOR BORROWING
+
+                                    NotAvilableWidget(con1: _con1, list1: list),
+                              ],
+                            )
+
+                          /// if the book is not available
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                SubText(
+                                  text: "الكتاب غير موجود",
+                                  textSize: 25,
+                                ),
+                                SubText(
+                                  text: "تأكد من قراءة الباركود الصحيح",
+                                  textSize: 20,
+                                ),
+                                SizedBox(height: 45),
+                                Image.asset(
+                                  "assets/images/not.png",
+                                ),
+                              ],
                             );
-                          },
+                    } else if (snapshot.hasError) {
+                      return Text("Error");
+                    }
 
-                          /// GET USER BASIC INFORMATION (IMAGE,NAME)
-                          /// TODO: CHANGE ISBN
-                          child: bookInfoW(list: list),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-
-                        /// CHECK BOOK STATUS
-                        list[0].bookStatus == "0"
-
-                            /// IF BOOK IS AVAILABLE FOR BORROWING
-
-                            ? bookIsAvilableW(
-                                bookId: list[0].bookId, userId: "80")
-                            :
-
-                            /// IF BOOK IS NOT AVAILABLE FOR BORROWING
-
-                            NotAvilableWidget(con1: _con1, list1: list),
-                      ],
-                    )
-
-              /// if the book is not available
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        SubText(
-                          text: "الكتاب غير موجود",
-                          textSize: 25,
-                        ),
-                        SubText(
-                          text: "تأكد من قراءة الباركود الصحيح",
-                          textSize: 20  ,
-                        ),
-                        SizedBox(height: 45),
-                        Image.asset(
-                          "assets/images/not.png",
-
-                        ),
-                      ],
-                    );
-            } else if (snapshot.hasError) {
-              return Text("Error");
-            }
-
-            // By default, show a loading spinner.
-            return Center(child: CircularProgressIndicator());
-          },
-        ),
+                    // By default, show a loading spinner.
+                    return Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ),
       ),
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.scan),
     );

@@ -21,6 +21,7 @@ class IsLogged extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
 
+
       children: [
         Text(name),
         Form(
