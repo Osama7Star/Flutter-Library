@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../BookInfo/Components/BookPage.dart';
+import '../BookInfo/Components/one_book_widget.dart';
 import 'package:flutter_library_new/View/components/Screens/authentication/signup/components/sign_form.dart';
 import 'package:flutter_library_new/controller/SearchController.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
@@ -96,7 +96,7 @@ class _SearchState extends State<Search> {
                                         shrinkWrap: true,
                                         itemCount: snapshot.data.length,
                                         itemBuilder: (context, index) {
-                                          return  onBookWidget(
+                                          return  OneBookWidget(
                                               bookModel: snapshot.data[index],
                                               numberOfbook: 1);
 

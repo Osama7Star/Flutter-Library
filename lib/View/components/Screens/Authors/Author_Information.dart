@@ -3,7 +3,7 @@ import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_S
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Components/components.dart';
 import 'package:flutter_library_new/controller/authors_controller.dart';
 import 'package:flutter_library_new/models/AuthorModel.dart';
-import '../BookInfo/Components/BookPage.dart';
+import '../BookInfo/Components/one_book_widget.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 
 import 'package:flutter_library_new/models/BookModel.dart';
@@ -56,7 +56,7 @@ class AuthorInformation extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemCount: snapshot.data.length,
                                   itemBuilder: (context, index) {
-                                    return onBookWidget(
+                                    return OneBookWidget(
                                         bookModel: list[index], numberOfbook: 1);
                                   }),
                             ),

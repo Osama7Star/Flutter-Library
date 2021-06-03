@@ -3,7 +3,7 @@ import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 import 'package:flutter_library_new/utilites/SizeConfig.dart';
 
-import 'BookPage.dart';
+import 'one_book_widget.dart';
 
 class GetSimilarBooksW extends StatelessWidget {
   const GetSimilarBooksW({
@@ -32,7 +32,7 @@ class GetSimilarBooksW extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
-                    return onBookWidget(bookModel: list[index]);
+                    return OneBookWidget(bookModel: list[index]);
                   }),
             ),
           );

@@ -10,13 +10,13 @@ import '../../../components.dart';
 import 'package:flutter/cupertino.dart';
 
 /// THIS WIDGET SHOWS Brief information ABOUT BOOK (IMAGE AND NAME )
-class onBookWidget extends StatelessWidget {
+class OneBookWidget extends StatelessWidget {
   @required
   final BookModel bookModel;
   @required
   final double numberOfbook;
 
-  const onBookWidget(
+  const OneBookWidget(
       {Key key, @required this.bookModel, this.numberOfbook: 1.8})
       : super(key: key);
 

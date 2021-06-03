@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/controller/category_controller.dart';
-import '../BookInfo/Components/BookPage.dart';
+import '../BookInfo/Components/one_book_widget.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/utilites/constants.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
@@ -56,7 +56,7 @@ class CategoryBooks extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
-                              return onBookWidget(
+                              return OneBookWidget(
                                   bookModel: list[index], numberOfbook: 1);
                             }),
                       ),

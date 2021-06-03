@@ -138,14 +138,24 @@ class BookImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 300,
       width: double.infinity,
       child: Stack(
         children: [
-          Center(
-            child: FadeInImage(
-              image: NetworkImage(imageUrl),
-              placeholder: AssetImage("assets/images/default-book.png"),
+          // Center(
+          //   child: FadeInImage(
+          //     image: NetworkImage(imageUrl),
+          //     placeholder: AssetImage("assets/images/default-book.png"),
+          //   ),
+          // ),
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(imageUrl),
+                fit: BoxFit.fill,
+
+              ),
+
             ),
           ),
           if (ISBN.isNotEmpty) LabelW(text: ISBN)
