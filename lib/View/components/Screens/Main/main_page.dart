@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/AddQuote/add_quote.dart';
 import 'package:flutter_library_new/View/components/Screens/Authors/All_Authors.dart';
+import 'package:flutter_library_new/utilites/SizeConfig.dart';
 import '../Authors/Components/components.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'package:flutter_library_new/View/components/Screens/Category/category.dart';
@@ -41,6 +42,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
     return Scaffold(
       appBar: AppBar11(context),
       body: SafeArea(

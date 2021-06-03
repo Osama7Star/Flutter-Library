@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_library_new/utilites/SizeConfig.dart';
 import 'package:flutter_library_new/utilites/functions.dart';
 import 'package:flutter_library_new/utilites/routes.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: routes,
-      home: Test(),
+      home:MainPage (),
     );
   }
 }
