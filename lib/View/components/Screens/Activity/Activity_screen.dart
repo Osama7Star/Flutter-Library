@@ -59,9 +59,13 @@ class ActivityScreen extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       /// GET THE READING
+
                       SingleChildScrollView(child: ReadingBooks(function: _con1.fetchReadingBooks())),
 
-                      // second tab bar viiew widget
+
+
+                      /// GET THE Qoutes
+
                       SingleChildScrollView(
                           child: Quote(function: _con.fetchQuotes())),
                     ],

@@ -31,7 +31,7 @@ class readingBookTextW extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
                 TextSpan(
-                  text: '  \n بقراءة كتاب ',
+                  text: '  \n بقراءة كتاب  \n',
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 18,

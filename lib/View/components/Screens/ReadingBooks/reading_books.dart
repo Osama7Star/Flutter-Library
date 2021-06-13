@@ -2,12 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'package:flutter_library_new/View/components/Screens/User/UserPage.dart';
-import 'package:flutter_library_new/controller/bookreviews_controller.dart';
-import 'package:flutter_library_new/controller/quote_controller.dart';
 import 'package:flutter_library_new/controller/readingbooks_controller.dart';
-import 'package:flutter_library_new/models/QuoteModel.dart';
 import 'package:flutter_library_new/models/ReadingBooksModel.dart';
-import 'package:flutter_library_new/utilites/constants.dart';
 
 import '../../components.dart';
 import 'Components/components.dart';
@@ -32,28 +28,33 @@ class ReadingBookW extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: function,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<ReadingBooksModel> list = snapshot.data;
-          return ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                return ReadingBookWidget(
-                  readingBooksModel: list[index],
-                );
-              });
-        } else if (snapshot.hasError) {
-          return Text("Error");
-        }
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 200),
+      child: Center(
+        child: FutureBuilder(
+          future: function,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              List<ReadingBooksModel> list = snapshot.data;
+              return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return ReadingBookWidget(
+                      readingBooksModel: list[index],
+                    );
+                  });
+            } else if (snapshot.hasError) {
+              return Text("Error");
+            }
 
-        // By default, show a loading spinner.
-        return Center(child: CircularProgressIndicator());
-      },
+            // By default, show a loading spinner.
+            return Center(child: CircularProgressIndicator());
+          },
+        ),
+      ),
     );
   }
 }
