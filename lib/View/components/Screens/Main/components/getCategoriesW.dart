@@ -22,10 +22,10 @@ class getCategoriesW extends StatelessWidget {
           return SizedBox(
 
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 1,vertical: 5),
               child: Container(
                 child: GridView.count(
-                  childAspectRatio: 3 / 1,
+                  childAspectRatio: 3.3 / 1,
 
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
