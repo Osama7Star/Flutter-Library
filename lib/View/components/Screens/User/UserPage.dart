@@ -95,7 +95,7 @@ class UserPage extends StatelessWidget {
 
                         /// GET THE REVIEWS READED BY USER
 
-                        SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId))),
+                        SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId),isPadding: true,)),
                       ],
                     ),
 

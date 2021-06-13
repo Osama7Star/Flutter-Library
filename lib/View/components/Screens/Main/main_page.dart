@@ -64,9 +64,19 @@ class _MainPageState extends State<MainPage> {
                 function: _con1.fetchCategory1Books("19")),
 
             /// MOST READED
-            SubText(text: 'الأكثر قرأة  '),
+            SubText(text: 'الأكثر قراءة  '),
             getBooksW(function: _con1.fetchMostReadedBooks()),
             // CategoryNameLabel(),
+            /// AUTHOR
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AllAuthorsScreen()),
+                  );
+                },
+                child: SubText(text: 'الكٌتّاب ')),
+            getAuthorsW(con3: _con3),
             SizedBox(height: 15),
             GetCategoryBooks(
                 categoryId: "20",
@@ -91,16 +101,7 @@ class _MainPageState extends State<MainPage> {
               needForLabel: false,
             ),
 
-            /// AUTHOR
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AllAuthorsScreen()),
-                  );
-                },
-                child: SubText(text: 'الكٌتّاب ')),
-            getAuthorsW(con3: _con3),
+
           ],
         ),
       )),

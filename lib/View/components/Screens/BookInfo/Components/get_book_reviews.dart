@@ -9,8 +9,11 @@ class GetBookReviewW extends StatelessWidget {
   final Future<dynamic> function;
 
   final String bookId;
+  final bool isPadding;
 
-  const GetBookReviewW({Key key, this.function, this.bookId}) : super(key: key);
+  const GetBookReviewW(
+      {Key key, this.function, this.bookId, this.isPadding = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,9 @@ class GetBookReviewW extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 350),
+        padding: this.isPadding == true
+            ? const EdgeInsets.only(bottom: 250)
+            : const EdgeInsets.only(bottom: 20),
         child: SingleChildScrollView(
           child: FutureBuilder(
             future: function,
@@ -52,7 +57,7 @@ class GetBookReviewW extends StatelessWidget {
               }
 
               // By default, show a loading spinner.
-              return SubText(text:"لا يوجد مراجعات حتى الان");
+              return SubText(text: "لا يوجد مراجعات حتى الان");
             },
           ),
         ),
