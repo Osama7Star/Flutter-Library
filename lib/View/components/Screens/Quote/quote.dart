@@ -28,9 +28,10 @@ class Quote extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
-                    return QuoteWidget(
-                      quoteModel: list[index],
-                    );
+                    return snapshot.data.length >0 ?QuoteWidget(
+                      quoteModel: list[index]):
+                        Text("No things");
+
                   });
             } else if (snapshot.hasError) {
               return Text("Error");

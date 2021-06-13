@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_library_new/models/BookReviewsModel.dart';
 
+import '../../../components.dart';
 import '../Book_Info_Screen.dart';
 import 'components.dart';
 
@@ -37,9 +38,11 @@ class GetBookReviewW extends StatelessWidget {
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        return BookReviews1(
-                          bookReviews: list[index],
-                        );
+                        return snapshot.data.length > 0
+                            ? BookReviews1(
+                                bookReviews: list[index],
+                              )
+                            : Text("No things");
                       });
                 } else {
                   Text('Nothing');
@@ -49,7 +52,7 @@ class GetBookReviewW extends StatelessWidget {
               }
 
               // By default, show a loading spinner.
-              return Text('');
+              return SubText(text:"لا يوجد مراجعات حتى الان");
             },
           ),
         ),
