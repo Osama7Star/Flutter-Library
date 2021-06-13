@@ -28,7 +28,7 @@ class SuggestBook extends StatelessWidget {
 
 
     return Scaffold(
-      appBar: AppBar11(context),
+      appBar: MyAppBar(context),
       body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(10),

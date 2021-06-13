@@ -26,7 +26,7 @@ class _SearchState extends State<Search> {
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      appBar: AppBar11(context),
+      appBar: MyAppBar(context),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

@@ -94,7 +94,7 @@ class Button extends StatelessWidget {
   }
 }
 /// TODO : CHANGE CLOCK TEAXTCOLOR
-AppBar AppBar11(BuildContext context) {
+AppBar MyAppBar(BuildContext context) {
   return AppBar(
     backgroundColor: kPrimaryColor,
     actions: [

@@ -69,7 +69,7 @@ class QuoteController extends ControllerMVC{
   Future<String> addQuote(String quote,String userId) async {
     try{
       final response = await addQuoteR(quote,userId,);
-      print ("the response is  ");
+
       print (response.statusCode);
       if (response.statusCode == 200) {
         return "True";

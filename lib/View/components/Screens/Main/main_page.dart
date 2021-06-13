@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
     SizeConfig().init(context);
 
     return Scaffold(
-      appBar: AppBar11(context),
+      appBar: MyAppBar(context),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(

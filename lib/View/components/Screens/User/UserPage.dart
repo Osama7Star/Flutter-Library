@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_library_new/View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'package:flutter_library_new/View/components/Screens/BookInfo/Components/get_book_reviews.dart';
 import 'package:flutter_library_new/View/components/Screens/Quote/quote.dart';
 import 'package:flutter_library_new/View/components/Screens/ReadingBooks/reading_books.dart';
@@ -30,14 +29,14 @@ class UserPage extends StatelessWidget {
         child: Scaffold(
           resizeToAvoidBottomInset: false,
 
-          appBar: AppBar11(context),
+          appBar: MyAppBar(context),
 
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 200),
               child: SizedBox(
                 /// TODO : Change the size of the page
-                height: 2000,
+                height: 4000,
                 child: Column(
                   children: <Widget>[
                     UserInfo(userId: userId),

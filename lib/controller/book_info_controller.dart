@@ -24,10 +24,9 @@ Future<void> ListenForBook ()async
 Future<List<BookModel>> fetchBook() async {
   try{
     final response = await fetchBookR();
-    print ("the response is  ");
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
+
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);
@@ -133,10 +132,9 @@ Future<List<BookModel>> fetchCategory1Books(String categoryId) async {
 Future<List<BookModel>> fetchBookById(String bookId) async {
   try{
     final response = await fetchBookByIdR(bookId);
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);
@@ -166,10 +164,9 @@ Future<List<BookModel>> fetchBookById(String bookId) async {
 Future<List<BookModel>> fetchBookByISBN(String ISBN) async {
   try{
     final response = await fetchBookByISBNR(ISBN);
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);
@@ -200,10 +197,9 @@ Future<List<BookModel>> fetchBookByISBN(String ISBN) async {
 Future<List<BorrowingModel>> fetchBorrowingInfo(String bookId) async {
   try{
     final response = await fetchBorrowingInfoR(bookId);
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);
@@ -231,7 +227,7 @@ Future<List<BorrowingModel>> fetchBorrowingInfo(String bookId) async {
   Future<String> suggestBook(String bookName,String bookAuthor,String note) async {
     try{
       final response = await suggestBookR(bookName,bookAuthor,note);
-      print ("the response is  ");
+
       print (response.statusCode);
       if (response.statusCode == 200) {
         return "True";
@@ -252,7 +248,7 @@ Future<List<BorrowingModel>> fetchBorrowingInfo(String bookId) async {
 Future<String> borrowBook(String bookId,String userId) async {
   try{
     final response = await borrowBookR(bookId,userId);
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
       return "True";
@@ -274,7 +270,7 @@ Future<String> borrowBook(String bookId,String userId) async {
 Future<String> changeStatus(String bookId,String userId,String status) async {
   try{
     final response = await changeStatusR(bookId,userId,status);
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
       return "True";
@@ -300,10 +296,9 @@ Future<String> changeStatus(String bookId,String userId,String status) async {
 Future<List<BookModel>> fetchLastAddedBooks() async {
   try{
     final response = await getLastBooksR();
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);
@@ -335,10 +330,9 @@ Future<List<BookModel>> fetchLastAddedBooks() async {
 Future<List<BookModel>> fetchMostRatedBooks() async {
   try{
     final response = await getMostRatedR();
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);
@@ -367,10 +361,10 @@ Future<List<BookModel>> fetchMostRatedBooks() async {
 Future<List<BookModel>> fetchMostReadedBooks() async {
   try{
     final response = await getMostReadedR();
-    print ("the response is  ");
+
     print (response.statusCode);
     if (response.statusCode == 200) {
-      print ("Fuck it's true");
+
       // If the server did return a 200 OK response,
       // then parse the JSON.
       var body =jsonDecode(response.body);

@@ -14,7 +14,7 @@ class Quote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 200),
+      padding: const EdgeInsets.only(bottom: 220),
       child: Center(
         child: FutureBuilder(
           future: function,

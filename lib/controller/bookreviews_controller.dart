@@ -54,7 +54,6 @@ class BookReviewsController extends ControllerMVC{
         {
           bookReviews.add(BookReviewsModel.fromJson(item));
         }
-        print("The Book Lengeth is $bookReviews.length");
         return bookReviews;
       } else {
 
@@ -74,7 +73,7 @@ class BookReviewsController extends ControllerMVC{
   Future<String> addReview(String review,String rate,String bookId,String userId)  async {
     try{
       final response = await addReviewR( review, rate, bookId, userId) ;
-      print ("the response is  ");
+
       print (response.statusCode);
       if (response.statusCode == 200) {
         return "True";

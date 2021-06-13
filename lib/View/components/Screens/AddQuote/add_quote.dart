@@ -40,7 +40,7 @@ class _AddQuoteState extends State<AddQuote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar11(context),
+      appBar: MyAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: status != '1'

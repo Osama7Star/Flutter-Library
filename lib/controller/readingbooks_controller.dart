@@ -14,7 +14,7 @@ class ReadingBooksController extends ControllerMVC{
   Future<List<ReadingBooksModel>> fetchReadingBooks() async {
     try{
       final response = await fetchReadingBooksR();
-      print (response.statusCode);
+
       if (response.statusCode == 200) {
 
         var body =jsonDecode(response.body);
@@ -40,7 +40,7 @@ class ReadingBooksController extends ControllerMVC{
   Future<List<ReadingBooksModel>> fetchUserReadingBooks(String userId) async {
     try{
       final response = await fetchUserReadingBooksR(userId);
-      print (response.statusCode);
+
       if (response.statusCode == 200) {
 
         var body =jsonDecode(response.body);

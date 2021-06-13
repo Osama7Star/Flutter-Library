@@ -44,7 +44,7 @@ class _borrowBookState extends State<borrowBook> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar11(context),
+      appBar: MyAppBar(context),
       body: Container(
         child: status == '1aa'
             ? NotLogged(text: 'الرجاء تسجيل الدخول حتى تتمكن من إستعارة الكتاب')

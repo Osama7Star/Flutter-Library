@@ -81,7 +81,7 @@ class _BookInfoState extends State<BookInfo> {
     //   String test = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      appBar: AppBar11(context),
+      appBar: MyAppBar(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
