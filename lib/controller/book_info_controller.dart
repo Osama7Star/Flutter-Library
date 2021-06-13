@@ -326,4 +326,73 @@ Future<List<BookModel>> fetchLastAddedBooks() async {
   return null;
 
 }
+
+
+
+/// GET THE MOST RATED BOOKS
+///
+///
+Future<List<BookModel>> fetchMostRatedBooks() async {
+  try{
+    final response = await getMostRatedR();
+    print ("the response is  ");
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+      print ("Fuck it's true");
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      var body =jsonDecode(response.body);
+      List<BookModel> books =[];
+      for ( var item in body)
+      {
+        books.add(BookModel.fromJson(item));
+      }
+      return books;
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      //  throw Exception('Failed to load book');
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
+/// GET THE MOST READED BOOKS
+
+Future<List<BookModel>> fetchMostReadedBooks() async {
+  try{
+    final response = await getMostReadedR();
+    print ("the response is  ");
+    print (response.statusCode);
+    if (response.statusCode == 200) {
+      print ("Fuck it's true");
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      var body =jsonDecode(response.body);
+      List<BookModel> books =[];
+      for ( var item in body)
+      {
+        books.add(BookModel.fromJson(item));
+      }
+      return books;
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      //  throw Exception('Failed to load book');
+    }
+  }
+  catch(e)
+  {
+    print("error is $e");
+  }
+  return null;
+
+}
+
+
 }

@@ -27,7 +27,7 @@ class GetCategoryBooks extends StatelessWidget {
       children: [
 
         needForLabel == true?   CategoryNameLabel(categoryId:categoryId,con: con2 ):
-        SubText(text:'LastBooks'),
+        SubText(text:'آخر الكتب إضافة'),
         FutureBuilder(
           future: function,
           builder: (context, snapshot) {

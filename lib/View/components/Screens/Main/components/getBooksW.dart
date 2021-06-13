@@ -3,17 +3,15 @@ import '../../BookInfo/Components/one_book_widget.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/models/BookModel.dart';
 class getBooksW extends StatelessWidget {
-  const getBooksW({
-    Key key,
-    @required BookInfoController con1,
-  }) : _con1 = con1, super(key: key);
 
-  final BookInfoController _con1;
 
+  final Future<dynamic> function ;
+
+  const getBooksW({Key key, this.function}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _con1.fetchSimilarBooks("19"),
+      future: function,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<BookModel> list = snapshot.data;

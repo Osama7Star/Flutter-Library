@@ -85,6 +85,22 @@ Future<http.Response> getLastBooksR() async {
 
 }
 
+/// GET THE MOST RATED BOOKS
+Future<http.Response> getMostRatedR() async {
+  http.Response response =  await http.get((Config.apiUrl+"getmostratedbooks?access-token=test"));
+  return response ;
+
+
+}
+
+/// GET THE MOST RATED BOOKS
+Future<http.Response> getMostReadedR() async {
+  http.Response response =  await http.get((Config.apiUrl+"getmostreadedbooks?access-token=test"));
+  return response ;
+
+
+}
+
 
 
 

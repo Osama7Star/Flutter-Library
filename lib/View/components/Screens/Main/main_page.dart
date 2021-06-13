@@ -51,14 +51,18 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 40),
 
             /// MOST RATED
+            /// SubText(text: 'الأكثر تقييما  '),
+           getBooksW(function : _con1.fetchMostRatedBooks()),
 
-           SubText(text: 'كتب  '),
-           getBooksW(con1: _con1),
+
 
 
             SizedBox(height: 5),
             GetCategoryBooks( categoryId: "19",con2: _con2,function: _con1.fetchCategory1Books("19")),
 
+            /// MOST READED
+            SubText(text: 'الأكثر قرأة  '),
+            getBooksW(function : _con1.fetchMostReadedBooks()),
            // CategoryNameLabel(),
             SizedBox(height: 5),
             GetCategoryBooks( categoryId: "20",con2: _con2,function: _con1.fetchCategory1Books("20")),
@@ -67,6 +71,8 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 5),
             GetCategoryBooks( categoryId: "21",con2: _con2,function: _con1.fetchCategory1Books("22"),),
             //CategoryNameLabel(),
+
+            /// get the last added books
             SizedBox(height: 5),
             GetCategoryBooks( categoryId: "21",con2: _con2,function: _con1.fetchLastAddedBooks(),needForLabel:  false,),
 
