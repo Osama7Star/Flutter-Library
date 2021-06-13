@@ -4,12 +4,12 @@ import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 import 'UserPage.dart';
 
-class profilePage extends StatefulWidget {
+class UserScreen extends StatefulWidget {
   @override
-  profilePageState createState() => profilePageState();
+  UserScreenState createState() => UserScreenState();
 }
 
-class profilePageState extends State<profilePage> {
+class UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

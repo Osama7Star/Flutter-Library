@@ -23,7 +23,7 @@ class GetBookReviewW extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(bottom: 350),
         child: SingleChildScrollView(
           child: FutureBuilder(
             future: function,

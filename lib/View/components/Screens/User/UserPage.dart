@@ -8,6 +8,7 @@ import 'package:flutter_library_new/controller/quote_controller.dart';
 import 'package:flutter_library_new/controller/readingbooks_controller.dart';
 import 'package:flutter_library_new/controller/user_controller.dart';
 import 'package:flutter_library_new/models/UserModel.dart';
+import 'package:flutter_library_new/utilites/SizeConfig.dart';
 import 'package:flutter_library_new/utilites/enums.dart';
 
 import '../../components.dart';
@@ -32,83 +33,74 @@ class UserPage extends StatelessWidget {
           appBar: MyAppBar(context),
 
           body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 200),
-              child: SizedBox(
-                /// TODO : Change the size of the page
-                height: 4000,
-                child: Column(
-                  children: <Widget>[
-                    UserInfo(userId: userId),
-                    // the tab bar with two items
-                    SizedBox(
-                      height: 60,
-                      child: AppBar(
-                        bottom: TabBar(
-                          tabs: [
+            child: Column(
+              children: <Widget>[
+                UserInfo(userId: userId),
+                // the tab bar with two items
+                SizedBox(
+                  height: 60,
+                  child: AppBar(
+                    bottom: TabBar(
+                      tabs: [
 
-                            /// TODO : MAKE MARGIN BETWEN BOTTOMNAVIGATION BAR
-                            Tab(
-                              child:  Column(
-                                children: [
-                                  Icon(
-                                    Icons.book,
-                                  ),
-                                  Text('قراءات ',style: TextStyle(fontSize: 10),)
-                                ],
-                              )
-                            ),
-                            Tab(
-                                child:Column(
-                                  children: [
-                                    Icon(
-                                      Icons.format_quote,
-                                    ),
-                                    Text('إقتباسات ',style: TextStyle(fontSize: 10),)
-                                  ],
-                                )
-                            ),
-                            Tab(
-                                child:Column(
-                                  children: [
-                                    Icon(
-                                      Icons.rate_review,
-                                    ),
-                                    Text('مراجعات ',style: TextStyle(fontSize: 10),)
-                                  ],
-                                )
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    // create widgets for each tab bar here
-                    Expanded(
-
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 200.0),
-                          child: TabBarView(
+                        /// TODO : MAKE MARGIN BETWEN BOTTOMNAVIGATION BAR
+                        Tab(
+                          child:  Column(
                             children: [
-                              /// GET THE BOOK READED BY USER
-                              ///TODO :USER USERID
-                              ReadingBooks(function: _con1.fetchUserReadingBooks(userId)),
-
-                              /// GET THE QUOTES READED BY USER
-
-                              SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes(userId) ,)),
-
-                              /// GET THE REVIEWS READED BY USER
-
-                              SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId))),
+                              Icon(
+                                Icons.book,
+                              ),
+                              Text('قراءات ',style: TextStyle(fontSize: 10),)
                             ],
-                          ),
+                          )
                         ),
-
+                        Tab(
+                            child:Column(
+                              children: [
+                                Icon(
+                                  Icons.format_quote,
+                                ),
+                                Text('إقتباسات ',style: TextStyle(fontSize: 10),)
+                              ],
+                            )
+                        ),
+                        Tab(
+                            child:Column(
+                              children: [
+                                Icon(
+                                  Icons.rate_review,
+                                ),
+                                Text('مراجعات ',style: TextStyle(fontSize: 10),)
+                              ],
+                            )
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+
+                // create widgets for each tab bar here
+                SizedBox(
+
+                    height: getScreenHeight(),
+                    child: TabBarView(
+                      children: [
+                        /// GET THE BOOK READED BY USER
+                        ///TODO :USER USERID
+                        SingleChildScrollView(child: ReadingBooks(function: _con1.fetchUserReadingBooks(userId))),
+
+                        /// GET THE QUOTES READED BY USER
+
+                        SingleChildScrollView(child: Quote(function:_con.fetchUserQuotes(userId) ,)),
+
+                        /// GET THE REVIEWS READED BY USER
+
+                        SingleChildScrollView(child: GetBookReviewW(function: _con2.fetchUserReviews(userId))),
+                      ],
+                    ),
+
+                ),
+              ],
             ),
           ),
           bottomNavigationBar:
