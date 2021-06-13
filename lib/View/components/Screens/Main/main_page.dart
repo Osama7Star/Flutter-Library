@@ -51,42 +51,52 @@ class _MainPageState extends State<MainPage> {
             SizedBox(height: 40),
 
             /// MOST RATED
-            /// SubText(text: 'الأكثر تقييما  '),
-           getBooksW(function : _con1.fetchMostRatedBooks()),
-
-
-
-
+            SubText(text: 'الأكثر تقييما  '),
             SizedBox(height: 5),
-            GetCategoryBooks( categoryId: "19",con2: _con2,function: _con1.fetchCategory1Books("19")),
+           getBooksW(function: _con1.fetchMostRatedBooks()),
+
+
+
+            SizedBox(height: 35),
+            GetCategoryBooks(
+                categoryId: "19",
+                con2: _con2,
+                function: _con1.fetchCategory1Books("19")),
 
             /// MOST READED
             SubText(text: 'الأكثر قرأة  '),
-            getBooksW(function : _con1.fetchMostReadedBooks()),
-           // CategoryNameLabel(),
-            SizedBox(height: 5),
-            GetCategoryBooks( categoryId: "20",con2: _con2,function: _con1.fetchCategory1Books("20")),
+            getBooksW(function: _con1.fetchMostReadedBooks()),
+            // CategoryNameLabel(),
+            SizedBox(height: 15),
+            GetCategoryBooks(
+                categoryId: "20",
+                con2: _con2,
+                function: _con1.fetchCategory1Books("20")),
 
             //CategoryNameLabel(),
             SizedBox(height: 5),
-            GetCategoryBooks( categoryId: "21",con2: _con2,function: _con1.fetchCategory1Books("22"),),
+            GetCategoryBooks(
+              categoryId: "21",
+              con2: _con2,
+              function: _con1.fetchCategory1Books("22"),
+            ),
             //CategoryNameLabel(),
 
             /// get the last added books
             SizedBox(height: 5),
-            GetCategoryBooks( categoryId: "21",con2: _con2,function: _con1.fetchLastAddedBooks(),needForLabel:  false,),
-
+            GetCategoryBooks(
+              categoryId: "21",
+              con2: _con2,
+              function: _con1.fetchLastAddedBooks(),
+              needForLabel: false,
+            ),
 
             /// AUTHOR
             GestureDetector(
-                onTap: (){
-
+                onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-
-                      builder: (context) => AllAuthorsScreen()
-                    ),
+                    MaterialPageRoute(builder: (context) => AllAuthorsScreen()),
                   );
                 },
                 child: SubText(text: 'الكٌتّاب ')),
@@ -99,5 +109,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
-

@@ -40,29 +40,33 @@ class OneBookWidget extends StatelessWidget {
           child: SizedBox(
             height: widgetHeight,
             width: getScreenWidth() / numberOfbook,
-            child: Card(
-                elevation: 20,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      ///TODO: ADD PLACEHOLDER
-                        height: widgetHeight / 1.35,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                             image: NetworkImage(bookModel.imageUrl),
-                              fit: BoxFit.fill,
-                            ),
+            child: AspectRatio(
+              aspectRatio: numberOfbook==1 ? 1 /5:1,
 
-                          ),
-                        )),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SubText(text: bookModel.bookName),
-                    ),
-                  ],
-                )),
+              child: Card(
+                  elevation: 20,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        ///TODO: ADD PLACEHOLDER
+                          height: widgetHeight / 1.35,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                               image: NetworkImage(bookModel.imageUrl),
+                                fit: BoxFit.fill,
+                              ),
+
+                            ),
+                          )),
+                      SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: SubText(text: bookModel.bookName),
+                      ),
+                    ],
+                  )),
+            ),
           ),
         ),
       ],

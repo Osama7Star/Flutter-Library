@@ -68,7 +68,14 @@ class AuthorInformationScreen extends StatelessWidget {
                       }
 
                       // By default, show a loading spinner.
-                      return CircularProgressIndicator();
+                      return SizedBox(
+                        height: 3000,
+                        child: Container(
+                          child: Align(
+                              alignment: AlignmentDirectional.center,
+                              child: CircularProgressIndicator()),
+                        ),
+                      );
                     },
                   ),
                 ],
