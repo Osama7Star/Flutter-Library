@@ -57,7 +57,7 @@ class CategoryBooks extends StatelessWidget {
                             itemCount: snapshot.data.length,
                             itemBuilder: (context, index) {
                               return OneBookWidget(
-                                  bookModel: list[index], numberOfbook: 1);
+                                  bookModel: list[index], numberOfbook: 1.3);
                             }),
                       ),
                     ],

@@ -24,7 +24,6 @@ class _MainPageState extends State<MainPage> {
 
   BookInfoController _con1 = BookInfoController();
   CategoryController _con2 = CategoryController();
-  AuthorController _con3 = AuthorController();
 
   @override
   Widget build(BuildContext context) {

@@ -29,7 +29,7 @@ class getCategoriesW extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GridView.count(
-                      childAspectRatio: 3 / 2,
+                      childAspectRatio: 2.5 / 1.1,
 
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
