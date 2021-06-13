@@ -22,7 +22,7 @@ class Category extends StatelessWidget {
 
 
                 FutureBuilder(
-                  future: _con.fetchCategories(),
+                  future: _con.fetchCategories(numberOfCategories: 30),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       List<CategoryModel> list = snapshot.data;

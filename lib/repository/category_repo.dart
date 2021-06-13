@@ -2,8 +2,8 @@
 import 'package:flutter_library_new/utilites/config.dart';
 import 'package:http/http.dart' as http;
 
-Future<http.Response> fetchCategoriesR() async {
-  http.Response response =  await http.get(Config.apiUrl+"getcategories?access-token=test");
+Future<http.Response> fetchCategoriesR({int numberOfCategories = 6}) async {
+  http.Response response =  await http.get(Config.apiUrl+"getcategories?access-token=test&numbercategories=$numberOfCategories");
   return response ;
 
 }

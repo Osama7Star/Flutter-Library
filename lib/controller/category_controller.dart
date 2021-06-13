@@ -10,9 +10,9 @@ class CategoryController extends ControllerMVC{
 
 
 
-Future<List<CategoryModel>> fetchCategories() async {
+Future<List<CategoryModel>> fetchCategories({int numberOfCategories=6}) async {
   try{
-    final response = await fetchCategoriesR();
+    final response = await fetchCategoriesR(numberOfCategories: numberOfCategories);
     print (response.statusCode);
     if (response.statusCode == 200) {
 
