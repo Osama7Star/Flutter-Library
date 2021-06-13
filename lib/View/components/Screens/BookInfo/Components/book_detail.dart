@@ -22,7 +22,7 @@ class BookDetailsW extends StatelessWidget {
         children: [
           BookImage(imageUrl: bookModel.imageUrl, ISBN: bookModel.ISBN),
           SizedBox(height: 10),
-          SubText(text: bookModel.bookName, textSize: 24),
+          SubText(text: bookModel.bookName, textSize: 24,isMaxLines: false,),
           SizedBox(height: 15),
           Directionality(
             textDirection: TextDirection.rtl,

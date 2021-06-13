@@ -21,23 +21,29 @@ class HeaderText extends StatelessWidget {
 }
 
 class SubText extends StatelessWidget {
-  const SubText(
+   SubText(
       {Key key,
       @required this.text,
       this.textSize = 16,
       this.color = kPrimaryColor,
-      this.isCenter = false})
+      this.isCenter = false, this.isMaxLines= true})
       : super(key: key);
 
   final String text;
   final double textSize;
   final Color color;
   final bool isCenter;
+  final bool isMaxLines;
+  int numberOfLines ;
 
   @override
   Widget build(BuildContext context) {
+    this.isMaxLines == true ? this.numberOfLines = 2 :this.numberOfLines=4;
     return Text(
       text,
+
+      maxLines: numberOfLines,
+      overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
       style: TextStyle(
           color: color, fontSize: textSize, fontWeight: FontWeight.bold),
