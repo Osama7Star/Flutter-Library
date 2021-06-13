@@ -76,3 +76,15 @@ Future<http.Response> changeStatusR(String bookId,String userId,String bookStatu
 }
 
 
+
+/// GET THE LAST ADDED BOOKS
+Future<http.Response> getLastBooksR() async {
+  http.Response response =  await http.get((Config.apiUrl+"getlastbooks?access-token=test"));
+  return response ;
+
+
+}
+
+
+
+

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../components.dart';
 import '../../BookInfo/Components/one_book_widget.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/controller/category_controller.dart';
@@ -11,20 +12,24 @@ class GetCategoryBooks extends StatelessWidget {
   const GetCategoryBooks({
     Key key,
     @required BookInfoController con1,@required this.categoryId, this.con2,
+    this.needForLabel = true, this.function
   }) : _con1 = con1, super(key: key);
 
   final BookInfoController _con1;
   final CategoryController  con2;
   final String categoryId;
+  final bool  needForLabel ;
+  final Future<dynamic> function ;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
 
-        CategoryNameLabel(categoryId:categoryId,con: con2 ),
+        needForLabel == true?   CategoryNameLabel(categoryId:categoryId,con: con2 ):
+        SubText(text:'LastBooks'),
         FutureBuilder(
-          future: _con1.fetchCategory1Books(categoryId),
+          future: function,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<BookModel> list = snapshot.data;
