@@ -7,7 +7,6 @@ import 'package:flutter_library_new/utilites/routes.dart';
 import 'View/components/Screens/BookInfo/Book_Info_Screen.dart';
 import 'View/components/Screens/Main/main_page.dart';
 import 'View/components/Screens/authentication/signup/sign_up.dart';
-import 'View/components/Screens/test.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -32,7 +32,7 @@ class AuthorInfoWidget extends StatelessWidget {
             children: [
               SizedBox(
                   width: double.infinity  ,
-                  height: 250,
+                  height: 150,
 
                   child: BookImage(imageUrl: authorInfo.imageUrl,imageHeight:150)),
               SizedBox(height: 20,),

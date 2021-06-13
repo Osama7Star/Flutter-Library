@@ -21,35 +21,28 @@ class getCategoriesW extends StatelessWidget {
           List<CategoryModel> list = snapshot.data;
           return SizedBox(
 
-            child: Container(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.count(
-                      childAspectRatio: 2.5 / 1.1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+              child: Container(
+                child: GridView.count(
+                  childAspectRatio: 3 / 1,
 
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      primary: false,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 1,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  primary: false,
+                  crossAxisSpacing: 1,
+                  mainAxisSpacing: 1,
 
-                      crossAxisCount: MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? 2
-                          : 4,
-                      // Generate 100 widgets that display their index in the List.
-                      children: List.generate(list.length, (index) {
-                        return SizedBox(
-                          height: 90,
-                          child: category_list(categoryModel: list[index]),
-                        );
-                      }),
-                    ),
-                  ),
+                  crossAxisCount: MediaQuery.of(context).orientation ==
+                          Orientation.portrait
+                      ? 2
+                      : 4,
+                  // Generate 100 widgets that display their index in the List.
+                  children: List.generate(list.length, (index) {
+                    return SizedBox(
+                      child: category_list(categoryModel: list[index]),
+                    );
+                  }),
                 ),
               ),
             ),

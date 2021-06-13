@@ -11,6 +11,7 @@ import 'Components/components.dart';
 /// SHOW ALL THE AUTHORS
 class AllAuthorsScreen extends StatelessWidget {
   AuthorController _con1 = AuthorController();
+  static const routeName = '/all_author';
 
   @override
   Widget build(BuildContext context) {

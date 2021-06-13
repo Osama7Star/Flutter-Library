@@ -26,6 +26,7 @@ class getAuthorsW extends StatelessWidget {
               primary: false,
               crossAxisSpacing: 1,
               mainAxisSpacing: 1,
+              childAspectRatio:6.90/ 9.0,
               // Create a grid with 2 columns. If you change the scrollDirection to
               // horizontal, this produces 2 rows.
               crossAxisCount: MediaQuery

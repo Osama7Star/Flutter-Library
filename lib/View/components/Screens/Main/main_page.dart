@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_library_new/View/components/Screens/Authors/all_authors_screen.dart';
 import 'package:flutter_library_new/controller/authors_controller.dart';
 import 'package:flutter_library_new/controller/book_info_controller.dart';
 import 'package:flutter_library_new/controller/category_controller.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_library_new/utilites/enums.dart';
 import '../../components.dart';
 import '../../coustme_bottom_nav_bar.dart';
 import 'components/components.dart';
+import 'components/getAuthorsW.dart';
 import 'components/getBooksW.dart';
 import 'components/getCategoriesW.dart';
 import 'components/getCategorysBooks.dart';
@@ -24,6 +26,7 @@ class _MainPageState extends State<MainPage> {
 
   BookInfoController _con1 = BookInfoController();
   CategoryController _con2 = CategoryController();
+  AuthorController _con3 = AuthorController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +68,20 @@ class _MainPageState extends State<MainPage> {
             GetCategoryBooks(con1: _con1, categoryId: "21",con2: _con2),
 
 
-            // /// AUTHOR
-            // SubText(text: 'الكٌتّاب '),
-            // getAuthorsW(con3: _con3),
+            /// AUTHOR
+            GestureDetector(
+                onTap: (){
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+
+                      builder: (context) => AllAuthorsScreen()
+                    ),
+                  );
+                },
+                child: SubText(text: 'الكٌتّاب ')),
+            getAuthorsW(con3: _con3),
           ],
         ),
       )),
